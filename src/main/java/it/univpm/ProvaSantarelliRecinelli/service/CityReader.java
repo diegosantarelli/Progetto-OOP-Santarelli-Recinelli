@@ -1,9 +1,5 @@
 package it.univpm.ProvaSantarelliRecinelli.service;
-<<<<<<< HEAD
-//test commento2
-=======
-//provaprova
->>>>>>> 064af391e1db4db9b5e38591d938da4514f5878a
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,7 +22,7 @@ import it.univpm.ProvaSantarelliRecinelli.model.Weather;
 
 public class CityReader{
 	
-	private static String name = "city.list.json";
+	private static String name = "APIForecastANCONA.txt";
 	private String city_name;
 	private String city_country;
 	private double speed;
@@ -34,25 +30,26 @@ public class CityReader{
 	private double temp;
 	private double temp_max;
 	private double temp_min;
-	private double media;
-	private double varianza;
 	private double feels_like;
-	private String data;
 	
-	public CityReader(City city) {
-		this.city_name = city.getName();
-		this.city_country = city.getCountry();
+	public CityReader(String city) {
+		this.city_name = city;
+		this.city_country = city;
 	}
+	/**
+	 * Questo metodo legge il JSON file e inserisce tutto in un JSONArray
+	 * @return cityList ossia la lista delle città
+	 */
 	
-	public JSONArray caricaArray() {
+	public JSONObject caricaArray() {
 		JSONParser jsonParser = new JSONParser();
-		JSONArray cityList = null;
+		JSONObject cityList = null;
 		
 		try (FileReader reader = new FileReader(name)){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
-			cityList = new JSONArray();
-			return cityList = (JSONArray) obj;
+			cityList = new JSONObject();
+			return cityList = (JSONObject) obj;
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -80,7 +77,7 @@ public class CityReader{
 		}
 	}
 	
-	@Override
+	
 	public double GetWindSpeed() throws WrongCityException {
 		JSONArray ja = new JSONArray();
 		ja = caricaArray();
@@ -118,7 +115,7 @@ public class CityReader{
 			return city;
 		}
 	
-	@Override
+	
 	public double GetTempMax() throws WrongCityException {
 		JSONArray ja = new JSONArray();
 		ja = caricaArray();
@@ -126,7 +123,7 @@ public class CityReader{
 		return this.temp_max;
 	}
 	
-	@Override
+	
 	public double GetTempMin() throws WrongCityException {
 		JSONArray ja = new JSONArray();
 		ja = caricaArray();
@@ -134,7 +131,7 @@ public class CityReader{
 		return this.temp_min;
 	}
 	
-	@Override
+
 	public double GetTemp() throws WrongCityException {
 		JSONArray ja = new JSONArray();
 		ja = caricaArray();
@@ -142,16 +139,16 @@ public class CityReader{
 		return this.temp;
 	}
 	
-	@Override
+	
 	public double GetFeelsLike() throws WrongCityException {
 		JSONArray ja = new JSONArray();
 		ja = caricaArray();
 		getCityWeatherRistrictfromApi(ja);
 		return this.feels_like;
 		}
-}
+
 	
-	/*public String SaveEveryHour(City city) {
+	public String SaveEveryHour(City city) {
 		String path = System.getProperty("user.dir") + "/" + city.getName() + "HourlyReport.txt";
 		
 		File file = new File(path);
@@ -161,10 +158,15 @@ public class CityReader{
 		    @Override
 		    public void run() {
 		    	
-		    	double wind_speed = GetWindSpeed();
+		    	//double wind_speed = GetWindSpeed();
+		    	JSONArray wind_speed = new JSONArray();
+		    	wind_speed = GetWindSpeed();
+		    	
+		    	JSONObject actualvisibility = new JSONObject();
+		    	actualvisibility = visibility.getJSONObject(0);
 		    	
 		    	JSONObject actualwp = new JSONObject();
-		    	actualwp = wind_speed.getJSONObject(0);
+		    	actualwp = GetWindSpeed();
 
 		    			try{
 		    			    if(!file.exists()) {
@@ -189,7 +191,7 @@ public class CityReader{
 		
 		return "Il file è stato salvato in " + path;
 		
-	}
+	
 }
-*/
+}
 

@@ -23,9 +23,10 @@ import it.univpm.ProvaSantarelliRecinelli.model.City;
 
 /**
  * <p>
- * La classe permette di gestire le chiamate API e implementa l'interfaccia <b>APICallService</b>
+ * La classe permette di gestire le chiamate API
  * </p>
  * @author simonerecinelli
+ * @author diegosantarelli
  *
  */
 
@@ -42,12 +43,16 @@ public class APICall{
 	 * @throws WrongCityException città inserita sbagliata
 	 */
 	public APICall (City city) {
-		this.url = "http://api.openweathermap.org/data/2.5/forecast?q=" + city.getName() + "," + city.getCountry() + "&appid=" + appid;
+		this.url = "http://api.openweathermap.org/data/2.5/forecast?q=" + city.getName() + "," + city.getCountry() + "&units=metric&appid=" + appid;
 	}
 	 public APICall () {
 		 
 	 };
-
+	 
+	 /**
+	  * Il metodo effettua la chiamata all'api
+	  * @return java
+	  */
 
 	public JSONArray Call() {   
 
