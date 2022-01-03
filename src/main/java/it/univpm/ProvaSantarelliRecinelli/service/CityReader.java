@@ -20,7 +20,7 @@ import it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException;
 import it.univpm.ProvaSantarelliRecinelli.model.City;
 import it.univpm.ProvaSantarelliRecinelli.model.Weather;
 
-public class CityReader implements CityReaderService{
+public class CityReader{
 	
 	private static String name = "city.list.json";
 	private String city_name;

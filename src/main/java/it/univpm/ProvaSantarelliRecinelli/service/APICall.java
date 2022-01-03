@@ -30,7 +30,7 @@ import it.univpm.ProvaSantarelliRecinelli.model.City;
  */
 
 
-public class APICall implements APICallService{
+public class APICall{
 	private static String appid = "e53a126fee4e06f8dedcc4ecfa92d055";
 	private String url;
 
