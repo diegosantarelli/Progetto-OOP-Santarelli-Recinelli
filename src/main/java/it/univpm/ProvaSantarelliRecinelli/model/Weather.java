@@ -1,6 +1,6 @@
 package it.univpm.ProvaSantarelliRecinelli.model;
 
-public class Weather {
+public class Weather extends Wind {
 	private double temp;
 	private double temp_max;
 	private double temp_min;
@@ -16,11 +16,8 @@ public class Weather {
      * @param varianza        Varianza della temperatura
      * @param data            Giorno e ora a cui si riferisce la previsione
      */
-	public Weather() {
-		
-	};
-	public Weather(double temp ,double temp_max, double temp_min, double media, double varianza, double feels_like ,String data) {
-		super();
+	public Weather(double wind_speed ,double temp ,double temp_max, double temp_min, double media, double varianza, double feels_like ,String data) {
+		super(wind_speed);
 		this.temp = temp;
 		this.temp_max = temp_max;
 		this.temp_min = temp_min;

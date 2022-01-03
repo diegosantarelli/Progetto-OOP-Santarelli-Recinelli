@@ -23,17 +23,19 @@ import it.univpm.ProvaSantarelliRecinelli.model.Weather;
 public class CityReader{
 	
 	private static String name = "APIForecastANCONA.txt";
+	private City c;
+	private Vector < Weather > weat= new Vector < Weather >();
 
-	public CityReader(String city) {
-		this.city_name = city;
-		this.city_country = city;
+	public CityReader(String city, String country) {
+		c.setName(city);
+		c.setCountry(country);
 	}
 	/**
 	 * Questo metodo legge il JSON file e inserisce tutto in un JSONArray
 	 * @return cityList ossia la lista delle città
 	 */
 	
-	public JSONObject caricaArray() {
+	public JSONObject caricaOggetto() {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
@@ -53,92 +55,29 @@ public class CityReader{
 		return cityList;
 	}
 	
-	public void GetWindSpeedCity (JSONArray j) throws WrongCityException {
-		// Qui prendiamo l'oggetto città dalla citylist
+	public City JSONParsing( ) throws WrongCityException {
 		
-		for(int i=0; i < j.size(); i++) {
-			JSONObject cityObject = (JSONObject) j.get(i);
-			if (cityObject.get("name").equals(this.city_name)) {
-				if (cityObject.get("country").equals(this.city_country)) {
-					//mi prendo il vento della city
-					JSONObject WindObject = (JSONObject) cityObject.get("wind");
-					//mi prendo la velocità del vento della city
-					this.speed = (double) WindObject.get("speed");
-				} else throw new WrongCityException();
-			} else throw new WrongCityException();
-		}
-	}
-	
-	
-	public double GetWindSpeed() throws WrongCityException {
-		JSONArray ja = new JSONArray();
-		ja = caricaArray();
-		GetWindSpeedCity(ja);
-		return this.speed;
-	}
-	
-	public City getCityWeatherRistrictfromApi(JSONArray ja) throws WrongCityException {
+		Weather appoggio ;
+		JSONObject obj = caricaOggetto();
+		JSONArray list = (JSONArray) obj.get("list");
 		
-		City city = new City(city_name, city_country);
-		Vector<Weather> vector = new Vector<Weather>();
-		Weather weather = new Weather();
+		JSONObject objList = new JSONObject();
+		JSONObject objMain;
+		JSONObject objWind;
+		for(int i=0; i<list.size(); i++) {
+			objList = (JSONObject) list.get(i);
 			
-			for(int i=0; i<ja.size(); i++) {
-				JSONObject cityObject = (JSONObject) ja.get(i);
-				if (cityObject.get("name").equals(this.city_name)) {
-					if (cityObject.get("country").equals(this.city_country)) {
-						JSONObject listObject = (JSONObject) cityObject.get("list");
-						
-						JSONObject MainObject = (JSONObject) listObject.get("main");
-						
-						this.temp = (double)MainObject.get("temp_max");
-						this.temp_max = (double) MainObject.get("temp_max");
-						this.temp_min = (double) MainObject.get("temp_min");
-						this.feels_like = (double) MainObject.get("feels_like");
-						weather.setFeels_like(this.feels_like);
-						weather.setTemp(this.temp);
-						weather.setTemp_max(this.temp_max);
-						weather.setTemp_min(this.temp_min);
-						vector.add(weather);
-					} else throw new WrongCityException();
-				} else throw new WrongCityException();
-			}
-			city.setVector(vector);
-			return city;
+			objMain = (JSONObject) objList.get("main");
+			
+			
+			objWind = (JSONObject ) objList.get("wind");
+			
+			appoggio = new Weather();
+			this.weat.add(appoggio);
 		}
-	
-	
-	public double GetTempMax() throws WrongCityException {
-		JSONArray ja = new JSONArray();
-		ja = caricaArray();
-		getCityWeatherRistrictfromApi(ja);
-		return this.temp_max;
-	}
-	
-	
-	public double GetTempMin() throws WrongCityException {
-		JSONArray ja = new JSONArray();
-		ja = caricaArray();
-		getCityWeatherRistrictfromApi(ja);
-		return this.temp_min;
-	}
-	
-
-	public double GetTemp() throws WrongCityException {
-		JSONArray ja = new JSONArray();
-		ja = caricaArray();
-		getCityWeatherRistrictfromApi(ja);
-		return this.temp;
-	}
-	
-	
-	public double GetFeelsLike() throws WrongCityException {
-		JSONArray ja = new JSONArray();
-		ja = caricaArray();
-		getCityWeatherRistrictfromApi(ja);
-		return this.feels_like;
+		this.c.setVector(this.weat);	
+		return c;
 		}
-
 	
 	public String SaveEveryHour(City city) {
 		String path = System.getProperty("user.dir") + "/" + city.getName() + "HourlyReport.txt";
