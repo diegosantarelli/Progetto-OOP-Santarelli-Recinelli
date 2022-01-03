@@ -34,7 +34,7 @@ public class CityReader implements CityReaderService{
 	private double varianza;
 	private double feels_like;
 	private String data;
-	
+	//prova
 	public CityReader(City city) {
 		this.city_name = city.getName();
 		this.city_country = city.getCountry();
