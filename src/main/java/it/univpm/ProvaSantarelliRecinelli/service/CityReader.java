@@ -1,5 +1,5 @@
 package it.univpm.ProvaSantarelliRecinelli.service;
-
+//test commento
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -145,6 +145,7 @@ public class CityReader implements CityReaderService{
 		getCityWeatherRistrictfromApi(ja);
 		return this.feels_like;
 		}
+}
 	
 	/*public String SaveEveryHour(City city) {
 		String path = System.getProperty("user.dir") + "/" + city.getName() + "HourlyReport.txt";
