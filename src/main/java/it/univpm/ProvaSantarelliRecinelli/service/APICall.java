@@ -10,6 +10,7 @@ import java.net.URLConnection;
 //import java.util.Vector;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 //import org.json.JSONArray;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
@@ -42,22 +43,22 @@ public class APICall{
 	 * 
 	 * @throws WrongCityException città inserita sbagliata
 	 */
-	public APICall (City city) {
-		this.url = "http://api.openweathermap.org/data/2.5/forecast?q=" + city.getName() + "," + city.getCountry() + "&units=metric&appid=" + appid;
+	public APICall (String city, String country) {
+		this.url = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "," + country + "&units=metric&appid=" + appid;
+		if (city == null || country == null) {
+			this.url = "http://api.openweathermap.org/data/2.5/forecast?q=Ancona,IT&units=metric&appid=" + appid;
+		}
 	}
-	 public APICall () {
-		 
-	 };
 	 
 	 /**
-	  * Il metodo effettua la chiamata all'api
+	  * Il metodo effettua la chiamata all'API
 	  * @return java
 	  */
 
-	public JSONArray Call() {   
+	public JSONObject Call() {   
 
 		String api = this.url;
-		JSONArray ja = null;
+		JSONObject ja = null;
 		String data_filter = "";
 		String line = "";
 
@@ -74,7 +75,7 @@ public class APICall{
 			}
 			
 			in.close();
-			ja = (JSONArray) JSONValue.parseWithException(data_filter);
+			ja = (JSONObject) JSONValue.parseWithException(data_filter);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

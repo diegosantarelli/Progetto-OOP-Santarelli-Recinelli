@@ -23,15 +23,7 @@ import it.univpm.ProvaSantarelliRecinelli.model.Weather;
 public class CityReader{
 	
 	private static String name = "APIForecastANCONA.txt";
-	private String city_name;
-	private String city_country;
-	private double speed;
-	
-	private double temp;
-	private double temp_max;
-	private double temp_min;
-	private double feels_like;
-	
+
 	public CityReader(String city) {
 		this.city_name = city;
 		this.city_country = city;
