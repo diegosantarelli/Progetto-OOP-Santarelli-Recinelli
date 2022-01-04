@@ -27,12 +27,16 @@ public class CityReader{
 	private Vector <Weather> weat= new Vector <Weather>();
 
 	public CityReader(String cityName, String country) {
+		City c = new City(cityName,country);
+		this.city = c;
+		
 		if (cityName == null || country == null) {
 			cityName = "Ancona";
 			country = "IT";
+			City c1 = new City(cityName,country);
+			this.city = c1;
+			
 		}
-		this.city.setName(cityName);
-		this.city.setCountry(country);
 	}
 	/**
 	 * Questo metodo legge il JSON file e inserisce tutto in un JSONObject
@@ -43,7 +47,7 @@ public class CityReader{
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader(name)){
+		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -68,7 +72,10 @@ public class CityReader{
 		Weather appoggio;
 		JSONObject obj = caricaOggetto();
 		JSONArray list = (JSONArray) obj.get("list");
-		
+		double temp;
+		double tempMin;
+		double tempMax;
+		double feelsLike;
 		JSONObject objList = new JSONObject();
 		JSONObject objMain;
 		JSONObject objWind;
@@ -77,10 +84,10 @@ public class CityReader{
 			String date = (String) objList.get("dt_txt");
 			
 			objMain = (JSONObject) objList.get("main");
-			double temp = (double) objMain.get("temp");
-			double tempMin = (double) objMain.get("temp_min");
-			double tempMax = (double) objMain.get("temp_max");
-			double feelsLike = (double) objMain.get("feels_like");
+			 temp = (double) objMain.get("temp");
+			 tempMin = (double) objMain.get("temp_min");
+			 tempMax = (double) objMain.get("temp_max");
+			 feelsLike = (double) objMain.get("feels_like");
 			
 			objWind = (JSONObject ) objList.get("wind");
 			double windSpeed = (double) objWind.get("speed");

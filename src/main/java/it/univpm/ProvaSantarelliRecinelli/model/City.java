@@ -22,17 +22,18 @@ public class City {
 	/**
 	 * Costruttore dell'oggetto City
 	 */
-		public City(String Name, String Country) {
+	public City(String Name, String Country) {
 			this.Name = Name;
 			this.Country = Country;
-		}
-		public Vector<Weather> getVector() {
+	}
+	
+	public Vector<Weather> getVector() {
 		return vector;
 	}
+	
 	public void setVector(Vector<Weather> vector) {
 		this.vector = vector;
 	}
-		public City() {};
 	/**
 	 * Ritorna il nome di una città in formato string
 	 * @return nome della città di tipo <code>String<code>
@@ -45,7 +46,7 @@ public class City {
 	 * @param name indica il nome della città di riferimento
 	 */
 	public void setName(String name) {
-		Name = name;
+		this.Name = name;
 	}
 	/**
 	 * Ritorna lo stato di una città in formato string
