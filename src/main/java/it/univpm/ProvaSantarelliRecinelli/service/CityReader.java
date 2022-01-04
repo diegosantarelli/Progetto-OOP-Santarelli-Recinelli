@@ -23,12 +23,16 @@ import it.univpm.ProvaSantarelliRecinelli.model.Weather;
 public class CityReader{
 	
 	private static String name = "APIForecastANCONA.txt";
-	private City c;
-	private Vector < Weather > weat= new Vector < Weather >();
+	private City city;
+	private Vector <Weather> weat= new Vector <Weather>();
 
-	public CityReader(String city, String country) {
-		c.setName(city);
-		c.setCountry(country);
+	public CityReader(String cityName, String country) {
+		if (cityName == null || country == null) {
+			cityName = "Ancona";
+			country = "IT";
+		}
+		this.city.setName(cityName);
+		this.city.setCountry(country);
 	}
 	/**
 	 * Questo metodo legge il JSON file e inserisce tutto in un JSONObject
@@ -56,7 +60,7 @@ public class CityReader{
 	}
 	/**
 	 * Questo metodo parsifica il JSONObject ricevuto dall'API Forecast
-	 * @return c ossia un oggetto città con le caratteristiche che ci interessano
+	 * @return city ossia un oggetto città con le caratteristiche che ci interessano
 	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
 	 */
 	public City JSONParsing() throws WrongCityException {
@@ -70,19 +74,22 @@ public class CityReader{
 		JSONObject objWind;
 		for(int i=0; i<list.size(); i++) {
 			objList = (JSONObject) list.get(i);
+			String date = (String) objList.get("dt_txt");
 			
 			objMain = (JSONObject) objList.get("main");
 			double temp = (double) objMain.get("temp");
 			double tempMin = (double) objMain.get("temp_min");
 			double tempMax = (double) objMain.get("temp_max");
 			double feelsLike = (double) objMain.get("feels_like");
-			objWind = (JSONObject ) objList.get("wind");
 			
-			appoggio = new Weather());
+			objWind = (JSONObject ) objList.get("wind");
+			double windSpeed = (double) objWind.get("speed");
+			
+			appoggio = new Weather(windSpeed, temp, tempMax, tempMin, feelsLike, date);
 			this.weat.add(appoggio);
 		}
-		this.c.setVector(this.weat);	
-		return c;
+		this.city.setVector(this.weat);	
+		return this.city;
 		}
 	
 	public String SaveEveryHour(City city) {
