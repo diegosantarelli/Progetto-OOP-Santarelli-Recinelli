@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 
 import it.univpm.ProvaSantarelliRecinelli.exception.*;
@@ -18,36 +17,36 @@ public class myTimer{
 	 */
 	
 	public void WriteOnLocalFile1Hours(String city, String country) throws WrongFileException {
-		// PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
-		// PATH DIEGO ...
 		
-		String path = "/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour";
+		// PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
+		// PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
+		
+		String path = "C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour";
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 		@Override
-		  public void run() {
+		public void run() {
 			APICall api = new APICall(city,country);
 			File file = new File(path);
 			try	{
-			    	if(!file.exists()) {
-			        file.createNewFile();
-			    	}
+			    if(!file.exists()) {
+			       file.createNewFile();
+			    }
 
-			    FileWriter fileWriter = new FileWriter(file, true);
+			FileWriter fileWriter = new FileWriter(file, true);
 				
-				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			    bufferedWriter.write(api.Call().toJSONString());
-			    bufferedWriter.write("\n");
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			bufferedWriter.write(api.Call().toJSONString());
+			bufferedWriter.write("\n");
 			    
-			    bufferedWriter.close();
+			bufferedWriter.close();
 			    
-				} 	catch(IOException e) {
-			    System.out.println(e);
-					}
+			}catch(IOException e) {
+			  System.out.println(e);
+			}
 
 		}
-	};
-	timer.scheduleAtFixedRate(task,0,3600000);
-		
+		};
+		timer.scheduleAtFixedRate(task,0,3600000);
 	}
 }

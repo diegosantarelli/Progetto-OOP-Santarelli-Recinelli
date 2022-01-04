@@ -41,14 +41,15 @@ public class CityReader{
 	/**
 	 * Questo metodo legge il JSON file e inserisce tutto in un JSONObject
 	 * @return cityList ossia la lista delle città
+	 * PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA
+	 *  PATH DIEGO  C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastANCONA
 	 */
-	//PATH TRUST /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA
-	//PATH DIEGO ...
+	
 	public JSONObject caricaOggetto() {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA")){
+		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastANCONA")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -83,9 +84,7 @@ public class CityReader{
 		JSONArray Weather;
 		JSONObject objMain;
 		JSONObject objWind;
-		JSONObject objDescr;
 		JSONObject objWeather = new JSONObject();
-		JSONObject objMain2;
 		
 		for(int i=0; i<list.size(); i++) {
 			objList = (JSONObject) list.get(i);
