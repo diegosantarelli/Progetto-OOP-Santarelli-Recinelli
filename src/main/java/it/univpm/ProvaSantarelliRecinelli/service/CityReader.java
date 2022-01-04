@@ -42,12 +42,13 @@ public class CityReader{
 	 * Questo metodo legge il JSON file e inserisce tutto in un JSONObject
 	 * @return cityList ossia la lista delle città
 	 */
-	
+	//PATH TRUST /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA
+	//PATH DIEGO ...
 	public JSONObject caricaOggetto() {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastANCONA")){
+		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -72,16 +73,29 @@ public class CityReader{
 		Weather appoggio;
 		JSONObject obj = caricaOggetto();
 		JSONArray list = (JSONArray) obj.get("list");
+		
+		String date , descr , main2;
 		double temp;
 		double tempMin;
 		double tempMax;
 		double feelsLike;
 		JSONObject objList = new JSONObject();
+		JSONArray Weather;
 		JSONObject objMain;
 		JSONObject objWind;
+		JSONObject objDescr;
+		JSONObject objWeather = new JSONObject();
+		JSONObject objMain2;
+		
 		for(int i=0; i<list.size(); i++) {
 			objList = (JSONObject) list.get(i);
-			String date = (String) objList.get("dt_txt");
+			date = (String) objList.get("dt_txt");
+			
+			Weather = (JSONArray) objList.get("weather");
+			objWeather = (JSONObject) Weather.get(0);
+			
+			descr = (String) objWeather.get("description");
+			main2 = (String) objWeather.get("main");
 			
 			objMain = (JSONObject) objList.get("main");
 			temp=Double.parseDouble(objMain.get("temp").toString());
@@ -92,7 +106,7 @@ public class CityReader{
 			objWind = (JSONObject ) objList.get("wind");
 			double windSpeed = (double) objWind.get("speed");
 			
-			appoggio = new Weather(windSpeed, temp, tempMax, tempMin, feelsLike, date);
+			appoggio = new Weather(windSpeed, temp, tempMax, tempMin, feelsLike, date ,descr ,main2);
 			this.weat.add(appoggio);
 		}
 		this.city.setVector(this.weat);	
@@ -142,7 +156,6 @@ public class CityReader{
 		
 		return "Il file è stato salvato in " + path;
 		
-	
 }
 }
 
