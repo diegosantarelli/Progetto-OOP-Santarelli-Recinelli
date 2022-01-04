@@ -47,7 +47,7 @@ public class CityReader{
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA")){
+		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastANCONA")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -84,10 +84,10 @@ public class CityReader{
 			String date = (String) objList.get("dt_txt");
 			
 			objMain = (JSONObject) objList.get("main");
-			 temp = (double) objMain.get("temp");
-			 tempMin = (double) objMain.get("temp_min");
-			 tempMax = (double) objMain.get("temp_max");
-			 feelsLike = (double) objMain.get("feels_like");
+			temp=Double.parseDouble(objMain.get("temp").toString());
+			tempMin=Double.parseDouble(objMain.get("temp_min").toString());
+			tempMax=Double.parseDouble(objMain.get("temp_max").toString());
+			feelsLike=Double.parseDouble(objMain.get("feels_like").toString());
 			
 			objWind = (JSONObject ) objList.get("wind");
 			double windSpeed = (double) objWind.get("speed");
