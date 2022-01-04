@@ -11,12 +11,12 @@ import java.util.TimerTask;
 import it.univpm.ProvaSantarelliRecinelli.exception.*;
 import it.univpm.ProvaSantarelliRecinelli.service.APICall;
 
-public class myTimer{
+public class MyTimer{
 	/**
 	 * Questo metodo salva in un file di testo locale le informazioni attuali sul vento ogni ora
 	 */
 	
-	public void WriteOnLocalFile1Hours(String city, String country) throws WrongFileException {
+	public void WriteOnLocalFile1Hour(String city, String country) throws WrongFileException {
 		
 		// PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
 		// PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour

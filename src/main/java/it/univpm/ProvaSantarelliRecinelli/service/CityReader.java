@@ -112,49 +112,7 @@ public class CityReader{
 		return this.city;
 		}
 	
-	public String SaveEveryHour(City city) {
-		String path = System.getProperty("user.dir") + "/" + city.getName() + "HourlyReport.txt";
-		
-		File file = new File(path);
-		
-		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-		scheduler.scheduleAtFixedRate(new Runnable() {
-		    @Override
-		    public void run() {
-		    	
-		    	//double wind_speed = GetWindSpeed();
-		    	JSONArray wind_speed = new JSONArray();
-		    	wind_speed = GetWindSpeed();
-		    	
-		    	JSONObject actualvisibility = new JSONObject();
-		    	actualvisibility = visibility.getJSONObject(0);
-		    	
-		    	JSONObject actualwp = new JSONObject();
-		    	actualwp = GetWindSpeed();
-
-		    			try{
-		    			    if(!file.exists()) {
-		    			        file.createNewFile();
-		    			    }
-
-		    			    FileWriter fileWriter = new FileWriter(file, true);
-		    				
-		    				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-		    			    bufferedWriter.write(actualwp.toString());
-		    			    bufferedWriter.write("\n");
-		    			    
-		    			    bufferedWriter.close();
-		    			    
-		    			} catch(IOException e) {
-		    			    System.out.println(e);
-		    			}
-		    	
-		    }
-		}, 0, 3, TimeUnit.HOURS);
-		
-		
-		return "Il file è stato salvato in " + path;
-		
-}
+	
+	
 }
 
