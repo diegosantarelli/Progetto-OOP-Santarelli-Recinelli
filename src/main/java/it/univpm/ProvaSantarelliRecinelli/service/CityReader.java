@@ -31,7 +31,7 @@ public class CityReader{
 		c.setCountry(country);
 	}
 	/**
-	 * Questo metodo legge il JSON file e inserisce tutto in un JSONArray
+	 * Questo metodo legge il JSON file e inserisce tutto in un JSONObject
 	 * @return cityList ossia la lista delle città
 	 */
 	
@@ -54,10 +54,14 @@ public class CityReader{
 		}
 		return cityList;
 	}
-	
-	public City JSONParsing( ) throws WrongCityException {
+	/**
+	 * Questo metodo parsifica il JSONObject ricevuto dall'API Forecast
+	 * @return c ossia un oggetto città con le caratteristiche che ci interessano
+	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 */
+	public City JSONParsing() throws WrongCityException {
 		
-		Weather appoggio ;
+		Weather appoggio;
 		JSONObject obj = caricaOggetto();
 		JSONArray list = (JSONArray) obj.get("list");
 		
@@ -68,11 +72,13 @@ public class CityReader{
 			objList = (JSONObject) list.get(i);
 			
 			objMain = (JSONObject) objList.get("main");
-			
-			
+			double temp = (double) objMain.get("temp");
+			double tempMin = (double) objMain.get("temp_min");
+			double tempMax = (double) objMain.get("temp_max");
+			double feelsLike = (double) objMain.get("feels_like");
 			objWind = (JSONObject ) objList.get("wind");
 			
-			appoggio = new Weather();
+			appoggio = new Weather());
 			this.weat.add(appoggio);
 		}
 		this.c.setVector(this.weat);	
