@@ -17,7 +17,7 @@ public class MyTimer{
 	 * @return Il metodo sovrascrive il file APIFOrecastEveryHour e avvisa l'utente con un messaggio
 	 */
 	
-	public String WriteOnLocalFile1Hour(String city, String country) throws WrongFileException {
+	public String WriteOnLocalFileEveryHour(String city, String country) throws WrongFileException {
 		
 		// PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
 		// PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
