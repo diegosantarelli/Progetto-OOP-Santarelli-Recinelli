@@ -36,20 +36,50 @@ public class Controller {
 	
 	@RequestMapping({"/TempMin", "/TempMin/{city}?{country}"})
 	public double TempMin(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
-		Stats TempMinima = new Stats();
-		return TempMinima.TempMin(city,country);
+		Stats TempMinStats = new Stats();
+		return TempMinStats.TempMin(city,country);
 	}
 	
 	@RequestMapping({"/TempMax", "/TempMax/{city}?{country}"})
 	public double TempMax(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
-		Stats TempMassima = new Stats();
-		return TempMassima.TempMax(city,country);
+		Stats TempMaxStats = new Stats();
+		return TempMaxStats.TempMax(city,country);
 	}
 	
-	@RequestMapping({"/MediaStats", "/MediaStats/{city}?{country}"})
-	public double Media(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+	@RequestMapping({"/FeelsLikeMin", "/FeelsLikeMinMin/{city}?{country}"})
+	public double FeelsLikeMin(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+		Stats FeelsLikeMinStats = new Stats();
+		return FeelsLikeMinStats.FeelsLikeMin(city,country);
+	}
+	
+	@RequestMapping({"/FeelsLikeMax", "/FeelsLikeMax/{city}?{country}"})
+	public double FeelsLikeMax(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+		Stats FeelsLikeMaxStats = new Stats();
+		return FeelsLikeMaxStats.FeelsLikeMax(city,country);
+	}
+	
+	@RequestMapping({"/MediaTemp", "/MediaTempStats/{city}?{country}"})
+	public double MediaTemp(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
 		Stats MediaTempStats = new Stats();
 		return MediaTempStats.MediaTemp(city,country);
+	}
+	
+	@RequestMapping({"/MediaFeelsLike", "/MediaTempStats/{city}?{country}"})
+	public double MediaFeelLikeStats(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+		Stats MediaFeelsLikeStats = new Stats();
+		return MediaFeelsLikeStats.MediaFeelsLike(city,country);
+	}
+	
+	@RequestMapping({"/VarianzaTemp", "/VarianzaTempStats/{city}?{country}"})
+	public double VarianzaTemp(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+		Stats VarianzaTempStats = new Stats();
+		return VarianzaTempStats.VarianzaTemp(city,country);
+	}
+	
+	@RequestMapping({"/VarianzaFeelsLike", "/VarianzaTempStats/{city}?{country}"})
+	public double VarianzaFeelLikeStats(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+		Stats VarianzaFeelsLikeStats = new Stats();
+		return VarianzaFeelsLikeStats.VarianzaFeelsLike(city,country);
 	}
 	
 }
