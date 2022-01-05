@@ -10,6 +10,7 @@ import it.univpm.ProvaSantarelliRecinelli.exception.WrongFileException;
 import it.univpm.ProvaSantarelliRecinelli.model.City;
 import it.univpm.ProvaSantarelliRecinelli.service.APICall;
 import it.univpm.ProvaSantarelliRecinelli.service.CityReader;
+import it.univpm.ProvaSantarelliRecinelli.stats.Stats;
 import it.univpm.ProvaSantarelliRecinelli.timer.MyTimer;
 
 @RestController
@@ -30,7 +31,25 @@ public class Controller {
 	@RequestMapping({"/MyTimer", "/MyTimer/{city}?{country}"})
 	public String WriteOnLocalFile1Hour(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongFileException {
 		MyTimer timer = new MyTimer();
-		return timer.WriteOnLocalFile1Hour(city, country);
+		return timer.WriteOnLocalFileEveryHour(city, country);
+	}
+	
+	@RequestMapping({"/TempMin", "/TempMin/{city}?{country}"})
+	public double TempMin(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+		Stats TempMinima = new Stats();
+		return TempMinima.TempMin(city,country);
+	}
+	
+	@RequestMapping({"/TempMax", "/TempMax/{city}?{country}"})
+	public double TempMax(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+		Stats TempMassima = new Stats();
+		return TempMassima.TempMax(city,country);
+	}
+	
+	@RequestMapping({"/MediaStats", "/MediaStats/{city}?{country}"})
+	public double Media(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+		Stats MediaTempStats = new Stats();
+		return MediaTempStats.MediaTemp(city,country);
 	}
 	
 	/*

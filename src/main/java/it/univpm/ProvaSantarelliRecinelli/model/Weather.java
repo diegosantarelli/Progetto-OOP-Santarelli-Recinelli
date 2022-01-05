@@ -24,7 +24,18 @@ public class Weather extends Wind {
 		this.descr = descr;
 		this.main2 = main2;
 	}
+	
+	public Weather(double temp ,double tempMax, double tempMin, double feelsLike ,String data) {
+		super();
+		this.temp = temp;
+		this.tempMax = tempMax;
+		this.tempMin = tempMin;
+		this.feelsLike = feelsLike;
+		this.data = data;
 
+	}
+	
+	
 	public double getTemp() {
 		return temp;
 	}

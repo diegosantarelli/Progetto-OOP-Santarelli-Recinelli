@@ -1,15 +1,12 @@
 package it.univpm.ProvaSantarelliRecinelli.service;
 
-import java.io.BufferedWriter;
-import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
+
 import java.io.IOException;
 import java.util.Vector;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
@@ -22,7 +19,7 @@ import it.univpm.ProvaSantarelliRecinelli.model.Weather;
 
 public class CityReader{
 	
-	private static String name = "APIForecastANCONA.txt";
+	
 	private City city;
 	private Vector <Weather> weat= new Vector <Weather>();
 

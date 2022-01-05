@@ -6,7 +6,9 @@ public class Wind {
 	public Wind(double wind_speed) {
 		this.wind_speed = wind_speed;
 	}
-
+	public Wind() {
+		
+	}
 	public double getWind_speed() {
 		return wind_speed;
 	}
