@@ -52,10 +52,4 @@ public class Controller {
 		return MediaTempStats.MediaTemp(city,country);
 	}
 	
-	/*
-	@RequestMapping({"/caricaarray", "/caricaarray/{city}"})
-	public JSONObject caricaArray(@PathVariable(value="city_name" , required=false) String city) {
-		CityReader c = new CityReader(city);
-	}
-	*/
 }

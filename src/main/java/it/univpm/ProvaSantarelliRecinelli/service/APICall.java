@@ -6,21 +6,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-//import java.time.ZonedDateTime;
-//import java.util.Vector;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-//import org.json.JSONArray;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
-import it.univpm.ProvaSantarelliRecinelli.model.City;
-//import org.json.JSONObject;
-
-//import it.santarellirecinelli.model.*;
-//import it.santarellirecinelli.model.Date;
-//import it.santarellirecinelli.exception.WrongDateException;
 
 /**
  * <p>
