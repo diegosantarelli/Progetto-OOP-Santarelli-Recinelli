@@ -14,14 +14,15 @@ import it.univpm.ProvaSantarelliRecinelli.service.APICall;
 public class MyTimer{
 	/**
 	 * Questo metodo salva in un file di testo locale le informazioni attuali sul vento ogni ora
+	 * @return Il metodo sovrascrive il file APIFOrecastEveryHour e avvisa l'utente con un messaggio
 	 */
 	
-	public void WriteOnLocalFile1Hour(String city, String country) throws WrongFileException {
+	public String WriteOnLocalFile1Hour(String city, String country) throws WrongFileException {
 		
 		// PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
 		// PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
 		
-		String path = "/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour";
+		String path = "C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour";
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 		@Override
@@ -41,12 +42,13 @@ public class MyTimer{
 			    
 			bufferedWriter.close();
 			    
-			}catch(IOException e) {
+			} catch(IOException e) {
 			  System.out.println(e);
 			}
-
 		}
 		};
 		timer.scheduleAtFixedRate(task,0,3600000);
+		
+		return "Il file APIForecastEveryHour è stato salvato in " + path;
 	}
 }

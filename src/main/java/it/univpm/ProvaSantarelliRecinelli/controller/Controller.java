@@ -28,9 +28,9 @@ public class Controller {
 	}
 	
 	@RequestMapping({"/MyTimer", "/MyTimer/{city}?{country}"})
-	public void WriteOnLocalFile1Hour(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongFileException {
+	public String WriteOnLocalFile1Hour(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongFileException {
 		MyTimer timer = new MyTimer();
-		timer.WriteOnLocalFile1Hour(city, country);
+		return timer.WriteOnLocalFile1Hour(city, country);
 	}
 	
 	/*
