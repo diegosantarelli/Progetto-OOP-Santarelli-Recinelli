@@ -24,6 +24,9 @@ public class Stats {
 	private City city;
 	private Vector <Weather> weat= new Vector <Weather>();
 	private Vector <Weather> weatStats= new Vector <Weather>();
+	double temp, tempMin, tempMax, feelsLike;
+	double tempMinStats, tempMaxStats, feelsLikeStatsMin, feelsLikeStatsMax;
+	double mediaTemp, mediaFeelsLike, varianzaTemp, varianzaFeelsLike;
 	/**
 	 * 
 	 * @return
@@ -59,10 +62,6 @@ public class Stats {
 		JSONArray list = (JSONArray) obj.get("list");
 		
 		String date;
-		double temp;
-		double tempMin;
-		double tempMax;
-		double feelsLike;
 		JSONObject objList = new JSONObject();
 		JSONArray Weather;
 		JSONObject objMain;
@@ -101,7 +100,7 @@ public class Stats {
 		 this.city = c;
 		 c = JSONParsingStats();
 		 weatStats = c.getVector();
-		 double tempMinStats = weatStats.get(0).getTemp_min();
+		 tempMinStats = weatStats.get(0).getTemp_min();
 		 
 		 for(int i=1 ; i<weatStats.size(); i++) {
 			if (tempMinStats > weatStats.get(i).getTemp_min()) {
@@ -123,14 +122,53 @@ public class Stats {
 		 this.city = c;
 		 c = JSONParsingStats();
 		 weatStats = c.getVector();
-		 double tempMaxStats = weatStats.get(0).getTemp_max();
+		 tempMaxStats = weatStats.get(0).getTemp_max();
 		 
 		 for(int i=1 ; i<weatStats.size(); i++) {
-			if (tempMaxStats > weatStats.get(i).getTemp_max()) {
+			if (tempMaxStats < weatStats.get(i).getTemp_max()) {
 				tempMaxStats = weatStats.get(i).getTemp_max();
 			}
 		 }
 		 return tempMaxStats;
+	}
+	
+	/**
+	 * 
+	 * @param cityName
+	 * @param country
+	 * @return
+	 * @throws WrongCityException
+	 */
+	public double FeelsLikeMin(String cityName, String country) throws WrongCityException {
+		 
+		 City c = new City(cityName,country);
+		 this.city = c;
+		 c = JSONParsingStats();
+		 weatStats = c.getVector();
+		 feelsLikeStatsMin = weatStats.get(0).getTemp_max();
+		 
+		 for(int i=1 ; i<weatStats.size(); i++) {
+			if (feelsLikeStatsMin > weatStats.get(i).getFeels_like()) {
+				feelsLikeStatsMin = weatStats.get(i).getFeels_like();
+			}
+		 }
+		 return feelsLikeStatsMin;
+	}
+	
+	public double FeelsLikeMax(String cityName, String country) throws WrongCityException {
+		 
+		 City c = new City(cityName,country);
+		 this.city = c;
+		 c = JSONParsingStats();
+		 weatStats = c.getVector();
+		 feelsLikeStatsMax = weatStats.get(0).getTemp_max();
+		 
+		 for(int i=1 ; i<weatStats.size(); i++) {
+			if (feelsLikeStatsMax < weatStats.get(i).getFeels_like()) {
+				feelsLikeStatsMax = weatStats.get(i).getFeels_like();
+			}
+		 }
+		 return feelsLikeStatsMax;
 	}
 	/**
 	 * 
@@ -149,27 +187,62 @@ public class Stats {
 		 double tot = 0;
 		 for(i=0 ; i<weatStats.size(); i++) {
 			 tot =+ weatStats.get(i).getTemp();
-		 	}
+		 }
 		 double media = tot/i;
 		 return media;
 	}
 	
-	public double Varianza(String cityName, String country) throws WrongCityException {
+	public double MediaFeelsLike(String cityName, String country) throws WrongCityException {
 		
 		 City c = new City(cityName,country);
 		 this.city = c;
 		 c = JSONParsingStats();
 		 weatStats = c.getVector();
-		 double app1 = 0 , app2 = 0;
-		 
-		 for(int i=0 ; i<weatStats.size(); i++) {
-			 app1 =+ weatStats.get(i).getTemp();
-			 app2 =+ weatStats.get(i).getFeels_like();
-		 	}
-		 double varianza = app2-app1;
-		 return varianza;
+		 int i;
+		 double tot = 0;
+		 for(i=0 ; i<weatStats.size(); i++) {
+			 tot =+ weatStats.get(i).getFeels_like();
+		 }
+		 mediaFeelsLike = tot/i;
+		 return mediaFeelsLike;
 	}
 	
+	public double VarianzaTemp(String cityName, String country) throws WrongCityException {
+		
+		Stats s = new Stats();;
+		City c = new City(cityName,country);
+		this.city = c;
+		c = JSONParsingStats();
+		weatStats = c.getVector();
+		double appoggio = 0;
+		int i;
+		 
+		for(i=0 ; i<weatStats.size(); i++) {
+			appoggio += (weatStats.get(i).getTemp() - s.MediaTemp(cityName, country))*(weatStats.get(i).getTemp() - s.MediaTemp(cityName, country));
+		 }
+		double varianzaTemp = appoggio / (i - 1);
+		return varianzaTemp;
+	}
+	
+	public double VarianzaFeelsLike(String cityName, String country) throws WrongCityException {
+		
+		Stats s = new Stats();;
+		City c = new City(cityName,country);
+		this.city = c;
+		c = JSONParsingStats();
+		weatStats = c.getVector();
+		double appoggio = 0;
+		int i;
+		 
+		for(i=0 ; i<weatStats.size(); i++) {
+			appoggio += (weatStats.get(i).getFeels_like() - s.MediaTemp(cityName, country))*(weatStats.get(i).getFeels_like() - s.MediaTemp(cityName, country));
+		 }
+		double varianzaFeelsLike = appoggio / (i - 1);
+		return varianzaFeelsLike;
+	}
+	
+	
+	// ROTTE DEI METODI NEL CONTROLLER
 	
 	
 	
