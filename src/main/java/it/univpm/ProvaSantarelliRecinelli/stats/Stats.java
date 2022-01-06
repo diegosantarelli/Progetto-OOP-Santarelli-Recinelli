@@ -17,6 +17,7 @@ import it.univpm.ProvaSantarelliRecinelli.model.Weather;
 
 /**
  * PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
+ * PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
  * @author simonerecinelli
  *
  */
@@ -35,7 +36,7 @@ public class Stats {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour")){
+		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -145,7 +146,7 @@ public class Stats {
 		 this.city = c;
 		 c = JSONParsingStats();
 		 weatStats = c.getVector();
-		 feelsLikeStatsMin = weatStats.get(0).getTemp_max();
+		 feelsLikeStatsMin = weatStats.get(0).getFeels_like();
 		 
 		 for(int i=1 ; i<weatStats.size(); i++) {
 			if (feelsLikeStatsMin > weatStats.get(i).getFeels_like()) {
@@ -161,7 +162,7 @@ public class Stats {
 		 this.city = c;
 		 c = JSONParsingStats();
 		 weatStats = c.getVector();
-		 feelsLikeStatsMax = weatStats.get(0).getTemp_max();
+		 feelsLikeStatsMax = weatStats.get(0).getFeels_like();
 		 
 		 for(int i=1 ; i<weatStats.size(); i++) {
 			if (feelsLikeStatsMax < weatStats.get(i).getFeels_like()) {

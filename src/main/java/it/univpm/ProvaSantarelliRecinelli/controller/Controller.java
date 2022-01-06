@@ -46,7 +46,7 @@ public class Controller {
 		return TempMaxStats.TempMax(city,country);
 	}
 	
-	@RequestMapping({"/FeelsLikeMin", "/FeelsLikeMinMin/{city}?{country}"})
+	@RequestMapping({"/FeelsLikeMin", "/FeelsLikeMin/{city}?{country}"})
 	public double FeelsLikeMin(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
 		Stats FeelsLikeMinStats = new Stats();
 		return FeelsLikeMinStats.FeelsLikeMin(city,country);
@@ -58,25 +58,25 @@ public class Controller {
 		return FeelsLikeMaxStats.FeelsLikeMax(city,country);
 	}
 	
-	@RequestMapping({"/MediaTemp", "/MediaTempStats/{city}?{country}"})
+	@RequestMapping({"/MediaTemp", "/MediaTemp/{city}?{country}"})
 	public double MediaTemp(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
 		Stats MediaTempStats = new Stats();
 		return MediaTempStats.MediaTemp(city,country);
 	}
 	
-	@RequestMapping({"/MediaFeelsLike", "/MediaTempStats/{city}?{country}"})
+	@RequestMapping({"/MediaFeelsLike", "/MediaFeelsLike/{city}?{country}"})
 	public double MediaFeelLikeStats(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
 		Stats MediaFeelsLikeStats = new Stats();
 		return MediaFeelsLikeStats.MediaFeelsLike(city,country);
 	}
 	
-	@RequestMapping({"/VarianzaTemp", "/VarianzaTempStats/{city}?{country}"})
+	@RequestMapping({"/VarianzaTemp", "/VarianzaTemp/{city}?{country}"})
 	public double VarianzaTemp(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
 		Stats VarianzaTempStats = new Stats();
 		return VarianzaTempStats.VarianzaTemp(city,country);
 	}
 	
-	@RequestMapping({"/VarianzaFeelsLike", "/VarianzaTempStats/{city}?{country}"})
+	@RequestMapping({"/VarianzaFeelsLike", "/VarianzaFeelsLike/{city}?{country}"})
 	public double VarianzaFeelLikeStats(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
 		Stats VarianzaFeelsLikeStats = new Stats();
 		return VarianzaFeelsLikeStats.VarianzaFeelsLike(city,country);
