@@ -1,11 +1,17 @@
 package it.univpm.ProvaSantarelliRecinelli.model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Weather extends Wind {
 	private double temp;
 	private double tempMax;
 	private double tempMin;
 	private double feelsLike;
-	private String data , descr , main2;
+	private String descr, main2, data2;
+	LocalDate data;
+	LocalTime time;
+	
 	
 	/** Costruttore dell'oggetto
 	 * @param temp 			  Temperatura reale
@@ -14,24 +20,24 @@ public class Weather extends Wind {
 	 * @param feelsLike		  Temperatura percepita
      * @param data            Giorno e ora a cui si riferisce la previsione
      */
-	public Weather(double windSpeed ,double temp ,double tempMax, double tempMin, double feelsLike ,String data , String descr, String main2) {
+	public Weather(double windSpeed ,double temp ,double tempMax, double tempMin, double feelsLike , LocalDate date, LocalTime time, String descr, String main2) {
 		super(windSpeed);
 		this.temp = temp;
 		this.tempMax = tempMax;
 		this.tempMin = tempMin;
 		this.feelsLike = feelsLike;
-		this.data = data;
 		this.descr = descr;
 		this.main2 = main2;
 	}
 	
-	public Weather(double temp ,double tempMax, double tempMin, double feelsLike ,String data) {
+	public Weather(double temp ,double tempMax, double tempMin, double feelsLike ,LocalDate date, LocalTime time) {
 		super();
 		this.temp = temp;
 		this.tempMax = tempMax;
 		this.tempMin = tempMin;
 		this.feelsLike = feelsLike;
-		this.data = data;
+		this.data = date;
+		this.time = time;
 
 	}
 	
@@ -61,14 +67,6 @@ public class Weather extends Wind {
 		this.tempMin = tempMin;
 	}
 
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
-	}
-
 	public String getDescr() {
 		return descr;
 	}
@@ -85,5 +83,20 @@ public class Weather extends Wind {
 		this.main2 = main2;
 	}
 	
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
 	
 }

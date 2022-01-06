@@ -5,6 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
 
@@ -46,7 +50,7 @@ public class CityReader{
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA")){
+		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastANCONA")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -72,11 +76,18 @@ public class CityReader{
 		JSONObject obj = caricaOggetto();
 		JSONArray list = (JSONArray) obj.get("list");
 		
-		String date , descr , main2;
+		String  descr, main2;
+		
 		double temp;
 		double tempMin;
 		double tempMax;
 		double feelsLike;
+		
+		LocalDateTime datetime;
+		LocalDate date;
+		LocalTime time;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
 		JSONObject objList = new JSONObject();
 		JSONArray Weather;
 		JSONObject objMain;
@@ -85,7 +96,11 @@ public class CityReader{
 		
 		for(int i=0; i<list.size(); i++) {
 			objList = (JSONObject) list.get(i);
-			date = (String) objList.get("dt_txt");
+			//date = (String) objList.get("dt_txt");
+			
+			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
+			date = datetime.toLocalDate();
+			time = datetime.toLocalTime();
 			
 			Weather = (JSONArray) objList.get("weather");
 			objWeather = (JSONObject) Weather.get(0);
@@ -102,7 +117,7 @@ public class CityReader{
 			objWind = (JSONObject ) objList.get("wind");
 			double windSpeed = (double) objWind.get("speed");
 			
-			appoggio = new Weather(windSpeed, temp, tempMax, tempMin, feelsLike, date ,descr ,main2);
+			appoggio = new Weather(windSpeed, temp, tempMax, tempMin, feelsLike ,date, time, descr ,main2);
 			this.weat.add(appoggio);
 		}
 		this.city.setVector(this.weat);	
