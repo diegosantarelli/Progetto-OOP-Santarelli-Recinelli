@@ -109,7 +109,5 @@ public class CityReader{
 		return this.city;
 		}
 	
-	
-	
 }
 

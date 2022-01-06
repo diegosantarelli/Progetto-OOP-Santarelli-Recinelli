@@ -10,6 +10,7 @@ import it.univpm.ProvaSantarelliRecinelli.exception.WrongFileException;
 import it.univpm.ProvaSantarelliRecinelli.model.City;
 import it.univpm.ProvaSantarelliRecinelli.service.APICall;
 import it.univpm.ProvaSantarelliRecinelli.service.CityReader;
+import it.univpm.ProvaSantarelliRecinelli.stats.FilterStats;
 import it.univpm.ProvaSantarelliRecinelli.stats.Stats;
 import it.univpm.ProvaSantarelliRecinelli.timer.MyTimer;
 
@@ -34,7 +35,7 @@ public class Controller {
 		return timer.WriteOnLocalFileEveryHour(city, country);
 	}
 	
-	@RequestMapping({"/TempMin", "/TempMin/{city}?{country}"})
+	@RequestMapping({"/TempMin", "/TempMin/{city}/{country}"})
 	public double TempMin(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
 		Stats TempMinStats = new Stats();
 		return TempMinStats.TempMin(city,country);
@@ -81,5 +82,12 @@ public class Controller {
 		Stats VarianzaFeelsLikeStats = new Stats();
 		return VarianzaFeelsLikeStats.VarianzaFeelsLike(city,country);
 	}
+	
+	@RequestMapping({"/FilterDay", "/FilterDay/{city}/{country}/{day}"})
+	public String FilterDay(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day) throws WrongCityException {
+		FilterStats filter = new FilterStats();
+		return filter.FilterDay(day,city,country);
+	}
+	
 	
 }

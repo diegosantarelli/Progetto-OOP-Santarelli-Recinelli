@@ -36,7 +36,7 @@ public class Stats {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour")){
+		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -87,6 +87,10 @@ public class Stats {
 		this.city.setVector(this.weat);	
 		return this.city;
 	}
+	
+	public void setCity(City c) {
+		this.city = c;
+	}
 	/**
 	 * 
 	 * @param cityName
@@ -98,6 +102,8 @@ public class Stats {
 	public double TempMin(String cityName, String country) throws WrongCityException {
 		 
 		 City c = new City(cityName,country);
+		 System.out.println(cityName);
+		 System.out.println(country);
 		 this.city = c;
 		 c = JSONParsingStats();
 		 weatStats = c.getVector();

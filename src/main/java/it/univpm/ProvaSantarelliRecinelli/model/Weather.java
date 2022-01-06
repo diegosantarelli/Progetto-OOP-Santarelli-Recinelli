@@ -35,7 +35,6 @@ public class Weather extends Wind {
 
 	}
 	
-	
 	public double getTemp() {
 		return temp;
 	}
@@ -51,11 +50,9 @@ public class Weather extends Wind {
 	public double getTemp_max() {
 		return tempMax;
 	}
-
 	public void setTemp_max(double tempMax) {
 		this.tempMax = tempMax;
 	}
-
 	public double getTemp_min() {
 		return tempMin;
 	}
