@@ -1,5 +1,7 @@
 package it.univpm.ProvaSantarelliRecinelli.controller;
 
+import java.time.LocalDate;
+
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,11 +38,12 @@ public class Controller {
 	
 	@RequestMapping({"/FilterDay", "/FilterDay/{city}/{country}/{day}"})
 	public JSONObject FilterDay(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day) throws WrongCityException {
+		LocalDate date = LocalDate.parse(day);
 		FilterStats filter = new FilterStats(city, country);
-		return filter.FilterDay(day,city,country);
+		return filter.FilterDay(date,city,country);
 	}
 	
-	@RequestMapping({"/JSONParsingStats", "/JSONParsingSats/{city}/{country}"})
+	@RequestMapping({"/JSONParsingStats", "/JSONParsingStats/{city}/{country}"})
 	public City JSONParsingStats(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
 		FilterStats city1 = new FilterStats(city, country);
 		return city1.JSONParsingStats();

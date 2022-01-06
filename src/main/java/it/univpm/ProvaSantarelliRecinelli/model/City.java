@@ -19,6 +19,7 @@ public class City {
 		private String Name;
 		private String Country;
 		private Vector<Weather> vector = new Vector<Weather>();
+		private Vector<WeatherStats> vectorStats = new Vector<WeatherStats>();
 	/**
 	 * Costruttore dell'oggetto City
 	 */
@@ -34,6 +35,14 @@ public class City {
 	public void setVector(Vector<Weather> vector) {
 		this.vector = vector;
 	}
+	public Vector<WeatherStats> getVectorStats() {
+		return vectorStats;
+	}
+
+	public void setVectorStats(Vector<WeatherStats> vectorStats) {
+		this.vectorStats = vectorStats;
+	}
+
 	/**
 	 * Ritorna il nome di una città in formato string
 	 * @return nome della città di tipo <code>String<code>

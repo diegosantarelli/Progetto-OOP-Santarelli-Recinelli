@@ -1,6 +1,6 @@
 package it.univpm.ProvaSantarelliRecinelli.stats;
 
-import java.io.FileNotFoundException; 
+import java.io.FileNotFoundException;  
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -15,8 +15,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException;
-import it.univpm.ProvaSantarelliRecinelli.model.City;
-import it.univpm.ProvaSantarelliRecinelli.model.Weather;
+import it.univpm.ProvaSantarelliRecinelli.model.*;
+
 
 
 /**
@@ -28,12 +28,12 @@ import it.univpm.ProvaSantarelliRecinelli.model.Weather;
 public class FilterStats {
 	
 	private City city;
-	private Vector <Weather> weat= new Vector <Weather>();
-	private Vector <Weather> weatStats= new Vector <Weather>();
+	private Vector <WeatherStats> weat= new Vector <WeatherStats>();
+	private Vector <WeatherStats> weatStats= new Vector <WeatherStats>();
 	double temp, tempMin, tempMax, feelsLike;
 	double tempMinStats, tempMaxStats, feelsLikeStatsMin, feelsLikeStatsMax;
 	double mediaTemp, mediaFeelsLike, varianzaTemp, varianzaFeelsLike;
-	
+	String descr, main;
 	public FilterStats(String cityName, String country) {
 		City c = new City(cityName,country);
 		this.city = c;
@@ -51,7 +51,7 @@ public class FilterStats {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour")){
+		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -75,7 +75,7 @@ public class FilterStats {
 	
 	public City JSONParsingStats() throws WrongCityException {
 		
-		Weather appoggio;
+		WeatherStats appoggio;
 		JSONObject obj = caricaOggettoStats();
 		JSONArray list = (JSONArray) obj.get("list");
 		
@@ -93,9 +93,7 @@ public class FilterStats {
 			
 			objList = (JSONObject) list.get(i);
 			
-			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
-			date = datetime.toLocalDate();
-			time = datetime.toLocalTime();
+			
 			
 			Weather = (JSONArray) objList.get("weather");
 			objWeather = (JSONObject) Weather.get(0);
@@ -105,26 +103,25 @@ public class FilterStats {
 			tempMin=Double.parseDouble(objMain.get("temp_min").toString());
 			tempMax=Double.parseDouble(objMain.get("temp_max").toString());
 			feelsLike=Double.parseDouble(objMain.get("feels_like").toString());
+
 			
-			appoggio = new Weather(temp, tempMax, tempMin, feelsLike, date, time);
+			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
+			date = datetime.toLocalDate();
+			time = datetime.toLocalTime();
+			
+			appoggio = new WeatherStats(temp, tempMax, tempMin, feelsLike, date, time);
 			this.weat.add(appoggio);
 		}
-		this.city.setVector(this.weat);	
+		this.city.setVectorStats(this.weat);	
 		return this.city;
 	}
-	
-	public void setCity(City c) {
-		this.city = c;
-	}
-	
-	
-	@SuppressWarnings({ "unchecked" })
-	public JSONObject FilterDay (String day, String cityName, String country) throws WrongCityException {
+		
+	public JSONObject FilterDay (LocalDate day, String cityName, String country) throws WrongCityException {
 		
 		 City c = new City(cityName,country);
 		 this.city = c;
 		 c = JSONParsingStats();
-		 weatStats = c.getVector();
+		 weatStats = c.getVectorStats();
 		 
 		 JSONObject objFilter = new JSONObject();
 		 
@@ -140,39 +137,42 @@ public class FilterStats {
 		 varianzaFeelsLike = 0;
 		 
 		 int i = 0;
-		 
-		 while (day.equals(weatStats.get(i).getData())) {
-			 
-			 if (tempMax < weatStats.get(i).getTemp_max()) {
-					tempMax = weatStats.get(i).getTemp_max();
+		 LocalDate j = weatStats.get(i).getDataStats();
+		 while (day.equals(j)) {
+			 System.out.println("GG");
+			 if (tempMax < weatStats.get(i).getTempMax()) {
+					tempMax = weatStats.get(i).getTempMax();
 				}
 			 
-			 if (tempMin < weatStats.get(i).getTemp_max()) {
-					tempMin = weatStats.get(i).getTemp_max();
+			 if (tempMin < weatStats.get(i).getTempMin()) {
+					tempMin = weatStats.get(i).getTempMin();
 				}
 			 
-			 if (feelsLikeStatsMin > weatStats.get(i).getFeels_like()) {
-					feelsLikeStatsMin = weatStats.get(i).getFeels_like();
+			 if (feelsLikeStatsMin > weatStats.get(i).getFeelsLike()) {
+					feelsLikeStatsMin = weatStats.get(i).getFeelsLike();
 				}
 			 
-			 if (feelsLikeStatsMax < weatStats.get(i).getFeels_like()) {
-					feelsLikeStatsMax = weatStats.get(i).getFeels_like();
+			 if (feelsLikeStatsMax < weatStats.get(i).getFeelsLike()) {
+					feelsLikeStatsMax = weatStats.get(i).getFeelsLike();
 				}
 			 
 			 mediaTemp += weatStats.get(i).getTemp();
-			 mediaFeelsLike += weatStats.get(i).getFeels_like();
+			 mediaFeelsLike += weatStats.get(i).getFeelsLike();
+			 i++;
+			 j = weatStats.get(i).getDataStats();
 		 }
 		 
 		 mediaTemp /= i;
 		 mediaFeelsLike /= i;
 		 
 		 i = 0;
-		 
-		 while (day.equals(weatStats.get(i).getData())) {
+		 j = weatStats.get(i).getDataStats();
+		 while (day.equals(j)) {
 			 
 			 varianzaTemp = (weatStats.get(i).getTemp() - mediaTemp);
-			 varianzaFeelsLike = (weatStats.get(i).getFeels_like());
-			 
+			 varianzaFeelsLike = (weatStats.get(i).getFeelsLike());
+			 i++;
+			 j = weatStats.get(i).getDataStats();
 		 }
 		 
 		 varianzaTemp /= i-1;
