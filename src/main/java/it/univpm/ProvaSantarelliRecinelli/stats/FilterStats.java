@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Vector;
+import java.util.regex.PatternSyntaxException;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -50,7 +51,7 @@ public class FilterStats {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour")){
+		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -192,4 +193,47 @@ public class FilterStats {
 		 
 	}	
 	
+	public WeatherStats FilterHours(LocalDate date ,LocalTime time, String cityName, String country) throws WrongCityException {
+		 
+		 City c = new City(cityName,country);
+		 this.city = c;
+		 c = JSONParsingStats();
+		 weatStats = c.getVectorStats();
+		 
+		 JSONObject objFilter = new JSONObject();
+		 
+		 temp = 0;
+		 feelsLike = 0;
+		 tempMin = 0;
+		 tempMax = 0;
+		 feelsLikeStatsMin = 0;
+		 feelsLikeStatsMax = 0;
+		 mediaTemp = 0;
+		 mediaFeelsLike = 0;
+		 varianzaTemp = 0;
+		 varianzaFeelsLike = 0;
+		 
+		 int i = 0 , n = 0;
+		 LocalDate k;
+		 LocalTime j;
+		 
+		 for (i = 0; i < weatStats.size(); i++) {
+			 
+			 k = weatStats.get(i).getDataStats();
+	
+			 if (date.compareTo(k) == 0) {
+				 
+				 for (n = 0; n < weatStats.size(); n++) {
+			 
+					 j = weatStats.get(n).getTimeStats();
+					 
+					 
+					 if ((date.compareTo(k) == 0) && (time.compareTo(j) == 0)) {
+						 return weatStats.get(n);
+						 
+					 }
+				 }
+			 }
+		 } return null;
+	}
 }

@@ -1,6 +1,7 @@
 package it.univpm.ProvaSantarelliRecinelli.controller;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException;
 import it.univpm.ProvaSantarelliRecinelli.exception.WrongFileException;
 import it.univpm.ProvaSantarelliRecinelli.model.City;
+import it.univpm.ProvaSantarelliRecinelli.model.WeatherStats;
 import it.univpm.ProvaSantarelliRecinelli.service.APICall;
 import it.univpm.ProvaSantarelliRecinelli.service.CityReader;
 import it.univpm.ProvaSantarelliRecinelli.stats.FilterStats;
@@ -36,12 +38,6 @@ public class Controller {
 		return timer.WriteOnLocalFileEveryHour(city, country);
 	}
 	
-	@RequestMapping({"/FilterDay", "/FilterDay/{city}/{country}/{day}"})
-	public JSONObject FilterDay(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day) throws WrongCityException {
-		LocalDate date = LocalDate.parse(day);
-		FilterStats filter = new FilterStats(city, country);
-		return filter.FilterDay(date,city,country);
-	}
 	
 	@RequestMapping({"/JSONParsingStats", "/JSONParsingStats/{city}/{country}"})
 	public City JSONParsingStats(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
@@ -49,5 +45,19 @@ public class Controller {
 		return city1.JSONParsingStats();
 	}
 	
+	@RequestMapping({"/FilterDay", "/FilterDay/{city}/{country}/{day}"})
+	public JSONObject FilterDay(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day) throws WrongCityException {
+		LocalDate date = LocalDate.parse(day);
+		FilterStats filter = new FilterStats(city, country);
+		return filter.FilterDay(date,city,country);
+	}
+	
+	@RequestMapping({"/FilterHours", "/FilterHours/{city}/{country}/{day}/{hours}"})
+	public WeatherStats FilterXHours(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day , @PathVariable (value="hours" , required=false) String time) throws WrongCityException {
+		LocalDate date = LocalDate.parse(day);
+		LocalTime myTime = LocalTime.parse(time);
+		FilterStats filter = new FilterStats(city, country);
+		return filter.FilterHours(date, myTime,city,country);
+	}
 	
 }
