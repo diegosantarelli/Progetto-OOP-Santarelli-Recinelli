@@ -43,7 +43,6 @@ public class FilterStats {
 			country = "IT";
 			City c1 = new City(cityName,country);
 			this.city = c1;
-			
 		}
 	}
 	
@@ -51,7 +50,7 @@ public class FilterStats {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour")){
+		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -92,9 +91,7 @@ public class FilterStats {
 		for(int i=0; i<list.size(); i++) {
 			
 			objList = (JSONObject) list.get(i);
-			
-			
-			
+
 			Weather = (JSONArray) objList.get("weather");
 			objWeather = (JSONObject) Weather.get(0);
 			
@@ -138,28 +135,31 @@ public class FilterStats {
 		 
 		 int i = 0;
 		 LocalDate j = weatStats.get(i).getDataStats();
-		 while (day.equals(j)) {
-			 System.out.println("GG");
-			 if (tempMax < weatStats.get(i).getTempMax()) {
-					tempMax = weatStats.get(i).getTempMax();
-				}
+		 
+		 for (i = 0; i < weatStats.size(); i++) {
 			 
-			 if (tempMin < weatStats.get(i).getTempMin()) {
-					tempMin = weatStats.get(i).getTempMin();
-				}
-			 
-			 if (feelsLikeStatsMin > weatStats.get(i).getFeelsLike()) {
-					feelsLikeStatsMin = weatStats.get(i).getFeelsLike();
-				}
-			 
-			 if (feelsLikeStatsMax < weatStats.get(i).getFeelsLike()) {
-					feelsLikeStatsMax = weatStats.get(i).getFeelsLike();
-				}
-			 
-			 mediaTemp += weatStats.get(i).getTemp();
-			 mediaFeelsLike += weatStats.get(i).getFeelsLike();
-			 i++;
 			 j = weatStats.get(i).getDataStats();
+			 
+			 if (day.equals(j)) {
+				 if (tempMax < weatStats.get(i).getTempMax()) {
+						tempMax = weatStats.get(i).getTempMax();
+					}
+				 
+				 if (tempMin < weatStats.get(i).getTempMin()) {
+						tempMin = weatStats.get(i).getTempMin();
+					}
+				 
+				 if (feelsLikeStatsMin > weatStats.get(i).getFeelsLike()) {
+						feelsLikeStatsMin = weatStats.get(i).getFeelsLike();
+					}
+				 
+				 if (feelsLikeStatsMax < weatStats.get(i).getFeelsLike()) {
+						feelsLikeStatsMax = weatStats.get(i).getFeelsLike();
+					}
+				 
+				 mediaTemp += weatStats.get(i).getTemp();
+				 mediaFeelsLike += weatStats.get(i).getFeelsLike(); 
+			 }
 		 }
 		 
 		 mediaTemp /= i;
@@ -167,12 +167,15 @@ public class FilterStats {
 		 
 		 i = 0;
 		 j = weatStats.get(i).getDataStats();
-		 while (day.equals(j)) {
+		 
+		 for (i = 0; i < weatStats.size(); i++) {
 			 
-			 varianzaTemp = (weatStats.get(i).getTemp() - mediaTemp);
-			 varianzaFeelsLike = (weatStats.get(i).getFeelsLike());
-			 i++;
 			 j = weatStats.get(i).getDataStats();
+			 
+			 if (day.equals(j)) {
+				 varianzaTemp = (weatStats.get(i).getTemp() - mediaTemp);
+				 varianzaFeelsLike = (weatStats.get(i).getFeelsLike());	 
+			 }
 		 }
 		 
 		 varianzaTemp /= i-1;
