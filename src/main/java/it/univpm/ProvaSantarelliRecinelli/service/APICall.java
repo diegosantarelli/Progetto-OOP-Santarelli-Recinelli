@@ -34,6 +34,8 @@ public class APICall{
 	 * @throws WrongCityException città inserita sbagliata
 	 */
 	public APICall (String city, String country) {
+		
+		
 		this.url = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "," + country + "&units=metric&appid=" + appid;
 		if (city == null || country == null) {
 			this.url = "http://api.openweathermap.org/data/2.5/forecast?q=Ancona,IT&units=metric&appid=" + appid;

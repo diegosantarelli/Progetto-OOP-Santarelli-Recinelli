@@ -52,12 +52,18 @@ public class Controller {
 		return filter.FilterDay(date,city,country);
 	}
 	
-	@RequestMapping({"/FilterHours", "/FilterHours/{city}/{country}/{day}/{hours}"})
-	public WeatherStats FilterXHours(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day , @PathVariable (value="hours" , required=false) String time) throws WrongCityException {
+	@RequestMapping({"/Filter1Hour", "/Filter1Hour/{city}/{country}/{day}/{time}"})
+	public WeatherStats Filter1Hour(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day , @PathVariable (value="time" , required=false) String time) throws WrongCityException {
 		LocalDate date = LocalDate.parse(day);
 		LocalTime myTime = LocalTime.parse(time);
 		FilterStats filter = new FilterStats(city, country);
-		return filter.FilterHours(date, myTime,city,country);
+		return filter.Filter1Hour(date, myTime,city,country);
+	}
+	
+	@RequestMapping({"/FilterPerHours", "/FilterPerHours/{city}/{country}/{hours}"})
+	public JSONObject FilterPerHours(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="hours" , required=false) String hours) throws WrongCityException {
+		FilterStats objStats = new FilterStats(city, country);
+		return objStats.FilterPerHours(hours, city, country);
 	}
 	
 }
