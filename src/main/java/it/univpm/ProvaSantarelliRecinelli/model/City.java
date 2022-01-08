@@ -2,9 +2,9 @@ package it.univpm.ProvaSantarelliRecinelli.model;
 
 import java.util.Vector;
 /**
- * <p>
- * <b>Classe</b> che costruise l'oggetto <i>città</i> che ha come parametri il <i>nome</i> e il <i>Paese</i>
- * <p>
+ * 
+ * Classe che costruise l'oggetto città che ha come parametri il nome e il Paese
+ * 
  * 
  * @author Simone_Recinelli
  * @author Diego_Santarelli
@@ -73,7 +73,7 @@ public class City {
 
 	/**
 	 * Ritorna il nome di una città
-	 * @return nome della città di tipo <code>String<code>
+	 * @return nome della città di tipo <code>String</code>
 	 */
 	
 	public String getName() {
@@ -91,7 +91,7 @@ public class City {
 	
 	/**
 	 * Ritorna il Paese di una città
-	 * @return il Paese della città di tipo <code>String<code>
+	 * @return il Paese della città di tipo <code>String</code>
 	 */
 	
 	public String getCountry() {
