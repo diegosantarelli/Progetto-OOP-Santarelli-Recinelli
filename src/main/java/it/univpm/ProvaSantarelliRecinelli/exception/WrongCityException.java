@@ -10,7 +10,7 @@ public class WrongCityException extends IOException {
 		super();
 	}
 	
-	public String getMex() {
+	public String getErr() {
 		return "ERR: Città o Paese inseriti non corretti";
 	}
 
