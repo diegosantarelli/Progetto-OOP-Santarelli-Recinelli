@@ -37,7 +37,8 @@ public class FilterStats {
 	double mediaTemp, mediaFeelsLike, varianzaTemp, varianzaFeelsLike;
 	String descr, main;
 	
-	public FilterStats(String cityName, String country) {
+	public FilterStats(String cityName, String country) throws WrongCityException {
+
 		City c = new City(cityName,country);
 		this.city = c;
 		
@@ -46,14 +47,15 @@ public class FilterStats {
 			country = "IT";
 			City c1 = new City(cityName,country);
 			this.city = c1;
-		}
+		} else if (!cityName.equals("Ancona") || !country.equals("IT")) throw new WrongCityException();
+		
 	}
 	
 	public JSONObject caricaOggettoStats() {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
 		
-		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour")){
+		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -176,8 +178,8 @@ public class FilterStats {
 			 j = weatStats.get(i).getDataStats();
 			 
 			 if (day.equals(j)) {
-				 varianzaTemp = (weatStats.get(i).getTemp() - mediaTemp)*(weatStats.get(i).getTemp() - mediaTemp);
-				 varianzaFeelsLike = (weatStats.get(i).getFeelsLike() - mediaFeelsLike)*(weatStats.get(i).getFeelsLike() - mediaFeelsLike);	 
+				 varianzaTemp += (weatStats.get(i).getTemp() - mediaTemp)*(weatStats.get(i).getTemp() - mediaTemp);
+				 varianzaFeelsLike += (weatStats.get(i).getFeelsLike() - mediaFeelsLike)*(weatStats.get(i).getFeelsLike() - mediaFeelsLike);	 
 			 }
 		 }
 		 
@@ -305,8 +307,8 @@ public class FilterStats {
 		
 		if (j.isAfter(timeStart) && j.isBefore(timeEnd)) {
 				
-			varianzaTemp = (weatStats.get(n).getTemp() - mediaTemp)*(weatStats.get(n).getTemp() - mediaTemp);
-			varianzaFeelsLike = (weatStats.get(n).getFeelsLike() - mediaFeelsLike)*(weatStats.get(n).getFeelsLike() - mediaFeelsLike);
+			varianzaTemp += (weatStats.get(n).getTemp() - mediaTemp)*(weatStats.get(n).getTemp() - mediaTemp);
+			varianzaFeelsLike += (weatStats.get(n).getFeelsLike() - mediaFeelsLike)*(weatStats.get(n).getFeelsLike() - mediaFeelsLike);
 			
 		}	
 	}
@@ -337,4 +339,101 @@ public class FilterStats {
 		}
 		return hours;
 	}
+	
+	public JSONObject Filter5Days (LocalDate date1, LocalDate date2, String cityName, String country) throws WrongCityException {
+		City c = new City(cityName,country);
+		 this.city = c;
+		 c = JSONParsingStats();
+		 weatStats = c.getVectorStats();
+		 
+		 JSONObject objFilter = new JSONObject();
+		 
+		 temp = 0;
+		 feelsLike = 0;
+		 tempMin = 0;
+		 tempMax = 0;
+		 feelsLikeStatsMin = 0;
+		 feelsLikeStatsMax = 0;
+		 mediaTemp = 0;
+		 mediaFeelsLike = 0;
+		 varianzaTemp = 0;
+		 varianzaFeelsLike = 0;
+		 
+		 int i = 0;
+		 LocalDate j = weatStats.get(i).getDataStats();
+		 
+		 for (i = 0; i < weatStats.size(); i++) {
+			 
+			 j = weatStats.get(i).getDataStats();
+			 
+			 if (j.isAfter(date1) && j.isBefore(date2)) {
+				 if (tempMax < weatStats.get(i).getTempMax()) {
+						tempMax = weatStats.get(i).getTempMax();
+					}
+				 
+				 if (tempMin < weatStats.get(i).getTempMin()) {
+						tempMin = weatStats.get(i).getTempMin();
+					}
+				 
+				 if (feelsLikeStatsMin > weatStats.get(i).getFeelsLike()) {
+						feelsLikeStatsMin = weatStats.get(i).getFeelsLike();
+					}
+				 
+				 if (feelsLikeStatsMax < weatStats.get(i).getFeelsLike()) {
+						feelsLikeStatsMax = weatStats.get(i).getFeelsLike();
+					}
+				 
+				 mediaTemp += weatStats.get(i).getTemp();
+				 mediaFeelsLike += weatStats.get(i).getFeelsLike(); 
+			 }
+		 }
+		 
+		 mediaTemp /= i;
+		 mediaFeelsLike /= i;
+		 
+		 i = 0;
+		 j = weatStats.get(i).getDataStats();
+		 
+		 for (i = 0; i < weatStats.size(); i++) {
+			 
+			 j = weatStats.get(i).getDataStats();
+			 
+			 if (j.isAfter(date1) && j.isBefore(date2)) {
+				 varianzaTemp += (weatStats.get(i).getTemp() - mediaTemp)*(weatStats.get(i).getTemp() - mediaTemp);
+				 varianzaFeelsLike += (weatStats.get(i).getFeelsLike() - mediaFeelsLike)*(weatStats.get(i).getFeelsLike() - mediaFeelsLike);	 
+			 }
+			 
+		 }
+		 
+		 
+		 varianzaTemp /= i-1;
+		 varianzaFeelsLike /= i-1;
+		 
+		 objFilter.put("Temperatura massima", tempMax);
+		 objFilter.put("Temperatura minima: ", tempMin);
+		 objFilter.put("Temperatura percepita massima", feelsLikeStatsMax);
+		 objFilter.put("Temperatura percepita minima: ", feelsLikeStatsMin);
+		 objFilter.put("Media delle temperature reali", mediaTemp);
+		 objFilter.put("Media delle temperature percepite", mediaFeelsLike);
+		 objFilter.put("Varianza delle temperature reali", varianzaTemp);
+		 objFilter.put("Varianza delle temperature percepite", varianzaFeelsLike);
+		 
+		 return objFilter;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

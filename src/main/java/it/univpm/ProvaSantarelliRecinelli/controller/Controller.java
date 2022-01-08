@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import org.json.simple.JSONObject;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,4 +67,16 @@ public class Controller {
 		return objStats.FilterPerHours(hours, city, country);
 	}
 	
+	@RequestMapping({"/Filter5Days", "/Filter5Days/{city}/{country}/{date1}/{date2}"})
+	public JSONObject Filter5Days(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="date1" , required=false) String date1, @PathVariable (value="date2" , required=false) String date2) throws WrongCityException {
+		LocalDate startDate = LocalDate.parse(date1);
+		LocalDate endDate = LocalDate.parse(date2);
+		FilterStats objStats = new FilterStats(city, country);
+		return objStats.Filter5Days(startDate, endDate, city, country);
+	}
+	
+	@ExceptionHandler (WrongCityException.class)
+	public static String WrongCity(WrongCityException e) {
+		return e.getMex();
+	}
 }

@@ -8,8 +8,8 @@ public class Weather extends Wind {
 	private double tempMax;
 	private double tempMin;
 	private double feelsLike;
-	private String descr, main, data2;
-	LocalDate data;
+	private String descr, main;
+	LocalDate date;
 	LocalTime time;
 	
 	
@@ -26,6 +26,8 @@ public class Weather extends Wind {
 		this.tempMax = tempMax;
 		this.tempMin = tempMin;
 		this.feelsLike = feelsLike;
+		this.date = date;
+		this.time = time;
 		this.descr = descr;
 		this.main = main;
 	}
@@ -82,11 +84,11 @@ public class Weather extends Wind {
 	}
 
 	public LocalDate getData() {
-		return data;
+		return date;
 	}
 
 	public void setData(LocalDate data) {
-		this.data = data;
+		this.date = data;
 	}
 	
 }

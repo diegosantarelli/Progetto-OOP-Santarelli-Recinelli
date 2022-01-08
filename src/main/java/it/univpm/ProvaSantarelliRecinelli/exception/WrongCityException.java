@@ -5,7 +5,7 @@ import java.io.IOException;
 public class WrongCityException extends IOException {
 	
 	private static final long serialVersionUID = 1L;
-
+	
 	public WrongCityException() {
 		super();
 	}

@@ -23,6 +23,9 @@ import org.json.simple.parser.ParseException;
 
 
 public class APICall{
+	/*
+	 * APP-ID SIMONE : e53a126fee4e06f8dedcc4ecfa92d055
+	 */
 	private static String appid = "e53a126fee4e06f8dedcc4ecfa92d055";
 	private String url;
 

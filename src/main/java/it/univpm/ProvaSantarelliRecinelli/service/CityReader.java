@@ -27,7 +27,7 @@ public class CityReader{
 	private City city;
 	private Vector <Weather> weat= new Vector <Weather>();
 
-	public CityReader(String cityName, String country) {
+	public CityReader(String cityName, String country) throws WrongCityException {
 		City c = new City(cityName,country);
 		this.city = c;
 		
@@ -36,8 +36,7 @@ public class CityReader{
 			country = "IT";
 			City c1 = new City(cityName,country);
 			this.city = c1;
-			
-		}
+		}  else if (!cityName.equals("Ancona") || !country.equals("IT")) throw new WrongCityException();
 	}
 	/**
 	 * Questo metodo legge il JSON file e inserisce tutto in un JSONObject
