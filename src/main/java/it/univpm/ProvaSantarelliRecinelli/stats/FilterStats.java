@@ -186,6 +186,8 @@ public class FilterStats {
 		 
 		 objFilter.put("Temperatura massima", tempMax);
 		 objFilter.put("Temperatura minima: ", tempMin);
+		 objFilter.put("Temperatura percepita massima", feelsLikeStatsMax);
+		 objFilter.put("Temperatura percepita minima: ", feelsLikeStatsMin);
 		 objFilter.put("Media delle temperature reali", mediaTemp);
 		 objFilter.put("Media delle temperature percepite", mediaFeelsLike);
 		 objFilter.put("Varianza delle temperature reali", varianzaTemp);
@@ -302,8 +304,6 @@ public class FilterStats {
 		//System.out.println(j);
 		
 		if (j.isAfter(timeStart) && j.isBefore(timeEnd)) {
-			
-			System.out.println("ciao");
 				
 			varianzaTemp = (weatStats.get(n).getTemp() - mediaTemp)*(weatStats.get(n).getTemp() - mediaTemp);
 			varianzaFeelsLike = (weatStats.get(n).getFeelsLike() - mediaFeelsLike)*(weatStats.get(n).getFeelsLike() - mediaFeelsLike);
@@ -316,6 +316,8 @@ public class FilterStats {
 		 
 	objFilter.put("Temperatura massima", tempMax);
 	objFilter.put("Temperatura minima: ", tempMin);
+	objFilter.put("Temperatura percepita massima", feelsLikeStatsMax);
+	objFilter.put("Temperatura percepita minima: ", feelsLikeStatsMin);
 	objFilter.put("Media delle temperature reali", mediaTemp);
 	objFilter.put("Media delle temperature percepite", mediaFeelsLike);
 	objFilter.put("Varianza delle temperature reali", varianzaTemp);
