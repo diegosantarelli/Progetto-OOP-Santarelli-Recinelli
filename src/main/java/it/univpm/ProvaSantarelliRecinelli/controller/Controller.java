@@ -157,8 +157,8 @@ public class Controller {
 	}
 	
 	/**
-	 * Rotta di tipo GET che filtra le statistiche salvate nel file locale "APIForecastEveryHour.txt" relative ad una fascia oraria dei giorni del file, 
-	 * in base ad una città, un Paese ed una fascia oraria inseriti dall'utente.
+	 * Rotta di tipo GET che filtra le statistiche salvate nel file locale "APIForecastEveryHour.txt" relative ad una fascia oraria dei giorni presenti 
+	 * nel file, in base ad una città, un Paese ed una fascia oraria inseriti dall'utente.
 	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei città e Paese di default (Ancona, IT).
 	 * 
 	 * @param city rappresenta la città
@@ -194,9 +194,9 @@ public class Controller {
 	 */
 	
 	@RequestMapping({"/Filter5Days", "/Filter5Days/{city}/{country}/{date1}/{date2}"})
-	public JSONObject Filter5Days(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="date1" , required=false) String date1, @PathVariable (value="date2" , required=false) String date2) throws WrongCityException {
-		LocalDate startDate = LocalDate.parse(date1);
-		LocalDate endDate = LocalDate.parse(date2);
+	public JSONObject Filter5Days(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="date1" , required=false) String dateSt, @PathVariable (value="date2" , required=false) String dateEn) throws WrongCityException {
+		LocalDate startDate = LocalDate.parse(dateSt);
+		LocalDate endDate = LocalDate.parse(dateEn);
 		FilterStats objStats = new FilterStats(city, country);
 		return objStats.Filter5Days(startDate, endDate, city, country);
 	}

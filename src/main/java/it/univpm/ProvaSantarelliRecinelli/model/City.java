@@ -1,10 +1,9 @@
 package it.univpm.ProvaSantarelliRecinelli.model;
 
 import java.util.Vector;
+
 /**
- * 
- * Classe che costruise l'oggetto città che ha come parametri il nome e il Paese
- * 
+ * Classe che rappresenta l'oggetto città
  * 
  * @author Simone_Recinelli
  * @author Diego_Santarelli
