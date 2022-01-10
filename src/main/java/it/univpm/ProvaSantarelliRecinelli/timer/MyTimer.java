@@ -12,16 +12,28 @@ import it.univpm.ProvaSantarelliRecinelli.exception.*;
 import it.univpm.ProvaSantarelliRecinelli.service.APICall;
 import it.univpm.ProvaSantarelliRecinelli.service.CityReader;
 
+/**
+ * Questa classe che gestisce la sovrascrizione di un file locale.
+ * @author SimoneRecinelli
+ * @author DiegoSantarelli
+ */
+
 public class MyTimer{
-	/**
-	 * Questo metodo salva in un file di testo locale le informazioni attuali sul vento ogni ora
-	 * @return Il metodo sovrascrive il file APIFOrecastEveryHour e avvisa l'utente con un messaggio
-	 * @throws WrongCityException 
-	 */
 	
 	// PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
 	// PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
 	
+	/**
+	 * Metodo che sovrascrive ogni ora un file locale con le informazioni che ci interessano per fare le statistiche 
+	 * su una città e Paese inseriti dall'utente come parametro. Nel caso di mancato inserimento di quest'ultime,
+	 * il metodo verrà effettuato con dei parametri di default (Ancona, IT).
+	 * 
+	 * @param city rappresenta la città
+	 * @param country rappresenta il paese
+	 * @return <code>String</code>
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
+	 * @throws WrongFileException eccezione dovuta all'inserimento di un path del file errato.
+	 */
 	public String WriteOnLocalFileEveryHour(String city, String country) throws WrongFileException, WrongCityException {
 		
 		if (city == null || country == null) {
@@ -32,7 +44,7 @@ public class MyTimer{
 		final String city2 = city;
 		final String country2 = country;
 
-		String path = "C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour";
+		String path = "/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour";
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 		
@@ -56,7 +68,7 @@ public class MyTimer{
 			FileWriter fileWriter = new FileWriter(file, true);
 				
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			bufferedWriter.write(c.JSONParsing().toString());
+			bufferedWriter.write(c.convertToJSON().toString());
 			bufferedWriter.write("\n");
 			    
 			bufferedWriter.close();

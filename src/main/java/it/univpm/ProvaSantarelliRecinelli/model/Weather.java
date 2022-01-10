@@ -3,6 +3,8 @@ package it.univpm.ProvaSantarelliRecinelli.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import org.json.simple.JSONObject;
+
 /**
  * Classe che costruisce l'oggetto Weather
  * 
@@ -42,6 +44,8 @@ public class Weather extends Wind {
 		this.feelsLike = feelsLike;
 		this.descr = descr;
 		this.main = main;
+		this.date = date;
+		this.time = time;
 	}
 	
 	/**
@@ -164,4 +168,18 @@ public class Weather extends Wind {
 		this.main = main;
 	}
 	
+	public String toString() {
+			JSONObject objWeather = new JSONObject();
+			
+			objWeather.put("Date:", date);
+			objWeather.put("Time:", time);
+			objWeather.put("Temperatura reale", temp);
+			objWeather.put("Temperatura percepita:", feelsLike);
+			objWeather.put("Temperatura minima:", tempMin);
+			objWeather.put("Temperatura massima:", tempMax);
+			objWeather.put("Descrizione:", descr);
+			objWeather.put("Condizione:", main);
+			
+			return objWeather.toJSONString();
+	}
 }

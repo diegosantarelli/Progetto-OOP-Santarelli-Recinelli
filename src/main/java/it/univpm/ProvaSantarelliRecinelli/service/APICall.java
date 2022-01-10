@@ -13,31 +13,24 @@ import org.json.simple.parser.ParseException;
 
 
 /**
- * <p>
- * La classe permette di gestire le chiamate API
- * </p>
- * @author simonerecinelli
- * @author diegosantarelli
- *
+ * Questa classe gestisce le chiamate API prendendo in input dall'utente il nome di una città e il relativo Paese.
+ * @author SimoneRecinelli
+ * @author DiegoSantarelli
  */
 
-
 public class APICall{
-	/*
-	 * APP-ID SIMONE : e53a126fee4e06f8dedcc4ecfa92d055
-	 */
+	
 	private static String appid = "e53a126fee4e06f8dedcc4ecfa92d055";
 	private String url;
 
 	/**
-	 * Costruttore della classe
+	 * Costruttore della classe.
 	 * 
-	 * @param city indica la città di interesse
-	 * 
-	 * @throws WrongCityException città inserita sbagliata
+	 * @param city rappresenta la città
+	 * @param country rappresenta il Paese
 	 */
+	
 	public APICall (String city, String country) {
-		
 		
 		this.url = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "," + country + "&units=metric&appid=" + appid;
 		if (city == null || country == null) {
@@ -45,10 +38,11 @@ public class APICall{
 		}
 	}
 	 
-	 /**
-	  * Il metodo effettua la chiamata all'API
-	  * @return java
-	  */
+	/**
+	 * Metodo che effettua la chiamata all'API Forecast tramite l'URL inserito nel costruttore, la città e il Paese inseriti dall'utente.
+	 * Esso ritorna un JSONObject contenente tutte le informazioni derivanti dall'API Forecast.
+	 * @return <code>JSONObject</code> 
+	 */
 
 	public JSONObject Call() {   
 

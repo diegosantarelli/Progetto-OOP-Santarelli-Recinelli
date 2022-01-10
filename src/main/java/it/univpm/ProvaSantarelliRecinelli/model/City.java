@@ -2,6 +2,9 @@ package it.univpm.ProvaSantarelliRecinelli.model;
 
 import java.util.Vector;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 /**
  * Classe che rappresenta l'oggetto città
  * 
@@ -115,5 +118,6 @@ public class City {
 		this.windVec = windVec;
 	}
 		
+	
 }
 
