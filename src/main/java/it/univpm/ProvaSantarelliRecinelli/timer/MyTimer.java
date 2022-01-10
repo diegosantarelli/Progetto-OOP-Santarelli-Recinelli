@@ -10,6 +10,7 @@ import java.util.TimerTask;
 
 import it.univpm.ProvaSantarelliRecinelli.exception.*;
 import it.univpm.ProvaSantarelliRecinelli.service.APICall;
+import it.univpm.ProvaSantarelliRecinelli.service.CityReader;
 
 public class MyTimer{
 	/**
@@ -37,7 +38,15 @@ public class MyTimer{
 		
 		@Override
 		public void run() {
-			APICall api = new APICall(city2,country2);
+			
+			CityReader c = null;
+			try {
+				c = new CityReader(city2, country2);
+			} catch (WrongCityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			//APICall api = new APICall(city2,country2);
 			File file = new File(path);
 			try	{
 			    if(!file.exists()) {
@@ -47,7 +56,7 @@ public class MyTimer{
 			FileWriter fileWriter = new FileWriter(file, true);
 				
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			bufferedWriter.write(api.Call().toJSONString());
+			bufferedWriter.write(c.JSONParsing().toString());
 			bufferedWriter.write("\n");
 			    
 			bufferedWriter.close();
