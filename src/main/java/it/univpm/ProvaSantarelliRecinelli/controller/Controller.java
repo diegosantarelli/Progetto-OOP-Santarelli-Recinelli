@@ -44,7 +44,7 @@ public class Controller {
 	 */
 	
 	@RequestMapping({"/APICall", "/APICall/{city}/{country}"})
-	public JSONObject Call(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) {
+	public JSONObject Call(@PathVariable(value="city", required=false) String city, @PathVariable(value="country" , required=false) String country) {
 		APICall ap = new APICall(city, country);
 		return ap.Call();
 	}
@@ -67,6 +67,12 @@ public class Controller {
 	public City JSONParsing(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
 		CityReader city1 = new CityReader(city, country);
 		return city1.JSONParsing();
+	}
+	
+	@RequestMapping({"/JSONParsingWind", "/JSONParsingWind/{city}/{country}"})
+	public City JSONParsingWind(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+		CityReader city1 = new CityReader(city, country);
+		return city1.JSONParsingWind();
 	}
 	
 	/**

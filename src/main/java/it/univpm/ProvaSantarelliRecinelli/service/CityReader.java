@@ -20,12 +20,14 @@ import org.json.simple.parser.ParseException;
 import it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException;
 import it.univpm.ProvaSantarelliRecinelli.model.City;
 import it.univpm.ProvaSantarelliRecinelli.model.Weather;
+import it.univpm.ProvaSantarelliRecinelli.model.Wind;
 
 public class CityReader{
 	
 	
 	private City city;
 	private Vector <Weather> weat= new Vector <Weather>();
+	private Vector <Wind> windVec = new Vector <Wind>();
 
 	public CityReader(String cityName, String country) throws WrongCityException {
 		City c = new City(cityName,country);
@@ -122,6 +124,42 @@ public class CityReader{
 		this.city.setVector(this.weat);	
 		return this.city;
 		}
+	
+	public City JSONParsingWind() {
+		Wind appoggio;
+		JSONObject obj = caricaOggetto();
+		JSONArray list = (JSONArray) obj.get("list");
+		
+		LocalDateTime datetime;
+		LocalDate date;
+		LocalTime time;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
+		JSONObject objList = new JSONObject();
+		JSONArray Weather;
+		JSONObject objWind;
+		JSONObject objWeather = new JSONObject();
+		
+		for(int i=0; i<list.size(); i++) {
+			objList = (JSONObject) list.get(i);
+			//date = (String) objList.get("dt_txt");
+			
+			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
+			date = datetime.toLocalDate();
+			time = datetime.toLocalTime();
+			
+			Weather = (JSONArray) objList.get("weather");
+			objWeather = (JSONObject) Weather.get(0);
+			
+			objWind = (JSONObject ) objList.get("wind");
+			double windSpeed = (double) objWind.get("speed");
+			
+			appoggio = new Wind(windSpeed, date, time);
+			this.windVec.add(appoggio);
+		}
+		this.city.setWindVec(this.windVec);	
+		return this.city;
+	}
 	
 }
 

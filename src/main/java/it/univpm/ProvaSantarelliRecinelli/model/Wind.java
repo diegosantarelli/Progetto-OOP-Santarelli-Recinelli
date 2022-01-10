@@ -1,5 +1,8 @@
 package it.univpm.ProvaSantarelliRecinelli.model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * Classe che rappresenta l'oggetto Wind
  * 
@@ -11,6 +14,8 @@ package it.univpm.ProvaSantarelliRecinelli.model;
 public class Wind {
 	
 	private double wind_speed;
+	LocalDate date;
+	LocalTime time;
 	
 	/**
 	 * Costruttore della classe
@@ -18,8 +23,10 @@ public class Wind {
 	 * @param wind_speed rappresenta la velocità del vento
 	 */
 	
-	public Wind(double wind_speed) {
+	public Wind(double wind_speed, LocalDate date, LocalTime time) {
 		this.wind_speed = wind_speed;
+		this.date = date;
+		this.time = time;
 	}
 	
 	/**
@@ -40,6 +47,22 @@ public class Wind {
 
 	public void setWind_speed(double wind_speed) {
 		this.wind_speed = wind_speed;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
 	}
 	
 }

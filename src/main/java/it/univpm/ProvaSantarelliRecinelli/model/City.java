@@ -15,6 +15,7 @@ public class City {
 	private String Country;
 	private Vector<Weather> vector = new Vector<Weather>();
 	private Vector<WeatherStats> vectorStats = new Vector<WeatherStats>();
+	private Vector <Wind> windVec = new Vector <Wind>();
 	
 	/**
 	 * Costruttore della classe City
@@ -104,6 +105,14 @@ public class City {
 	
 	public void setCountry(String country) {
 		Country = country;
+	}
+
+	public Vector<Wind> getWindVec() {
+		return windVec;
+	}
+
+	public void setWindVec(Vector<Wind> windVec) {
+		this.windVec = windVec;
 	}
 		
 }

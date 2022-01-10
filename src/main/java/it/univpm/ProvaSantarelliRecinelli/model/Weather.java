@@ -35,13 +35,11 @@ public class Weather extends Wind {
      */
 	
 	public Weather(double windSpeed ,double temp ,double tempMax, double tempMin, double feelsLike , LocalDate date, LocalTime time, String descr, String main) {
-		super(windSpeed);
+		super(windSpeed, date, time);
 		this.temp = temp;
 		this.tempMax = tempMax;
 		this.tempMin = tempMin;
 		this.feelsLike = feelsLike;
-		this.date = date;
-		this.time = time;
 		this.descr = descr;
 		this.main = main;
 	}
@@ -164,46 +162,6 @@ public class Weather extends Wind {
 
 	public void setMain(String main) {
 		this.main = main;
-	}
-	
-	/**
-	 * Ritorna l'ora in cui è stata effettuata la previsione
-	 * 
-	 * @return <code>LocalTime</code>
-	 */
-	
-	public LocalTime getTime() {
-		return time;
-	}
-	
-	/**
-	 * Permette all'utente di settare l'ora in cui è stata effettuata la previsione
-	 * 
-	 * @param time rappresenta l'ora in cui è stata effettuata la previsione
-	 */
-
-	public void setTime(LocalTime time) {
-		this.time = time;
-	}
-	
-	/**
-	 * Ritorna la data in cui è stata effettuata la previsione
-	 * 
-	 * @return <code>LocalData</code>
-	 */
-
-	public LocalDate getData() {
-		return date;
-	}
-	
-	/**
-	 * Permette all'utente di settare la data in cui è stata effettuata la previsione
-	 * 
-	 * @param data rappresenta la data in cui è stata effettuata la previsione
-	 */
-
-	public void setData(LocalDate data) {
-		this.date = data;
 	}
 	
 }
