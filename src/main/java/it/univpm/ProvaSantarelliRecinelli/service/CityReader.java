@@ -48,6 +48,11 @@ public class CityReader{
 		City c = new City(cityName,country);
 		this.city = c;
 		
+		/*
+		 * Ciclo if che permette di settare di default Ancona come città e IT come Paese
+		 * se l'utente non passa uno dei due parametri o entrambi contemporaneamente.
+		 */
+		
 		if (cityName == null || country == null) {
 			cityName = "Ancona";
 			country = "IT";

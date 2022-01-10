@@ -69,6 +69,17 @@ public class Controller {
 		return city1.JSONParsing();
 	}
 	
+	/**
+	 * 
+	 * Rotta di tipo GET che effettua il parsing della chiamata al server secondo una città ed un Paese inseriti dall'utente tramite i parametri.
+	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei parametri di default (Ancona, IT).
+	 * 
+	 * @param city rappresenta la città
+	 * @param country rappresenta il Paese
+	 * @return <code>City</code>
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
+	 */
+	
 	@RequestMapping({"/JSONParsingWind", "/JSONParsingWind/{city}/{country}"})
 	public City JSONParsingWind(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
 		CityReader city1 = new CityReader(city, country);

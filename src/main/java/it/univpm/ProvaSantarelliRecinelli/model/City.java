@@ -6,10 +6,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * Classe che rappresenta l'oggetto città
+ * Classe che descrive l'oggetto City.
  * 
- * @author Simone_Recinelli
- * @author Diego_Santarelli
+ * @author SimoneRecinelli
+ * @author DiegoSantarelli
  */
 
 public class City {
@@ -21,10 +21,10 @@ public class City {
 	private Vector <Wind> windVec = new Vector <Wind>();
 	
 	/**
-	 * Costruttore della classe City
+	 * Costruttore della classe.
 	 * 
-	 * @param name indica il nome della città
-	 * @param country indica il Paese della città
+	 * @param name rappresenta il nome della città
+	 * @param country rappresenta il nome del Paese
 	 */	
 	
 	public City(String Name, String Country) {
@@ -33,10 +33,8 @@ public class City {
 	}
 	
 	/**
-	 * Ritorna il vettore della classe Weather
-	 * 
+	 * Restituisce il vettore della classe Weather.
 	 * @return <code>Vector<Weather></code>
-	 * 
 	 */
 	
 	public Vector<Weather> getVector() {
@@ -44,10 +42,8 @@ public class City {
 	}
 	
 	/**
-	 * Permette di settare il vettore della classe Weather
-	 * 
+	 * Permette di settare il vettore della classe Weather.
 	 * @param vector nome del vettore
-	 * 
 	 */
 	
 	public void setVector(Vector<Weather> vector) {
@@ -55,18 +51,16 @@ public class City {
 	}
 	
 	/**
-	 * Ritorna il vettore della classe WeatherStats
-	 * 
-	 * @return un <code>Vector<WeatherStats></code>
-	 * 
+	 * Restituisce il vettore della classe WeatherStats
+	 * @return <code>Vector<WeatherStats></code>
 	 */
+	
 	public Vector<WeatherStats> getVectorStats() {
 		return vectorStats;
 	}
 	
 	/**
-	 * Permette di settare il vettore della classe WeatherStats
-	 * 
+	 * Permette di settare il vettore della classe WeatherStats.
 	 * @param vectorStats
 	 */
 
@@ -75,8 +69,8 @@ public class City {
 	}
 
 	/**
-	 * Ritorna il nome di una città
-	 * @return nome della città di tipo <code>String</code>
+	 * Restituisce il nome di una città.
+	 * @return <code>String</code>
 	 */
 	
 	public String getName() {
@@ -84,8 +78,8 @@ public class City {
 	}
 	
 	/**
-	 * Permette di settare il nome della città
-	 * @param name indica il nome della città di riferimento
+	 * Permette di settare il nome della città.
+	 * @param name rappresenta il nome della città
 	 */
 	
 	public void setName(String name) {
@@ -93,8 +87,8 @@ public class City {
 	}
 	
 	/**
-	 * Ritorna il Paese di una città
-	 * @return il Paese della città di tipo <code>String</code>
+	 * Restituisce il Paese.
+	 * @return <code>String</code>
 	 */
 	
 	public String getCountry() {
@@ -102,18 +96,26 @@ public class City {
 	}
 	
 	/**
-	 * Permette di settare il Paese della città
-	 * @param country indica il Paese della città
+	 * Permette di settare il Paese
+	 * @param country rappresenta il Paese
 	 */
 	
 	public void setCountry(String country) {
 		Country = country;
 	}
-
+	
+	/**
+	 * Restituisce il vettore della classe Wind
+	 * @return <code>Vector<Wind></code>
+	 */
 	public Vector<Wind> getWindVec() {
 		return windVec;
 	}
-
+	
+	/**
+	 * Permette di settare il vettore della classe Wind
+	 * @param windVec rappresenta un vettore della classe Wind
+	 */
 	public void setWindVec(Vector<Wind> windVec) {
 		this.windVec = windVec;
 	}

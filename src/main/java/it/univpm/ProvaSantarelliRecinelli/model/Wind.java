@@ -4,11 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- * Classe che rappresenta l'oggetto Wind
+ * Classe che costruisce l'oggetto Wind.
  * 
  * @author DiegoSantarelli
  * @author SimoneRecinelli
- *
  */
 
 public class Wind {
@@ -18,7 +17,7 @@ public class Wind {
 	LocalTime time;
 	
 	/**
-	 * Costruttore della classe
+	 * Costruttore della classe.
 	 * 
 	 * @param wind_speed rappresenta la velocità del vento
 	 */
@@ -30,8 +29,7 @@ public class Wind {
 	}
 	
 	/**
-	 * Ritorna la velocità del vento
-	 * 
+	 * Restituisce la velocità del vento.
 	 * @return <code>double</code>
 	 */
 	
@@ -40,27 +38,46 @@ public class Wind {
 	}
 	
 	/**
-	 * Permette all'utente di settare la velocità del vento
-	 * 
+	 * Permette all'utente di settare la velocità del vento.
 	 * @param wind_speed rappresenta la velocità del vento
 	 */
 
 	public void setWind_speed(double wind_speed) {
 		this.wind_speed = wind_speed;
 	}
-
+	
+	/**
+	 * Restituisce la data della previsione.
+	 * @return <code>LocalDate</code>
+	 */
+	
 	public LocalDate getDate() {
 		return date;
 	}
-
+	
+	/**
+	 * Permette all'utente di settare la data della previsione.
+	 * @return <code>LocalDate</code>
+	 */
+	
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-
+	
+	/**
+	 * Restituisce l'ora, i minuti e i secondi della previsione.
+	 * @return <code>LocalTime</code>
+	 */
+	
 	public LocalTime getTime() {
 		return time;
 	}
-
+	
+	/**
+	 * Permette all'utente di settare l'ora, i minuti e i secondi della previsione.
+	 * @param time rappresenta l'ora, i minuti e i secondi della previsione
+	 */
+	
 	public void setTime(LocalTime time) {
 		this.time = time;
 	}

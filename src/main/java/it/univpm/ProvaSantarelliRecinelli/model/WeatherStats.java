@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- * Classe che rappresenta l'oggetto WeatherStats
+ * Classe che costruisce l'oggetto WeatherStats.
  * 
  * @author DiegoSantarelli
  * @author SimoneRecinelli
@@ -38,8 +38,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Ritorna la tempretaura
-	 * 
+	 * Restituisce la temperatura reale.
 	 * @return <code>double</code>
 	 */
 	
@@ -48,8 +47,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Permette all'utente di settare la temperatura
-	 * 
+	 * Permette all'utente di settare la temperatura reale.
 	 * @param temp rappresenta la tempreatura
 	 */
 	
@@ -58,8 +56,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Ritorna la temperatura massima
-	 * 
+	 * Restituisce la temperatura massima.
 	 * @return <code>double</code>
 	 */
 	
@@ -68,8 +65,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Permette all'utente di settare la temperatura massima
-	 * 
+	 * Permette all'utente di settare la temperatura massima.
 	 * @param tempMax rappresenta la temperatura massima
 	 */
 	
@@ -78,8 +74,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Ritorna la temperatura minima
-	 * 
+	 * Restituisce la temperatura minima.
 	 * @return <code>double</code>
 	 */
 	
@@ -88,8 +83,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Permette all'utente di settare la temperatura minima
-	 * 
+	 * Permette all'utente di settare la temperatura minima.
 	 * @param tempMin rappresenta la temperatura minima
 	 */
 	
@@ -98,8 +92,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Rtorna la temperatura percepita
-	 * 
+	 * Restituisce la temperatura percepita.
 	 * @return <code>double</code>
 	 */
 	
@@ -108,8 +101,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Permette all'utente di settare la temperatura percepita
-	 * 
+	 * Permette all'utente di settare la temperatura percepita.
 	 * @param feelsLike rappresenta la temperatura percepita
 	 */
 	
@@ -118,8 +110,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Ritorna la data in cui è stata effettuata la previsione
-	 * 
+	 * Restituisce la data in cui è stata effettuata la previsione.
 	 * @return <code>LocalData</code>
 	 */
 	
@@ -128,8 +119,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Permette all'utente di settare la data in cui è stata effettuata la previsione
-	 * 
+	 * Permette all'utente di settare la data in cui è stata effettuata la previsione.
 	 * @param dataStats rappresenta la data in cui è stata effettuata la previsione
 	 */
 	
@@ -138,8 +128,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Ritorna l'ora in cui è stata effettuata la previsione
-	 * 
+	 * Ritorna l'ora, i minuti e i secondi in cui è stata effettuata la previsione.
 	 * @return <code>LocalTime</code>
 	 */
 	
@@ -148,12 +137,12 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Permette all'utente di settare l'ora in cui è stata effettuata la previsione
-	 * 
+	 * Permette all'utente di settare l'ora, i minuti e i secondi in cui è stata effettuata la previsione.
 	 * @param timeStats rappresenta l'ora in cui è stata effettuata la previsione
 	 */
 	
 	public void setTimeStats(LocalTime timeStats) {
 		this.timeStats = timeStats;
 	}
+	
 }

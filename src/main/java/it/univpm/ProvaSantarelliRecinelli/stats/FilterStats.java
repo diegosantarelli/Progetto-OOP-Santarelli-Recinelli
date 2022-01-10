@@ -68,8 +68,8 @@ public class FilterStats {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Metodo che legge il file JSON "APIForecastEveryHour.txt" e inserisce tutte le informazioni in un JSONObject, restituendolo.
+	 * @return <code>JSONObject</code>
 	 */
 	
 	public JSONObject caricaOggettoStats() {
@@ -400,7 +400,7 @@ public class FilterStats {
 	}
 	
 	/**
-	 * Metodo che permmette di filtrare le statistiche salvate in locale nel file "APIForecastEveryHour.txt" relative ad un periodo di 5 giorni
+	 * Metodo che permmette di filtrare le statistiche salvate in locale nel file "APIForecastEveryHour.txt" relative ad un periodo di 5 giorni.
 	 * 
 	 * @param dateSt rappresenta la data d'inizio
 	 * @param dateEn rappresenta la data di fine

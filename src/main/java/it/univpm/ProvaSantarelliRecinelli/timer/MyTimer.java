@@ -20,9 +20,6 @@ import it.univpm.ProvaSantarelliRecinelli.service.CityReader;
 
 public class MyTimer{
 	
-	// PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
-	// PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
-	
 	/**
 	 * Metodo che sovrascrive ogni ora un file locale con le informazioni che ci interessano per fare le statistiche 
 	 * su una città e Paese inseriti dall'utente come parametro. Nel caso di mancato inserimento di quest'ultime,
@@ -43,7 +40,10 @@ public class MyTimer{
 		
 		final String city2 = city;
 		final String country2 = country;
-
+		
+		// PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
+		// PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
+		
 		String path = "/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour";
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
@@ -58,7 +58,7 @@ public class MyTimer{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			//APICall api = new APICall(city2,country2);
+
 			File file = new File(path);
 			try	{
 			    if(!file.exists()) {
