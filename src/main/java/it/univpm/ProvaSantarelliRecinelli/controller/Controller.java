@@ -210,12 +210,12 @@ public class Controller {
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#Filter5Days(LocalDate, LocalDate, String, String)
 	 */
 	
-	@RequestMapping({"/Filter5Days", "/Filter5Days/{city}/{country}/{date1}/{date2}"})
-	public JSONObject Filter5Days(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="date1" , required=false) String dateSt, @PathVariable (value="date2" , required=false) String dateEn) throws WrongCityException {
+	@RequestMapping({"/FilterPerWeek", "/FilterPerWeek/{city}/{country}/{date1}/{date2}"})
+	public JSONObject FilterPerWeek(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="date1" , required=false) String dateSt, @PathVariable (value="date2" , required=false) String dateEn) throws WrongCityException {
 		LocalDate startDate = LocalDate.parse(dateSt);
 		LocalDate endDate = LocalDate.parse(dateEn);
 		FilterStats objStats = new FilterStats(city, country);
-		return objStats.Filter5Days(startDate, endDate, city, country);
+		return objStats.FilterWeek(startDate, endDate, city, country);
 	}
 	
 	/**

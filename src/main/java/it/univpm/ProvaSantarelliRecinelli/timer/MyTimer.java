@@ -9,6 +9,7 @@ import java.util.TimerTask;
 
 
 import it.univpm.ProvaSantarelliRecinelli.exception.*;
+import it.univpm.ProvaSantarelliRecinelli.model.City;
 import it.univpm.ProvaSantarelliRecinelli.service.APICall;
 import it.univpm.ProvaSantarelliRecinelli.service.CityReader;
 
@@ -44,20 +45,14 @@ public class MyTimer{
 		// PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
 		// PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
 		
-		String path = "/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour";
+		String path = "C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour";
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 		
 		@Override
 		public void run() {
 			
-			CityReader c = null;
-			try {
-				c = new CityReader(city2, country2);
-			} catch (WrongCityException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			City c = new City(city2, country2);
 
 			File file = new File(path);
 			try	{

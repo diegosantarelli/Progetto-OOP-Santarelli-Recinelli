@@ -14,8 +14,8 @@ import java.time.LocalTime;
 public class WeatherStats {
 	
 	double temp,tempMax,tempMin,feelsLike;
-	LocalDate dataStats;
-	LocalTime timeStats;
+	String dataStats;
+	String timeStats;
 	
 	/**
 	 * Costruttore della classe per il calcolo delle statistiche
@@ -28,7 +28,7 @@ public class WeatherStats {
 	 * @param time			Ora a cui si riferisce la previsione
 	 */
 	
-	public WeatherStats(double temp ,double tempMax, double tempMin, double feelsLike ,LocalDate date, LocalTime time) {
+	public WeatherStats(double temp ,double tempMax, double tempMin, double feelsLike ,String date, String time) {
 		this.temp = temp;
 		this.tempMax = tempMax;
 		this.tempMin = tempMin;
@@ -114,7 +114,7 @@ public class WeatherStats {
 	 * @return <code>LocalData</code>
 	 */
 	
-	public LocalDate getDataStats() {
+	public String getDataStats() {
 		return dataStats;
 	}
 	
@@ -123,7 +123,7 @@ public class WeatherStats {
 	 * @param dataStats rappresenta la data in cui è stata effettuata la previsione
 	 */
 	
-	public void setDataStats(LocalDate dataStats) {
+	public void setDataStats(String dataStats) {
 		this.dataStats = dataStats;
 	}
 	
@@ -132,7 +132,7 @@ public class WeatherStats {
 	 * @return <code>LocalTime</code>
 	 */
 	
-	public LocalTime getTimeStats() {
+	public String getTimeStats() {
 		return timeStats;
 	}
 	
@@ -141,7 +141,7 @@ public class WeatherStats {
 	 * @param timeStats rappresenta l'ora in cui è stata effettuata la previsione
 	 */
 	
-	public void setTimeStats(LocalTime timeStats) {
+	public void setTimeStats(String timeStats) {
 		this.timeStats = timeStats;
 	}
 	

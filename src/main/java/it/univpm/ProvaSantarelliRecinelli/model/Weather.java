@@ -19,8 +19,6 @@ public class Weather extends Wind {
 	private double tempMin;
 	private double feelsLike;
 	private String descr, main;
-	LocalDate date;
-	LocalTime time;
 	
 	
 	/** 
@@ -36,7 +34,7 @@ public class Weather extends Wind {
      * @param main			Previsione generale			
      */
 	
-	public Weather(double windSpeed ,double temp ,double tempMax, double tempMin, double feelsLike , LocalDate date, LocalTime time, String descr, String main) {
+	public Weather(double windSpeed ,double temp ,double tempMax, double tempMin, double feelsLike , String date, String time, String descr, String main) {
 		super(windSpeed, date, time);
 		this.temp = temp;
 		this.tempMax = tempMax;
@@ -44,8 +42,6 @@ public class Weather extends Wind {
 		this.feelsLike = feelsLike;
 		this.descr = descr;
 		this.main = main;
-		this.date = date;
-		this.time = time;
 	}
 	
 	/**

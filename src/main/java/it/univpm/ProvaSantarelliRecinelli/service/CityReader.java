@@ -70,7 +70,7 @@ public class CityReader{
 		JSONParser jsonParser = new JSONParser();
 		JSONObject objcity = null;
 		
-		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA")){
+		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastANCONA")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			objcity = new JSONObject();
@@ -108,12 +108,12 @@ public class CityReader{
 		double windSpeed;
 		
 		LocalDateTime datetime;
-		LocalDate date;
-		LocalTime time;
+		String date;
+		String time;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
 		JSONObject objList = new JSONObject();
-		JSONArray Weather;
+		JSONArray weather;
 		JSONObject objMain;
 		JSONObject objWind;
 		JSONObject objWeather = new JSONObject();
@@ -122,11 +122,11 @@ public class CityReader{
 			objList = (JSONObject) list.get(i);
 			
 			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
-			date = datetime.toLocalDate();
-			time = datetime.toLocalTime();
+			date = datetime.toLocalDate().toString();
+			time = datetime.toLocalTime().toString();
 			
-			Weather = (JSONArray) objList.get("weather");
-			objWeather = (JSONObject) Weather.get(0);
+			weather = (JSONArray) objList.get("weather");
+			objWeather = (JSONObject) weather.get(0);
 			
 			descr = (String) objWeather.get("description");
 			main2 = (String) objWeather.get("main");
@@ -148,7 +148,7 @@ public class CityReader{
 		}
 	
 	/**
-	 * Metodo che parsifica il JSONObject ricevuto dal file JSON "APIForecastANCONA.txt" (tramite la funzione caricaOggetto) 
+	 * Metodo che parsifica il JSONObject ricevuto dal file JSON "APIForecastANCONA.txt" (tramite il metodo caricaOggetto) 
 	 *  e restituisce un oggetto di tipo City con la caratteristica d'interesse: la velocità del vento (wind speed).
 	 * @return <code>City</code> 
 	 */
@@ -161,8 +161,8 @@ public class CityReader{
 		JSONArray list = (JSONArray) obj.get("list");
 		
 		LocalDateTime datetime;
-		LocalDate date;
-		LocalTime time;
+		String date;
+		String time;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
 		JSONObject objList = new JSONObject();
@@ -175,8 +175,8 @@ public class CityReader{
 			//date = (String) objList.get("dt_txt");
 			
 			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
-			date = datetime.toLocalDate();
-			time = datetime.toLocalTime();
+			date = datetime.toLocalDate().toString();
+			time = datetime.toLocalTime().toString();
 			
 			Weather = (JSONArray) objList.get("weather");
 			objWeather = (JSONObject) Weather.get(0);
@@ -192,70 +192,11 @@ public class CityReader{
 	}
 	
 	/**
-	 * Metodo che converte in JSONObject un JSONArray il quale contiene tutte le informazioni ci interessano: temperatura 
+	 * Metodo che converte in JSONObject un JSONArray il quale contiene tutte le informazioni che ci interessano: temperatura 
 	 * reale, percepita, minima, massima, descrizione generale sulle previsioni e velocità del vento.
 	 * @return <code>JSONObject</code>
 	 */
 	
-	public JSONObject convertToJSON() {
-		double temp;
-		double tempMin;
-		double tempMax;
-		double feelsLike;
-		double windSpeed;
-		
-		String descr, main2;
-		
-		Weather appoggio;
-		JSONObject obj = caricaOggetto();
-		JSONArray list = (JSONArray) obj.get("list");
-		
-		LocalDateTime datetime;
-		LocalDate date;
-		LocalTime time;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		
-		JSONObject objList = new JSONObject();
-		JSONArray Weather;
-		JSONObject objWind;
-		JSONObject objWeather = new JSONObject();
-		JSONObject objMain;
-		
-		JSONArray arr = new JSONArray();
-		
-		for(int i=0; i<list.size(); i++) {
-			
-			objList = (JSONObject) list.get(i);
-			//date = (String) objList.get("dt_txt");
-			
-			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
-			date = datetime.toLocalDate();
-			time = datetime.toLocalTime();
-			
-			Weather = (JSONArray) objList.get("weather");
-			objWeather = (JSONObject) Weather.get(0);
-			
-			descr = (String) objWeather.get("description");
-			main2 = (String) objWeather.get("main");
-			
-			objMain = (JSONObject) objList.get("main");
-			temp=Double.parseDouble(objMain.get("temp").toString());
-			tempMin=Double.parseDouble(objMain.get("temp_min").toString());
-			tempMax=Double.parseDouble(objMain.get("temp_max").toString());
-			feelsLike=Double.parseDouble(objMain.get("feels_like").toString());
-			
-			objWind = (JSONObject) objList.get("wind");
-			windSpeed = (double) objWind.get("speed");
-			
-			appoggio = new Weather(windSpeed, temp, tempMax, tempMin, feelsLike ,date, time, descr ,main2);
-			this.weat.add(appoggio);
-			
-			arr.add(appoggio);
-		}
-		
-		obj.put("Weather:", arr);
-		
-		return obj;
-	}
+	
 }
 

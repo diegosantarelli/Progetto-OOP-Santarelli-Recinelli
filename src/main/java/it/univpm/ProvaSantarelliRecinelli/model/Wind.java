@@ -13,8 +13,8 @@ import java.time.LocalTime;
 public class Wind {
 	
 	private double wind_speed;
-	LocalDate date;
-	LocalTime time;
+	String date;
+	String time;
 	
 	/**
 	 * Costruttore della classe.
@@ -22,7 +22,7 @@ public class Wind {
 	 * @param wind_speed rappresenta la velocità del vento
 	 */
 	
-	public Wind(double wind_speed, LocalDate date, LocalTime time) {
+	public Wind(double wind_speed, String date, String time) {
 		this.wind_speed = wind_speed;
 		this.date = date;
 		this.time = time;
@@ -51,7 +51,7 @@ public class Wind {
 	 * @return <code>LocalDate</code>
 	 */
 	
-	public LocalDate getDate() {
+	public String getDate() {
 		return date;
 	}
 	
@@ -60,7 +60,7 @@ public class Wind {
 	 * @return <code>LocalDate</code>
 	 */
 	
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	
@@ -69,7 +69,7 @@ public class Wind {
 	 * @return <code>LocalTime</code>
 	 */
 	
-	public LocalTime getTime() {
+	public String getTime() {
 		return time;
 	}
 	
@@ -78,7 +78,7 @@ public class Wind {
 	 * @param time rappresenta l'ora, i minuti e i secondi della previsione
 	 */
 	
-	public void setTime(LocalTime time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	

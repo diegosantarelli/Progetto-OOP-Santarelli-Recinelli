@@ -107,35 +107,31 @@ public class FilterStats {
 		
 		WeatherStats appoggio;
 		JSONObject obj = caricaOggettoStats();
-		JSONArray list = (JSONArray) obj.get("list");
 		
-		LocalDateTime datetime;
-		LocalDate date;
-		LocalTime time;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
-		JSONObject objList = new JSONObject();
-		JSONArray Weather;
-		JSONObject objMain;
+		//LocalDateTime datetime;
+		String date;
+		String time;
+		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		JSONArray weatArray = (JSONArray) obj.get("Weather:");
+		JSONObject objWeatArr = new JSONObject();
 		JSONObject objWeather = new JSONObject();
 		
-		for(int i=0; i<list.size(); i++) {
+		for(int i=0; i<weatArray.size(); i++) {
 			
-			objList = (JSONObject) list.get(i);
-
-			Weather = (JSONArray) objList.get("weather");
-			objWeather = (JSONObject) Weather.get(0);
+			objWeatArr = (JSONObject) weatArray.get(i);
+			// objWeather = (JSONObject) weatArray.get(0);
 			
-			objMain = (JSONObject) objList.get("main");
-			temp=Double.parseDouble(objMain.get("temp").toString());
-			tempMin=Double.parseDouble(objMain.get("temp_min").toString());
-			tempMax=Double.parseDouble(objMain.get("temp_max").toString());
-			feelsLike=Double.parseDouble(objMain.get("feels_like").toString());
-
+			temp=Double.parseDouble(objWeatArr.get("Temperatura reale").toString());
+			tempMin=Double.parseDouble(objWeatArr.get("Temperatura minima:").toString());
+			tempMax=Double.parseDouble(objWeatArr.get("Temperatura massima:").toString());
+			feelsLike=Double.parseDouble(objWeatArr.get("Temperatura percepita:").toString());
+			date = objWeatArr.get("Date:").toString();
+			time = objWeatArr.get("Time:").toString();
 			
-			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
-			date = datetime.toLocalDate();
-			time = datetime.toLocalTime();
+			//datetime = LocalDateTime.parse(objWeatArr.get("dt_txt").toString(), formatter);
+			//date = datetime.toLocalDate().toString();
+			//time = datetime.toLocalTime().toString();
 			
 			appoggio = new WeatherStats(temp, tempMax, tempMin, feelsLike, date, time);
 			this.weat.add(appoggio);
@@ -175,13 +171,15 @@ public class FilterStats {
 		 varianzaFeelsLike = 0;
 		 
 		 int i = 0;
-		 LocalDate j = weatStats.get(i).getDataStats();
+		 String j;
+		 LocalDate d;
 		 
 		 for (i = 0; i < weatStats.size(); i++) {
 			 
 			 j = weatStats.get(i).getDataStats();
+			 d = LocalDate.parse(j);
 			 
-			 if (day.equals(j)) {
+			 if (day.compareTo(d) == 0) {
 				 if (tempMax < weatStats.get(i).getTempMax()) {
 						tempMax = weatStats.get(i).getTempMax();
 					}
@@ -207,13 +205,13 @@ public class FilterStats {
 		 mediaFeelsLike /= i;
 		 
 		 i = 0;
-		 j = weatStats.get(i).getDataStats();
 		 
 		 for (i = 0; i < weatStats.size(); i++) {
 			 
 			 j = weatStats.get(i).getDataStats();
+			 d = LocalDate.parse(j);
 			 
-			 if (day.equals(j)) {
+			 if (day.compareTo(d) == 0) {
 				 varianzaTemp += (weatStats.get(i).getTemp() - mediaTemp)*(weatStats.get(i).getTemp() - mediaTemp);
 				 varianzaFeelsLike += (weatStats.get(i).getFeelsLike() - mediaFeelsLike)*(weatStats.get(i).getFeelsLike() - mediaFeelsLike);	 
 			 }
@@ -266,21 +264,26 @@ public class FilterStats {
 		 varianzaFeelsLike = 0;
 		 
 		 int i = 0 , n = 0;
-		 LocalDate k;
-		 LocalTime j;
+		 String k;
+		 String j;
+		 LocalDate d;
+		 LocalTime t;
 		 
 		 for (i = 0; i < weatStats.size(); i++) {
 			 
 			 k = weatStats.get(i).getDataStats();
+			 d = LocalDate.parse(k);
 	
-			 if (date.compareTo(k) == 0) {
+			 if (date.compareTo(d) == 0) {
 
 				 for (n = 0; n < weatStats.size(); n++) {
 			 
 					 j = weatStats.get(n).getTimeStats();
 					 k = weatStats.get(n).getDataStats();
+					 d = LocalDate.parse(k);
+					 t = LocalTime.parse(j);
 					 
-					 if ((date.compareTo(k) == 0) && (time.compareTo(j) == 0)) {
+					 if ((date.compareTo(d) == 0) && (time.compareTo(t) == 0)) {
 						 
 						 return weatStats.get(n);
 						 
@@ -335,13 +338,15 @@ public class FilterStats {
 	 varianzaFeelsLike = 0;
 	 
 	 int n = 0;
-	 LocalTime j;
+	 String j;
+	 LocalTime t;
 	
 	 for (n = 0; n < weatStats.size(); n++) {
 			 
 		j = weatStats.get(n).getTimeStats();
+		t = LocalTime.parse(j);
 			 
-		if (j.isAfter(timeStart) && j.isBefore(timeEnd)) {
+		if (t.isAfter(timeStart) && t.isBefore(timeEnd)) {
 					 
 			if (tempMax < weatStats.get(n).getTempMax()) tempMax = weatStats.get(n).getTempMax();
 						 
@@ -362,9 +367,10 @@ public class FilterStats {
 	for (n = 0; n < weatStats.size(); n++) {
 			
 		j = weatStats.get(n).getTimeStats();
+		t = LocalTime.parse(j);
 		//System.out.println(j);
 		
-		if (j.isAfter(timeStart) && j.isBefore(timeEnd)) {
+		if (t.isAfter(timeStart) && t.isBefore(timeEnd)) {
 				
 			varianzaTemp += (weatStats.get(n).getTemp() - mediaTemp)*(weatStats.get(n).getTemp() - mediaTemp);
 			varianzaFeelsLike += (weatStats.get(n).getFeelsLike() - mediaFeelsLike)*(weatStats.get(n).getFeelsLike() - mediaFeelsLike);
@@ -410,7 +416,7 @@ public class FilterStats {
 	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
 	 */
 	
-	public JSONObject Filter5Days (LocalDate dateSt, LocalDate dateEn, String cityName, String country) throws WrongCityException {
+	public JSONObject FilterWeek (LocalDate dateSt, LocalDate dateEn, String cityName, String country) throws WrongCityException {
 		City c = new City(cityName,country);
 		 this.city = c;
 		 c = JSONParsingStats();
@@ -430,13 +436,16 @@ public class FilterStats {
 		 varianzaFeelsLike = 0;
 		 
 		 int i = 0;
-		 LocalDate j = weatStats.get(i).getDataStats();
+		 String j;
+		 LocalDate d;
+		 
 		 
 		 for (i = 0; i < weatStats.size(); i++) {
 			 
 			 j = weatStats.get(i).getDataStats();
+			 d = LocalDate.parse(j);
 			 
-			 if (j.isAfter(dateSt) && j.isBefore(dateEn)) {
+			 if (d.isAfter(dateSt) && d.isBefore(dateEn)) {
 				 if (tempMax < weatStats.get(i).getTempMax()) {
 						tempMax = weatStats.get(i).getTempMax();
 					}
@@ -467,8 +476,9 @@ public class FilterStats {
 		 for (i = 0; i < weatStats.size(); i++) {
 			 
 			 j = weatStats.get(i).getDataStats();
+			 d = LocalDate.parse(j);
 			 
-			 if (j.isAfter(dateSt) && j.isBefore(dateEn)) {
+			 if (d.isAfter(dateSt) && d.isBefore(dateEn)) {
 				 varianzaTemp += (weatStats.get(i).getTemp() - mediaTemp)*(weatStats.get(i).getTemp() - mediaTemp);
 				 varianzaFeelsLike += (weatStats.get(i).getFeelsLike() - mediaFeelsLike)*(weatStats.get(i).getFeelsLike() - mediaFeelsLike);	 
 			 }

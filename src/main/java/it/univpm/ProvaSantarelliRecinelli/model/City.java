@@ -1,9 +1,16 @@
 package it.univpm.ProvaSantarelliRecinelli.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException;
+import it.univpm.ProvaSantarelliRecinelli.service.CityReader;
 
 /**
  * Classe che descrive l'oggetto City.
@@ -14,8 +21,8 @@ import org.json.simple.JSONObject;
 
 public class City {
 	
-	private String Name;
-	private String Country;
+	private String name;
+	private String country;
 	private Vector<Weather> vector = new Vector<Weather>();
 	private Vector<WeatherStats> vectorStats = new Vector<WeatherStats>();
 	private Vector <Wind> windVec = new Vector <Wind>();
@@ -27,9 +34,73 @@ public class City {
 	 * @param country rappresenta il nome del Paese
 	 */	
 	
-	public City(String Name, String Country) {
-			this.Name = Name;
-			this.Country = Country;
+	public City(String name, String country) {
+			this.name = name;
+			this.country = country;
+	}
+	
+	public JSONObject convertToJSON() throws WrongCityException {
+		
+		CityReader cityR = new CityReader(name, country);
+		double temp;
+		double tempMin;
+		double tempMax;
+		double feelsLike;
+		double windSpeed;
+		
+		String descr, main2;
+		
+		Weather appoggio;
+		JSONObject obj = cityR.caricaOggetto();
+		JSONArray list = (JSONArray) obj.get("list");
+		
+		LocalDateTime datetime;
+		String date;
+		String time;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
+		JSONObject objList = new JSONObject();
+		JSONArray Weather;
+		JSONObject objWind;
+		JSONObject objWeather = new JSONObject();
+		JSONObject objMain;
+		
+		JSONArray arr = new JSONArray();
+		
+		for(int i=0; i<list.size(); i++) {
+			
+			objList = (JSONObject) list.get(i);
+			//date = (String) objList.get("dt_txt");
+			
+			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
+			date = datetime.toLocalDate().toString();
+			time = datetime.toLocalTime().toString();
+			
+			Weather = (JSONArray) objList.get("weather");
+			objWeather = (JSONObject) Weather.get(0);
+			
+			descr = (String) objWeather.get("description");
+			main2 = (String) objWeather.get("main");
+			
+			objMain = (JSONObject) objList.get("main");
+			temp=Double.parseDouble(objMain.get("temp").toString());
+			tempMin=Double.parseDouble(objMain.get("temp_min").toString());
+			tempMax=Double.parseDouble(objMain.get("temp_max").toString());
+			feelsLike=Double.parseDouble(objMain.get("feels_like").toString());
+			
+			objWind = (JSONObject) objList.get("wind");
+			windSpeed = (double) objWind.get("speed");
+			
+			appoggio = new Weather(windSpeed, temp, tempMax, tempMin, feelsLike ,date, time, descr ,main2);
+			//this.weat.add(appoggio);
+			
+			arr.add(appoggio);
+		}
+		
+		JSONObject finalObj = new JSONObject();
+		finalObj.put("Weather:", arr);
+		
+		return finalObj;
 	}
 	
 	/**
@@ -74,7 +145,7 @@ public class City {
 	 */
 	
 	public String getName() {
-		return Name;
+		return name;
 	}
 	
 	/**
@@ -83,7 +154,7 @@ public class City {
 	 */
 	
 	public void setName(String name) {
-		this.Name = name;
+		this.name = name;
 	}
 	
 	/**
@@ -92,7 +163,7 @@ public class City {
 	 */
 	
 	public String getCountry() {
-		return Country;
+		return country;
 	}
 	
 	/**
@@ -101,7 +172,7 @@ public class City {
 	 */
 	
 	public void setCountry(String country) {
-		Country = country;
+		this.country = country;
 	}
 	
 	/**
