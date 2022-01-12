@@ -80,7 +80,7 @@ public class FilterStats {
 		 // PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
 		 // PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
 
-		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour")){
+		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -108,11 +108,9 @@ public class FilterStats {
 		WeatherStats appoggio;
 		JSONObject obj = caricaOggettoStats();
 		
-		
-		//LocalDateTime datetime;
 		String date;
 		String time;
-		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
 		JSONArray weatArray = (JSONArray) obj.get("Weather:");
 		JSONObject objWeatArr = new JSONObject();
 		JSONObject objWeather = new JSONObject();
@@ -120,7 +118,6 @@ public class FilterStats {
 		for(int i=0; i<weatArray.size(); i++) {
 			
 			objWeatArr = (JSONObject) weatArray.get(i);
-			// objWeather = (JSONObject) weatArray.get(0);
 			
 			temp=Double.parseDouble(objWeatArr.get("Temperatura reale").toString());
 			tempMin=Double.parseDouble(objWeatArr.get("Temperatura minima:").toString());
