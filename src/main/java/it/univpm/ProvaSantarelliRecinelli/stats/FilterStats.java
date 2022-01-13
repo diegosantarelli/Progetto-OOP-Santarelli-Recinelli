@@ -4,9 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Vector;
 import java.util.regex.PatternSyntaxException;
@@ -34,9 +32,9 @@ public class FilterStats {
 	private City city;
 	private Vector <WeatherStats> weat= new Vector <WeatherStats>();
 	private Vector <WeatherStats> weatStats= new Vector <WeatherStats>();
-	double temp, tempMin, tempMax, feelsLike;
-	double tempMinStats, tempMaxStats, feelsLikeStatsMin, feelsLikeStatsMax;
-	double mediaTemp, mediaFeelsLike, varianzaTemp, varianzaFeelsLike;
+	double temp = 0, tempMin = 0, tempMax = 0, feelsLike = 0;
+	double tempMinStats = 0, tempMaxStats = 0, feelsLikeStatsMin = 0, feelsLikeStatsMax = 0;
+	double mediaTemp = 0, mediaFeelsLike = 0, varianzaTemp = 0, varianzaFeelsLike = 0;
 	String descr, main;
 	
 	/**
@@ -152,17 +150,6 @@ public class FilterStats {
 		 
 		 JSONObject objFilter = new JSONObject();
 		 
-		 temp = 0;
-		 feelsLike = 0;
-		 tempMin = 0;
-		 tempMax = 0;
-		 feelsLikeStatsMin = 0;
-		 feelsLikeStatsMax = 0;
-		 mediaTemp = 0;
-		 mediaFeelsLike = 0;
-		 varianzaTemp = 0;
-		 varianzaFeelsLike = 0;
-		 
 		 int i = 0;
 		 String j;
 		 LocalDate d;
@@ -245,17 +232,6 @@ public class FilterStats {
 		 c = JSONParsingStats();
 		 weatStats = c.getVectorStats();
 		 
-		 temp = 0;
-		 feelsLike = 0;
-		 tempMin = 0;
-		 tempMax = 0;
-		 feelsLikeStatsMin = 0;
-		 feelsLikeStatsMax = 0;
-		 mediaTemp = 0;
-		 mediaFeelsLike = 0;
-		 varianzaTemp = 0;
-		 varianzaFeelsLike = 0;
-		 
 		 int i = 0 , n = 0;
 		 String k;
 		 String j;
@@ -318,17 +294,6 @@ public class FilterStats {
 	 } catch (ArrayIndexOutOfBoundsException e) {
 		 
 	 }
-	 
-	 temp = 0;
-	 feelsLike = 0;
-	 tempMin = 0;
-	 tempMax = 0;
-	 feelsLikeStatsMin = 0;
-	 feelsLikeStatsMax = 0;
-	 mediaTemp = 0;
-	 mediaFeelsLike = 0;
-	 varianzaTemp = 0;
-	 varianzaFeelsLike = 0;
 	 
 	 int n = 0;
 	 String j;
@@ -416,17 +381,6 @@ public class FilterStats {
 		 weatStats = c.getVectorStats();
 		 
 		 JSONObject objFilter = new JSONObject();
-		 
-		 temp = 0;
-		 feelsLike = 0;
-		 tempMin = 0;
-		 tempMax = 0;
-		 feelsLikeStatsMin = 0;
-		 feelsLikeStatsMax = 0;
-		 mediaTemp = 0;
-		 mediaFeelsLike = 0;
-		 varianzaTemp = 0;
-		 varianzaFeelsLike = 0;
 		 
 		 int i = 0;
 		 String j;
