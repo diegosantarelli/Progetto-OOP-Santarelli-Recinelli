@@ -68,13 +68,13 @@ public class CityReader{
 	
 	public JSONObject caricaOggetto() {
 		JSONParser jsonParser = new JSONParser();
-		JSONObject objcity = null;
+		JSONObject objCity = null;
 		
 		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
-			objcity = new JSONObject();
-			return objcity = (JSONObject) obj;
+			objCity = new JSONObject();
+			return objCity = (JSONObject) obj;
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -83,7 +83,7 @@ public class CityReader{
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return objcity;
+		return objCity;
 	}
 	
 	/**
@@ -172,7 +172,6 @@ public class CityReader{
 		
 		for(int i=0; i<list.size(); i++) {
 			objList = (JSONObject) list.get(i);
-			//date = (String) objList.get("dt_txt");
 			
 			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
 			date = datetime.toLocalDate().toString();

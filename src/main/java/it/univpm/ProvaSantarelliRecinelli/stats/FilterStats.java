@@ -126,10 +126,6 @@ public class FilterStats {
 			date = objWeatArr.get("Date:").toString();
 			time = objWeatArr.get("Time:").toString();
 			
-			//datetime = LocalDateTime.parse(objWeatArr.get("dt_txt").toString(), formatter);
-			//date = datetime.toLocalDate().toString();
-			//time = datetime.toLocalTime().toString();
-			
 			appoggio = new WeatherStats(temp, tempMax, tempMin, feelsLike, date, time);
 			this.weat.add(appoggio);
 		}
