@@ -78,7 +78,7 @@ public class FilterStats {
 		 // PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
 		 // PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
 
-		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour")){
+		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -201,9 +201,9 @@ public class FilterStats {
 		 varianzaFeelsLike /= i-1;
 		 
 		 objFilter.put("Temperatura massima", tempMax);
-		 objFilter.put("Temperatura minima: ", tempMin);
+		 objFilter.put("Temperatura minima", tempMin);
 		 objFilter.put("Temperatura percepita massima", feelsLikeStatsMax);
-		 objFilter.put("Temperatura percepita minima: ", feelsLikeStatsMin);
+		 objFilter.put("Temperatura percepita minima", feelsLikeStatsMin);
 		 objFilter.put("Media delle temperature reali", mediaTemp);
 		 objFilter.put("Media delle temperature percepite", mediaFeelsLike);
 		 objFilter.put("Varianza delle temperature reali", varianzaTemp);
@@ -263,7 +263,7 @@ public class FilterStats {
 	}
 	
 	/**
-	 * Metodo che opermette di filtrare le statistiche salvate in locale nel file "APIForecastEveryHour.txt" relative ad una fascia oraria 
+	 * Metodo che permette di filtrare le statistiche salvate in locale nel file "APIForecastEveryHour.txt" relative ad una fascia oraria 
 	 * dei giorni presenti nel file.
 	 * 
 	 * @param time rappresenta la fascia oraria scelta dall'utente
@@ -340,9 +340,9 @@ public class FilterStats {
 	varianzaFeelsLike /= n-1;
 		 
 	objFilter.put("Temperatura massima", tempMax);
-	objFilter.put("Temperatura minima: ", tempMin);
+	objFilter.put("Temperatura minima", tempMin);
 	objFilter.put("Temperatura percepita massima", feelsLikeStatsMax);
-	objFilter.put("Temperatura percepita minima: ", feelsLikeStatsMin);
+	objFilter.put("Temperatura percepita minima", feelsLikeStatsMin);
 	objFilter.put("Media delle temperature reali", mediaTemp);
 	objFilter.put("Media delle temperature percepite", mediaFeelsLike);
 	objFilter.put("Varianza delle temperature reali", varianzaTemp);
@@ -437,9 +437,9 @@ public class FilterStats {
 		 varianzaFeelsLike /= i-1;
 		 
 		 objFilter.put("Temperatura massima", tempMax);
-		 objFilter.put("Temperatura minima: ", tempMin);
+		 objFilter.put("Temperatura minima", tempMin);
 		 objFilter.put("Temperatura percepita massima", feelsLikeStatsMax);
-		 objFilter.put("Temperatura percepita minima: ", feelsLikeStatsMin);
+		 objFilter.put("Temperatura percepita minima", feelsLikeStatsMin);
 		 objFilter.put("Media delle temperature reali", mediaTemp);
 		 objFilter.put("Media delle temperature percepite", mediaFeelsLike);
 		 objFilter.put("Varianza delle temperature reali", varianzaTemp);
