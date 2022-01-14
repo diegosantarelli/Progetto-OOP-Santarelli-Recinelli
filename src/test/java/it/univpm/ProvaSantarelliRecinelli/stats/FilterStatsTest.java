@@ -13,8 +13,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException;
+import it.univpm.ProvaSantarelliRecinelli.exception.WrongFileException;
 import it.univpm.ProvaSantarelliRecinelli.model.City;
 import it.univpm.ProvaSantarelliRecinelli.model.WeatherStats;
+
+/**
+ * Classe che esegue i test dei metodi della classe FilterTest
+ * 
+ * @author DiegoSantarelli
+ * @author SimoneRecinelli
+ *
+ */
 
 class FilterStatsTest {
 	
@@ -24,10 +33,15 @@ class FilterStatsTest {
 	private String date, hour, startDate, endDate;
 	private String timePerHours;
 	private LocalDate day, startDay, endDay;
-	//private LocalTime time;
-	//private Vector<WeatherStats> weat;
-	//private double temp, tempMax, tempMin, feelsLike;
+	private LocalTime time;
+	private WeatherStats weat;
+	private Vector<WeatherStats> weatVec;
 	
+	/**
+	 * Metodo che inizializza le variabili per testare i metodi.
+	 * 
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
+	 */
 	
 	@BeforeEach
 	void setUp() throws WrongCityException {
@@ -38,24 +52,36 @@ class FilterStatsTest {
 		this.date = "2022-01-11";
 		this.day = LocalDate.parse(date);
 		this.hour = "21:00:00";
-		//this.time = LocalTime.parse(hour);
+		this.time = LocalTime.parse(hour);
 		this.startDate = "2022-01-10";
 		this.startDay = LocalDate.parse(startDate);
 		this.endDate = "2022-01-17";
 		this.endDay = LocalDate.parse(endDate);
 		this.timePerHours = "15:00:00-21:00:00";
-		//this.weat = new Vector<WeatherStats>();
+		this.weat = new WeatherStats(3.57, 3.57, 3.57, -1.39, "2022-01-11", "21:00");
+		this.weatVec = new Vector<WeatherStats>();
 		
 	}
+	
+	/**
+	 * Metodo che rimuove gli elementi creati nel setUp
+	 */
 	
 	@AfterEach
 	void tearDown() {
 		
 	}
+	
+	/**
+	 * Metodo che testa se il filtraggio per giorno avviene correttamente.
+	 * 
+	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 */
 
 	@Test
 	@DisplayName("Filtraggio avvenuto correttamente")
-	void FilterDayTest() throws WrongCityException {
+	void FilterDayTest() throws WrongCityException, WrongFileException {
 		
 		jo.put("Temperatura massima", 7.55);
 		jo.put("Temperatura minima", 6.76);
@@ -70,27 +96,33 @@ class FilterStatsTest {
 		
 	}
 	
-	/*
-	@Test
-	void Filter1Hour() throws WrongCityException {
-		
-		jo.put("temp", 3.57);
-		jo.put("tempMax", 3.57);
-		jo.put("tempMin", 3.57);
-		jo.put("feelsLike", -1.39);
-		jo.put("dataStats", "2022-01-11");
-		jo.put("timeStats", "21:00");
-		
-		weat.add(jo);
-		
-		assertEquals(weat, fs.Filter1Hour(day, time, city.getName(), city.getCountry()));
-		
-	}
-	*/
+	/**
+	 * Metodo che testa se il filtraggio per un'ora avviene correttamente.
+	 * 
+	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 */
 	
 	@Test
 	@DisplayName("Filtraggio avvenuto correttamente")
-	void FilterPerHours() throws WrongCityException {
+	void Filter1Hour() throws WrongCityException, WrongFileException {
+		
+		weat.setWeatVec(weatVec);
+		
+		assertEquals(weatVec, fs.Filter1Hour(day, time, city.getName(), city.getCountry()).getWeatVec());
+		
+	}
+	
+	/**
+	 * Metodo che testa se il filtraggio per una fascia oraria avviene correttamente.
+	 * 
+	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 */
+	
+	@Test
+	@DisplayName("Filtraggio avvenuto correttamente")
+	void FilterPerHours() throws WrongCityException, WrongFileException {
 		
 		jo.put("Temperatura massima", 6.74);
 		jo.put("Varianza delle temperature reali", 2.446771033653846);
@@ -105,9 +137,16 @@ class FilterStatsTest {
 		
 	}
 	
+	/**
+	 * Metodo che testa se il filtraggio per una settimana avviene correttamente.
+	 * 
+	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 */
+	
 	@Test
 	@DisplayName("Filtraggio avvenuto correttamente")
-	void FilterPerWeek() throws WrongCityException {
+	void FilterPerWeek() throws WrongCityException, WrongFileException {
 		
 		jo.put("Temperatura massima", 9.88);
 		jo.put("Varianza delle temperature reali", 3.982336858974359);

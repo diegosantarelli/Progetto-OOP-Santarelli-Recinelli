@@ -58,13 +58,14 @@ public class Controller {
 	 * @param country rappresenta il Paese
 	 * @return <code>City</code>
 	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.service.CityReader
 	 * @see it.univpm.ProvaSantarelliRecinelli.service.CityReader#JSONParsing()
 	 */
 	
 	@RequestMapping({"/JSONParsing", "/JSONParsing/{city}/{country}"})
-	public City JSONParsing(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+	public City JSONParsing(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException, WrongFileException {
 		CityReader city1 = new CityReader(city, country);
 		return city1.JSONParsing();
 	}
@@ -78,10 +79,11 @@ public class Controller {
 	 * @param country rappresenta il Paese
 	 * @return <code>City</code>
 	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 */
 	
 	@RequestMapping({"/JSONParsingWind", "/JSONParsingWind/{city}/{country}"})
-	public City JSONParsingWind(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+	public City JSONParsingWind(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException, WrongFileException {
 		CityReader city1 = new CityReader(city, country);
 		return city1.JSONParsingWind();
 	}
@@ -116,13 +118,14 @@ public class Controller {
 	 * @param country rappresenta il Paese
 	 * @return <code>City</code>
 	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
+	 * @throws WrongFileException eccezione che indica che il path del file è errato
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#JSONParsingStats()
 	 */
 	
 	@RequestMapping({"/JSONParsingStats", "/JSONParsingStats/{city}/{country}"})
-	public City JSONParsingStats(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException {
+	public City JSONParsingStats(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country) throws WrongCityException, WrongFileException {
 		FilterStats city1 = new FilterStats(city, country);
 		return city1.JSONParsingStats();
 	}
@@ -137,13 +140,14 @@ public class Controller {
 	 * @param day rappresenta il giorno di cui si vuole effettuare il filtraggio delle statistiche
 	 * @return <code>JSONObject</code>
 	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
+	 * @throws WrongFileException eccezione che indica che il path del file è errato
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#FilterDay(LocalDate, String, String)
 	 */
 	
 	@RequestMapping({"/FilterDay", "/FilterDay/{city}/{country}/{day}"})
-	public JSONObject FilterDay(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day) throws WrongCityException {
+	public JSONObject FilterDay(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day) throws WrongCityException, WrongFileException {
 		LocalDate date = LocalDate.parse(day);
 		FilterStats filter = new FilterStats(city, country);
 		return filter.FilterDay(date,city,country);
@@ -160,13 +164,14 @@ public class Controller {
 	 * @param time rappresenta l'ora del giorno di cui si vuole effettuare il filtraggio delle statistiche
 	 * @return <code>JSONObject</code>
 	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
+	 * @throws WrongFileException eccezione che indica che il path del file è errato
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#Filter1Hour(LocalDate, LocalTime, String, String)
 	 */
 	
 	@RequestMapping({"/Filter1Hour", "/Filter1Hour/{city}/{country}/{day}/{time}"})
-	public WeatherStats Filter1Hour(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day , @PathVariable (value="time" , required=false) String time) throws WrongCityException {
+	public WeatherStats Filter1Hour(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="day" , required=false) String day , @PathVariable (value="time" , required=false) String time) throws WrongCityException, WrongFileException {
 		LocalDate date = LocalDate.parse(day);
 		LocalTime myTime = LocalTime.parse(time);
 		FilterStats filter = new FilterStats(city, country);
@@ -183,13 +188,14 @@ public class Controller {
 	 * @param hours rappresenta la fascia oraria per la quale si vuole effettuare il filtraggio delle statistiche
 	 * @return <code>JSONObject</code>
 	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
+	 * @throws WrongFileException eccezione che indica che il path del file è errato
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#FilterPerHours(String, String, String)
 	 */
 	
 	@RequestMapping({"/FilterPerHours", "/FilterPerHours/{city}/{country}/{hours}"})
-	public JSONObject FilterPerHours(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="hours" , required=false) String hours) throws WrongCityException {
+	public JSONObject FilterPerHours(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="hours" , required=false) String hours) throws WrongCityException, WrongFileException {
 		FilterStats objStats = new FilterStats(city, country);
 		return objStats.FilterPerHours(hours, city, country);
 	}
@@ -205,13 +211,14 @@ public class Controller {
 	 * @param date2 rappresenta la data di fine
 	 * @return <code>JSONObject</code>
 	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
+	 * @throws WrongFileException eccezione che indica che il path del file è errato
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#Filter5Days(LocalDate, LocalDate, String, String)
 	 */
 	
 	@RequestMapping({"/FilterPerWeek", "/FilterPerWeek/{city}/{country}/{date1}/{date2}"})
-	public JSONObject FilterPerWeek(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="date1" , required=false) String dateSt, @PathVariable (value="date2" , required=false) String dateEn) throws WrongCityException {
+	public JSONObject FilterPerWeek(@PathVariable(value="city" , required=false) String city, @PathVariable(value="country" , required=false) String country , @PathVariable (value="date1" , required=false) String dateSt, @PathVariable (value="date2" , required=false) String dateEn) throws WrongCityException, WrongFileException {
 		LocalDate startDate = LocalDate.parse(dateSt);
 		LocalDate endDate = LocalDate.parse(dateEn);
 		FilterStats objStats = new FilterStats(city, country);
@@ -231,5 +238,18 @@ public class Controller {
 	@ExceptionHandler (WrongCityException.class)
 	public static String WrongCity(WrongCityException e) {
 		return e.getErr();
+	}
+	
+	/**
+	 * 
+	 * Questo metodo gestisce le eccezioni dovute all'inserimento errato del path
+	 * 
+	 * @param e rappresenta l'eccezione
+	 * @return <code>String</code>
+	 */
+	
+	@ExceptionHandler (WrongFileException.class)
+	public static String WrongFile(WrongFileException e) {
+		return e.getMex();
 	}
 }

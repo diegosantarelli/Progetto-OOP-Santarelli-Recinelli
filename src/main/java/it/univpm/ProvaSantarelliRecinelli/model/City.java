@@ -1,8 +1,6 @@
 package it.univpm.ProvaSantarelliRecinelli.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
@@ -10,6 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException;
+import it.univpm.ProvaSantarelliRecinelli.exception.WrongFileException;
 import it.univpm.ProvaSantarelliRecinelli.service.CityReader;
 
 /**
@@ -39,7 +38,15 @@ public class City {
 			this.country = country;
 	}
 	
-	public JSONObject convertToJSON() throws WrongCityException {
+	/**
+	 * Metodo che converte in JSONObject un JSONArray il quale contiene tutte le informazioni che ci interessano: temperatura 
+	 * reale, percepita, minima, massima, descrizione generale sulle previsioni e velocità del vento.
+	 * 
+	 * @return <code>JSONObject</code>
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 */
+	
+	public JSONObject convertToJSON() throws WrongCityException, WrongFileException {
 		
 		CityReader cityR = new CityReader(name, country);
 		double temp;

@@ -1,7 +1,7 @@
 package it.univpm.ProvaSantarelliRecinelli.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+
+import java.util.Vector;
 
 /**
  * Classe che costruisce l'oggetto WeatherStats.
@@ -13,9 +13,9 @@ import java.time.LocalTime;
 
 public class WeatherStats {
 	
-	double temp,tempMax,tempMin,feelsLike;
-	String dataStats;
-	String timeStats;
+	private double temp,tempMax,tempMin,feelsLike;
+	private String dataStats, timeStats;
+	private Vector<WeatherStats> weatVec = new Vector<WeatherStats>();
 	
 	/**
 	 * Costruttore della classe per il calcolo delle statistiche
@@ -128,7 +128,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Ritorna l'ora, i minuti e i secondi in cui è stata effettuata la previsione.
+	 * Restituisce l'ora, i minuti e i secondi in cui è stata effettuata la previsione.
 	 * @return <code>LocalTime</code>
 	 */
 	
@@ -143,6 +143,26 @@ public class WeatherStats {
 	
 	public void setTimeStats(String timeStats) {
 		this.timeStats = timeStats;
+	}
+	
+	/**
+	 * Restituisce il vettore della classe WeatherStats.
+	 * 
+	 * @return <code>Vector</code>
+	 */
+
+	public Vector<WeatherStats> getWeatVec() {
+		return weatVec;
+	}
+	
+	/**
+	 * Permette di settare il vettore della classe WeatherStats.
+	 * 
+	 * @param weatVec
+	 */
+
+	public void setWeatVec(Vector<WeatherStats> weatVec) {
+		this.weatVec = weatVec;
 	}
 	
 }

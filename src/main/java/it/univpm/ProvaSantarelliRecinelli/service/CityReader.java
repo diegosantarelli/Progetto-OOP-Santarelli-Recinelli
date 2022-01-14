@@ -1,13 +1,10 @@
 package it.univpm.ProvaSantarelliRecinelli.service;
 
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
@@ -18,6 +15,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException;
+import it.univpm.ProvaSantarelliRecinelli.exception.WrongFileException;
 import it.univpm.ProvaSantarelliRecinelli.model.City;
 import it.univpm.ProvaSantarelliRecinelli.model.Weather;
 import it.univpm.ProvaSantarelliRecinelli.model.Wind;
@@ -64,9 +62,10 @@ public class CityReader{
 	/**
 	 * Metodo che legge il file JSON "APIForecastANCONA.txt" e inserisce tutte le informazioni in un JSONObject, restituendolo.
 	 * @return <code>JSONObject</code>
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 */
 	
-	public JSONObject caricaOggetto() {
+	public JSONObject caricaOggetto() throws WrongFileException {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject objCity = null;
 		
@@ -78,22 +77,26 @@ public class CityReader{
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			throw new WrongFileException();
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new WrongFileException();
 		} catch (ParseException e) {
 			e.printStackTrace();
+			throw new WrongFileException();
 		}
-		return objCity;
 	}
 	
 	/**
 	 * Metodo che parsifica il JSONObject ricevuto dal file JSON "APIForecastANCONA.txt" (tramite la funzione caricaOggetto) 
 	 * e restituisce un oggetto di tipo City con le caratteristiche che ci interessano: temperatura reale, percepita, 
 	 * minima, massima, descrizione generale sulle previsioni e velocità del vento.
+	 * 
 	 * @return <code>City</code> 
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 */
 	
-	public City JSONParsing(){
+	public City JSONParsing() throws WrongFileException{
 		
 		Weather appoggio;
 		JSONObject obj = caricaOggetto();
@@ -150,10 +153,12 @@ public class CityReader{
 	/**
 	 * Metodo che parsifica il JSONObject ricevuto dal file JSON "APIForecastANCONA.txt" (tramite il metodo caricaOggetto) 
 	 *  e restituisce un oggetto di tipo City con la caratteristica d'interesse: la velocità del vento (wind speed).
+	 *  
 	 * @return <code>City</code> 
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 */
 	
-	public City JSONParsingWind() {
+	public City JSONParsingWind() throws WrongFileException {
 		double windSpeed;
 		
 		Wind appoggio;
@@ -190,11 +195,7 @@ public class CityReader{
 		return this.city;
 	}
 	
-	/**
-	 * Metodo che converte in JSONObject un JSONArray il quale contiene tutte le informazioni che ci interessano: temperatura 
-	 * reale, percepita, minima, massima, descrizione generale sulle previsioni e velocità del vento.
-	 * @return <code>JSONObject</code>
-	 */
+
 	
 	
 }

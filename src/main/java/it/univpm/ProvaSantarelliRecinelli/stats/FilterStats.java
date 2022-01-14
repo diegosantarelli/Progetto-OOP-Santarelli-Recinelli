@@ -15,9 +15,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException;
+import it.univpm.ProvaSantarelliRecinelli.exception.WrongFileException;
 import it.univpm.ProvaSantarelliRecinelli.model.*;
-
-
 
 /**
  * Classe che permette di calcolare valori minimi, massimi, media e varianza di temperature reali e percepite.
@@ -68,9 +67,10 @@ public class FilterStats {
 	/**
 	 * Metodo che legge il file JSON "APIForecastEveryHour.txt" e inserisce tutte le informazioni in un JSONObject, restituendolo.
 	 * @return <code>JSONObject</code>
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 */
 	
-	public JSONObject caricaOggettoStats() {
+	public JSONObject caricaOggettoStats() throws WrongFileException {
 		
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cityList = null;
@@ -86,12 +86,14 @@ public class FilterStats {
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			throw new WrongFileException();
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new WrongFileException();
 		} catch (ParseException e) {
 			e.printStackTrace();
+			throw new WrongFileException();
 		}
-		return cityList;
 	}
 	
 	/**
@@ -99,9 +101,10 @@ public class FilterStats {
 	 * 
 	 * @return <code>City</code>
 	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 */
 	
-	public City JSONParsingStats() throws WrongCityException {
+	public City JSONParsingStats() throws WrongCityException, WrongFileException {
 		
 		WeatherStats appoggio;
 		JSONObject obj = caricaOggettoStats();
@@ -139,9 +142,10 @@ public class FilterStats {
 	 * @param country rappresenta il Paese della città
 	 * @return <code>JSONObject</code>
 	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 */
 		
-	public JSONObject FilterDay (LocalDate day, String cityName, String country) throws WrongCityException {
+	public JSONObject FilterDay (LocalDate day, String cityName, String country) throws WrongCityException, WrongFileException {
 		
 		 City c = new City(cityName,country);
 		 this.city = c;
@@ -223,9 +227,10 @@ public class FilterStats {
 	 * @param country rappresenta il Paese della città
 	 * @return <code>WeatherStats</code>
 	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 */
 	
-	public WeatherStats Filter1Hour(LocalDate date ,LocalTime time, String cityName, String country) throws WrongCityException {
+	public WeatherStats Filter1Hour(LocalDate date ,LocalTime time, String cityName, String country) throws WrongCityException, WrongFileException {
 		 
 		 City c = new City(cityName,country);
 		 this.city = c;
@@ -271,9 +276,10 @@ public class FilterStats {
 	 * @param country rappresenta il Paese della città
 	 * @return <code>JSONObject</code>
 	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 */
 
-	public JSONObject FilterPerHours(String time, String cityName, String country) throws WrongCityException {
+	public JSONObject FilterPerHours(String time, String cityName, String country) throws WrongCityException, WrongFileException {
 	 
 	 City c = new City(cityName,country);
 	 this.city = c;
@@ -372,9 +378,10 @@ public class FilterStats {
 	 * @param country rappresenta il Paese della città
 	 * @return <code>JSONObject</code>
 	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
 	 */
 	
-	public JSONObject FilterWeek (LocalDate dateSt, LocalDate dateEn, String cityName, String country) throws WrongCityException {
+	public JSONObject FilterWeek (LocalDate dateSt, LocalDate dateEn, String cityName, String country) throws WrongCityException, WrongFileException {
 		City c = new City(cityName,country);
 		 this.city = c;
 		 c = JSONParsingStats();

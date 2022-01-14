@@ -1,8 +1,5 @@
 package it.univpm.ProvaSantarelliRecinelli.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 /**
  * Classe che costruisce l'oggetto Wind.
  * 
