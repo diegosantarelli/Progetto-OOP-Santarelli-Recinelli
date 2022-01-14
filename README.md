@@ -159,7 +159,7 @@ Di seguito illustriamo la struttura del nostro progetto:
        └── test
             └── java
 	            ├── it.univpm.SantarelliRecinelli
-                      └── ProvaSantarelliRecinelliApplicationTests.java		
+                     └── ProvaSantarelliRecinelliApplicationTests.java		
 				├── it.univpm.SantarelliRecinelli.stats
 					  └── FilterStatsTest.java	
 				└──	it.univpm.SantarelliRecinelli.timer
