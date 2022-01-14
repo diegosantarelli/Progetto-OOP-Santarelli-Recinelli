@@ -135,35 +135,35 @@ Di seguito illustriamo la struttura del nostro progetto:
        │   │   │    	├── Controller.java
        │   │   │    	└── package-info.java
        │   │   ├── it.univpm.SantarelliRecinelli.exception
-       │   │   │   		├── WrongCityException.java
-       │   │   │   		└── WrongFileException.java
+       │   │   │   	├── WrongCityException.java
+       │   │   │   	└── WrongFileException.java
        │   │   ├── it.univpm.SantarelliRecinelli.model
-       │   │   │   		├── City.java
-       │   │   │   		├── Weather.java
-       │   │   │   		├── WeatherStats.java
-       │   │   │   		├── Wind.java
-       │   │   │   		└── package-info.java
+       │   │   │   	├── City.java
+       │   │   │   	├── Weather.java
+       │   │   │   	├── WeatherStats.java
+       │   │   │   	├── Wind.java
+       │   │   │   	└── package-info.java
        │   │   ├── it.univpm.SantarelliRecinelli.service
-       │   │   │   		├── APICall.java
-       │   │   │   		└── CityReader.jav
+       │   │   │   	├── APICall.java
+       │   │   │   	└── CityReader.jav
        │   │   ├── it.univpm.SantarelliRecinelli.stats
-       │   │   |   		├── FilterStats.java
-       │   │   |   		└── package-info.java
+       │   │   |   	├── FilterStats.java
+       │   │   |   	└── package-info.java
        |   |   └── it.univpm.SantarelliRecinelli.timer
-       │   │   		    ├── MyTimer.java
-       |   |           	    └── package-info.java
+       │   │   		├── MyTimer.java
+       |   |           	└── package-info.java
        │   └── resources
        |       ├── APIForecastAncona.txt
        |       ├── APIForecastEveryHour.txt
        │       └── application.properties
        └── test
             └── java
-	            ├── it.univpm.SantarelliRecinelli
-                     └── ProvaSantarelliRecinelliApplicationTests.java		
-				├── it.univpm.SantarelliRecinelli.stats
-					  └── FilterStatsTest.java	
-				└── it.univpm.SantarelliRecinelli.timer
-				      └── MyTimerTest.java	
+	         ├── it.univpm.SantarelliRecinelli
+                 └── ProvaSantarelliRecinelliApplicationTests.java		
+			  ├── it.univpm.SantarelliRecinelli.stats
+			  |     └── FilterStatsTest.java	
+			  └── it.univpm.SantarelliRecinelli.timer
+				└── MyTimerTest.java	
     ├── .classpath
     ├── .gitignore
     ├── .project
