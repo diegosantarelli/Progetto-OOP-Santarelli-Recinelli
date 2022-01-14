@@ -16,6 +16,7 @@ import it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException;
 import it.univpm.ProvaSantarelliRecinelli.exception.WrongFileException;
 import it.univpm.ProvaSantarelliRecinelli.model.City;
 import it.univpm.ProvaSantarelliRecinelli.model.WeatherStats;
+import junit.framework.TestSuite;
 
 /**
  * Classe che esegue i test dei metodi della classe FilterTest
@@ -38,7 +39,7 @@ class FilterStatsTest {
 	private Vector<WeatherStats> weatVec;
 	
 	/**
-	 * Metodo che inizializza le variabili per testare i metodi.
+	 * Metodo che inizializza gli oggetti da testare.
 	 * 
 	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
 	 */
@@ -64,7 +65,7 @@ class FilterStatsTest {
 	}
 	
 	/**
-	 * Metodo che rimuove gli elementi creati nel setUp
+	 * Metodo che distrugge gli oggetti inizializzati nel setUp.
 	 */
 	
 	@AfterEach

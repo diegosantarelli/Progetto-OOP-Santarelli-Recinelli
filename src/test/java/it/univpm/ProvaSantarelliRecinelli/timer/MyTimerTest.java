@@ -25,7 +25,7 @@ class MyTimerTest {
 	private City city;
 	
 	/**
-	 * Metodo che inizializza le variabili per testare i metodi.
+	 *Metodo che inizializza gli oggetti da testare.
 	 */
 	
 	@BeforeEach
@@ -35,7 +35,7 @@ class MyTimerTest {
 	}
 	
 	/**
-	 * Metodo che rimuove gli elementi creati nel setUp
+	 * Metodo che distrugge gli oggetti inizializzati nel setUp.
 	 */
 	
 	@AfterEach
@@ -53,7 +53,7 @@ class MyTimerTest {
 	@Test
 	@DisplayName("Salvataggio del file avvenuto correttamente")
 	void WriteOnLocalFileEveryHourTest() throws WrongFileException, WrongCityException {
-		String path = "/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour";
+		String path = "C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour";
 		String outputMyTimer = "Il file APIForecastEveryHour è stato salvato in " + path;
 		assertEquals(timer.WriteOnLocalFileEveryHour(city.getName(), city.getCountry()), outputMyTimer);
 	}
