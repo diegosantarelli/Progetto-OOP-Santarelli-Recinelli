@@ -146,10 +146,13 @@ Di seguito illustriamo la struttura del nostro progetto:
        │   │   ├── it.univpm.SantarelliRecinelli.service
        │   │   │   		├── APICall.java
        │   │   │   		└── CityReader.jav
-       │   │   └── it.univpm.SantarelliRecinelli.stats
-       │   │      		├── FilterStats.java
-       │   │      		└── package-info.java
-       │   ├── resources
+       │   │   ├── it.univpm.SantarelliRecinelli.stats
+       │   │   |   		├── FilterStats.java
+       │   │   |   		└── package-info.java
+       |   |   └── it.univpm.SantarelliRecinelli.timer
+       │   │   		    ├── MyTimer.java
+       |   |            └── package-info.java
+       │   └── resources
 	   |	   ├── APIForecastAncona.txt
 	   |       ├── APIForecastEveryHour.txt
        │       └── application.properties
