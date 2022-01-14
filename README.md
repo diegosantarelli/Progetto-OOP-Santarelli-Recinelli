@@ -131,7 +131,7 @@ Di seguito illustriamo la struttura del nostro progetto:
        │   ├── java
        │   │   ├── it.univpm.SantarelliRecinelli
        │   │   │        └──  ProvaSantarelliRecinelliApplication.java
-	   |   |   ├── it.univpm.SantarelliRecinelli.controller
+       |   |   ├── it.univpm.SantarelliRecinelli.controller
        │   │   │    	├── Controller.java
        │   │   │    	└── package-info.java
        │   │   ├── it.univpm.SantarelliRecinelli.exception
@@ -151,10 +151,10 @@ Di seguito illustriamo la struttura del nostro progetto:
        │   │   |   		└── package-info.java
        |   |   └── it.univpm.SantarelliRecinelli.timer
        │   │   		    ├── MyTimer.java
-       |   |            └── package-info.java
+       |   |           	    └── package-info.java
        │   └── resources
-	   |	   ├── APIForecastAncona.txt
-	   |       ├── APIForecastEveryHour.txt
+       |       ├── APIForecastAncona.txt
+       |       ├── APIForecastEveryHour.txt
        │       └── application.properties
        └── test
             └── java
@@ -162,14 +162,14 @@ Di seguito illustriamo la struttura del nostro progetto:
                      └── ProvaSantarelliRecinelliApplicationTests.java		
 				├── it.univpm.SantarelliRecinelli.stats
 					  └── FilterStatsTest.java	
-				└──	it.univpm.SantarelliRecinelli.timer
+				└── it.univpm.SantarelliRecinelli.timer
 				      └── MyTimerTest.java	
-	├── .classpath
-	├── .gitignore
-	├── .project
-	├── HELP.md
-	├── README.md 
-	├── mvnw
+    ├── .classpath
+    ├── .gitignore
+    ├── .project
+    ├── HELP.md
+    ├── README.md 
+    ├── mvnw
     ├── mvnw.cmd
     └── pom.xml                          
    
