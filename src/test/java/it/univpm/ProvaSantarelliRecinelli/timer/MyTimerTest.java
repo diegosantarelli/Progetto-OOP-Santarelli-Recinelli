@@ -53,7 +53,7 @@ class MyTimerTest {
 	@Test
 	@DisplayName("Salvataggio del file avvenuto correttamente")
 	void WriteOnLocalFileEveryHourTest() throws WrongFileException, WrongCityException {
-		String path = "C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour";
+		String path = "/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour";
 		String outputMyTimer = "Il file APIForecastEveryHour è stato salvato in " + path;
 		assertEquals(timer.WriteOnLocalFileEveryHour(city.getName(), city.getCountry()), outputMyTimer);
 	}
