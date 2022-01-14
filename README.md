@@ -162,7 +162,7 @@ Di seguito illustriamo la struttura del nostro progetto:
                      └── ProvaSantarelliRecinelliApplicationTests.java		
 				├── it.univpm.SantarelliRecinelli.stats
 					  └── FilterStatsTest.java	
-				└──	it.univpm.SantarelliRecinelli.timer
+				└── it.univpm.SantarelliRecinelli.timer
 				      └── MyTimerTest.java	
 	├── .classpath
 	├── .gitignore
