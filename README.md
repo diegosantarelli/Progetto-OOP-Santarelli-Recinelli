@@ -102,8 +102,16 @@ Eccone un esempio:
 
 ![FilterPerWeek](https://i.ibb.co/yk6CJ7S/Schermata-2022-01-13-alle-12-49-28.png)
 # Eccezioni
-Le eccezioni vengono gestite tramite una classe chiamata WrongCityException che controlla che la città e il Paese inseriti dall'utente siano corrette, altrimenti stamperà a video il seguente messaggio: *"ERR: Città o Paese inseriti non corretti"*.
+Le eccezioni vengono gestite tramite due classi:
+ - WrongCityException: controlla che la città e il Paese
+   inseriti dall'utente siano corrette, altrimenti stamperà a video il
+   seguente messaggio: *"ERR: Città o Paese inseriti non corretti"*.
 
+![WrongCityException](https://i.ibb.co/cbn4w71/Schermata-2022-01-14-alle-11-29-29.png)
+ - WrongFileException: controlla che il path del file sia corretto, 
+   altrimenti stamperà a video il seguente messaggio: *"ERR: File non esistente"*.
+
+![WrongFileException](https://i.ibb.co/cQCfWGJ/Schermata-2022-01-14-alle-11-28-26.png)
 # Struttura del progetto
 Di seguito illustriamo la struttura del nostro progetto:
 
@@ -148,9 +156,7 @@ Di seguito illustriamo la struttura del nostro progetto:
        └── test
             └── java
 	            ├── it.univpm.SantarelliRecinelli
-                      └── ProvaSantarelliRecinelliApplicationTests.java
-				├── it.univpm.SantarelliRecinelli.model
-					  └── CityTest.java	
+                      └── ProvaSantarelliRecinelliApplicationTests.java		
 				├── it.univpm.SantarelliRecinelli.stats
 					  └── FilterStatsTest.java	
 				└──	it.univpm.SantarelliRecinelli.timer
@@ -162,8 +168,22 @@ Di seguito illustriamo la struttura del nostro progetto:
 	├── README.md 
 	├── mvnw
     ├── mvnw.cmd
-    ├── pom.xml                          
+    └── pom.xml                          
    
+  
+
+# Test
+Le classi per i test realizzate nel nostro progetto sono le seguenti:
+    
+ - MyTimerTest: esegue il test dei metodi della classe MyTimer.
+    Se il test va a buon fine, viene stampato:
+    
+    ![MyTimerTest](https://i.ibb.co/x2prC2S/Schermata-2022-01-14-alle-11-49-00.png)
+ - FilterStatsTest: esegue il test dei metodi della classe FilterStats.
+    Se il test va a buon fine, viene stampato:
+
+![FilterStatsTest](https://i.ibb.co/Wk06rj1/Schermata-2022-01-14-alle-11-40-31.png)
+
 # Autori
 
 Il progetto è stato realizzato da: 
