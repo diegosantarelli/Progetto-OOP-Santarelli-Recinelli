@@ -80,12 +80,9 @@ public class CityReader{
 		JSONParser jsonParser = new JSONParser();
 		JSONObject objCity;
 		
-<<<<<<< HEAD
-		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastANCONA")){
-=======
+
 		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastANCONA")){
-			//A questo punto legge il JSON file
->>>>>>> 7e3a691c6ec3d4d9042eab3989b299f4d47c587c
+
 			Object obj = jsonParser.parse(reader);
 			objCity = new JSONObject();
 			return objCity = (JSONObject) obj;
