@@ -20,7 +20,7 @@ import it.univpm.ProvaSantarelliRecinelli.timer.MyTimer;
 
 /**
  * 
- * Questa classe gestisce ogni chiamata che si può effettuare al server
+ * Classe che gestisce ogni chiamata che si può effettuare al server.
  * 
  * @author DiegoSantarelli
  * @author SimoneRecinelli
@@ -33,7 +33,7 @@ public class Controller {
 	/**
 	 * 
 	 * Rotta di tipo GET che permette di effettuare la chiamata secondo una città ed un Paese inseriti dall'utente tramite i parametri.
-	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei parametri di default (Ancona, IT).
+	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese, il metodo viene effettuato con dei parametri di default (Ancona, IT).
 	 * 
 	 * @param city rappresenta la città
 	 * @param country rappresenta il Paese
@@ -52,7 +52,7 @@ public class Controller {
 	/**
 	 * 
 	 * Rotta di tipo GET che effettua il parsing della chiamata al server secondo una città ed un Paese inseriti dall'utente tramite i parametri.
-	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei parametri di default (Ancona, IT).
+	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese, il metodo viene effettuato con dei parametri di default (Ancona, IT).
 	 * 
 	 * @param city rappresenta la città
 	 * @param country rappresenta il Paese
@@ -62,6 +62,7 @@ public class Controller {
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.service.CityReader
 	 * @see it.univpm.ProvaSantarelliRecinelli.service.CityReader#JSONParsing()
+	 * 
 	 */
 	
 	@RequestMapping({"/JSONParsing", "/JSONParsing/{city}/{country}"})
@@ -73,13 +74,16 @@ public class Controller {
 	/**
 	 * 
 	 * Rotta di tipo GET che effettua il parsing della chiamata al server secondo una città ed un Paese inseriti dall'utente tramite i parametri.
-	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei parametri di default (Ancona, IT).
+	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese, il metodo viene effettuato con dei parametri di default (Ancona, IT).
 	 * 
 	 * @param city rappresenta la città
 	 * @param country rappresenta il Paese
+	 * 
 	 * @return <code>City</code>
-	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
+	 * 
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
 	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 * 
 	 */
 	
 	@RequestMapping({"/JSONParsingWind", "/JSONParsingWind/{city}/{country}"})
@@ -92,15 +96,18 @@ public class Controller {
 	 * 
 	 * Rotta di tipo GET che, secondo una città ed un Paese inseriti dall'utente tramite i parametri, permette di sovrascrivere
 	 * un file locale "APIForecastEveryHour.txt" ogni ora.
-	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei parametri di default (Ancona, IT).
+	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese, il metodo viene effettuato con dei parametri di default (Ancona, IT).
 	 * 
 	 * @param city rappresenta la città
 	 * @param country rappresenta il Paese
-	 * @return <code>String</code>
-	 * @throws WrongFileException eccezione che indica che il path del file è errato
-	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
 	 * 
-	 * @see it.univpm.ProvaSantarelliRecinelli.timer.MyTimer;
+	 * @return <code>String</code>
+	 * 
+	 * @throws WrongFileException eccezione che indica che il path del file è errato.
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
+	 * 
+	 * @see it.univpm.ProvaSantarelliRecinelli.timer.MyTimer
+	 * 
 	 */
 	
 	@RequestMapping({"/MyTimer", "/MyTimer/{city}/{country}"})
@@ -110,18 +117,22 @@ public class Controller {
 	}
 	
 	/**
+	 * 
 	 * Rotta di tipo GET che effettua il parsing del file locale "APIForecastEveryHour.txt" tramite i parametri inseriti dall'utente
 	 * che devono corrispondere alla città e al relativo Paese del file locale.
 	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei parametri di default (Ancona, IT).
 	 * 
 	 * @param city rappresenta la città
 	 * @param country rappresenta il Paese
+	 * 
 	 * @return <code>City</code>
-	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
-	 * @throws WrongFileException eccezione che indica che il path del file è errato
+	 * 
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
+	 * @throws WrongFileException eccezione che indica che il path del file è errato.
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#JSONParsingStats()
+	 * 
 	 */
 	
 	@RequestMapping({"/JSONParsingStats", "/JSONParsingStats/{city}/{country}"})
@@ -131,6 +142,7 @@ public class Controller {
 	}
 	
 	/**
+	 * 
 	 * Rotta di tipo GET che filtra le statistiche salvate nel file locale "APIForecastEveryHour.txt" relative ad un giorno, in base 
 	 * ad una città, un Paese ed un giorno inseriti dall'utente.
 	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei città e Paese di default (Ancona, IT).
@@ -138,12 +150,15 @@ public class Controller {
 	 * @param city rappresenta la città
 	 * @param country rappresenta il Paese
 	 * @param day rappresenta il giorno di cui si vuole effettuare il filtraggio delle statistiche
+	 * 
 	 * @return <code>JSONObject</code>
-	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
-	 * @throws WrongFileException eccezione che indica che il path del file è errato
+	 * 
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
+	 * @throws WrongFileException eccezione che indica che il path del file è errato.
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#FilterDay(LocalDate, String, String)
+	 * 
 	 */
 	
 	@RequestMapping({"/FilterDay", "/FilterDay/{city}/{country}/{day}"})
@@ -154,6 +169,7 @@ public class Controller {
 	}
 	
 	/**
+	 * 
 	 * Rotta di tipo GET che filtra le statistiche salvate nel file locale "APIForecastEveryHour.txt" relative ad un'ora, in base 
 	 * ad una città, un Paese, un giorno ed un'ora inseriti dall'utente.
 	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei città e Paese di default (Ancona, IT).
@@ -162,12 +178,15 @@ public class Controller {
 	 * @param country rappresenta il Paese
 	 * @param day rappresenta il giorno di cui si vuole effettuare il filtraggio delle statistiche
 	 * @param time rappresenta l'ora del giorno di cui si vuole effettuare il filtraggio delle statistiche
+	 * 
 	 * @return <code>JSONObject</code>
-	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
-	 * @throws WrongFileException eccezione che indica che il path del file è errato
+	 * 
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
+	 * @throws WrongFileException eccezione che indica che il path del file è errato.
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#Filter1Hour(LocalDate, LocalTime, String, String)
+	 * 
 	 */
 	
 	@RequestMapping({"/Filter1Hour", "/Filter1Hour/{city}/{country}/{day}/{time}"})
@@ -179,6 +198,7 @@ public class Controller {
 	}
 	
 	/**
+	 * 
 	 * Rotta di tipo GET che filtra le statistiche salvate nel file locale "APIForecastEveryHour.txt" relative ad una fascia oraria dei giorni presenti 
 	 * nel file, in base ad una città, un Paese ed una fascia oraria inseriti dall'utente.
 	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei città e Paese di default (Ancona, IT).
@@ -186,12 +206,15 @@ public class Controller {
 	 * @param city rappresenta la città
 	 * @param country rappresenta il Paese
 	 * @param hours rappresenta la fascia oraria per la quale si vuole effettuare il filtraggio delle statistiche
+	 * 
 	 * @return <code>JSONObject</code>
-	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
-	 * @throws WrongFileException eccezione che indica che il path del file è errato
+	 * 
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
+	 * @throws WrongFileException eccezione che indica che il path del file è errato.
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#FilterPerHours(String, String, String)
+	 * 
 	 */
 	
 	@RequestMapping({"/FilterPerHours", "/FilterPerHours/{city}/{country}/{hours}"})
@@ -201,6 +224,7 @@ public class Controller {
 	}
 	
 	/**
+	 * 
 	 * Rotta di tipo GET che filtra le statistiche salvate nel file locale "APIForecastEveryHour.txt" relative ad un periodo di 5 giorni, in base 
 	 * ad una città, un Paese, una data d'inizio e una data di fine inseriti dall'utente.
 	 * Inoltre se l'utente non inserisce alcuna città o alcun Paese il metodo viene effettuato con dei città e Paese di default (Ancona, IT).
@@ -209,12 +233,15 @@ public class Controller {
 	 * @param country rappresenta il Paese
 	 * @param date1 rappresenta la data d'inizio
 	 * @param date2 rappresenta la data di fine
+	 * 
 	 * @return <code>JSONObject</code>
-	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
-	 * @throws WrongFileException eccezione che indica che il path del file è errato
+	 * 
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
+	 * @throws WrongFileException eccezione che indica che il path del file è errato.
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats
 	 * @see it.univpm.ProvaSantarelliRecinelli.stats.FilterStats#Filter5Days(LocalDate, LocalDate, String, String)
+	 * 
 	 */
 	
 	@RequestMapping({"/FilterPerWeek", "/FilterPerWeek/{city}/{country}/{date1}/{date2}"})
@@ -227,12 +254,14 @@ public class Controller {
 	
 	/**
 	 * 
-	 * Questo metodo gestisce le eccezioni dovute all'inserimento di città o Paesi errati
+	 * Questo metodo gestisce le eccezioni dovute all'inserimento di città o Paesi errati.
 	 * 
 	 * @param e rapppresenta l'eccezione
+	 * 
 	 * @return <code>String</code>
 	 * 
 	 * @see it.univpm.ProvaSantarelliRecinelli.exception.WrongCityException#getErr()
+	 * 
 	 */
 	
 	@ExceptionHandler (WrongCityException.class)
@@ -242,10 +271,12 @@ public class Controller {
 	
 	/**
 	 * 
-	 * Questo metodo gestisce le eccezioni dovute all'inserimento errato del path
+	 * Questo metodo gestisce le eccezioni dovute all'inserimento errato del path del file.
 	 * 
 	 * @param e rappresenta l'eccezione
+	 * 
 	 * @return <code>String</code>
+	 * 
 	 */
 	
 	@ExceptionHandler (WrongFileException.class)

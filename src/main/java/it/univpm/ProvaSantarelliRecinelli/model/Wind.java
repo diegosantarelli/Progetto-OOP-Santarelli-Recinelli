@@ -1,10 +1,12 @@
 package it.univpm.ProvaSantarelliRecinelli.model;
 
 /**
+ * 
  * Classe che costruisce l'oggetto Wind.
  * 
  * @author DiegoSantarelli
  * @author SimoneRecinelli
+ * 
  */
 
 public class Wind {
@@ -14,9 +16,13 @@ public class Wind {
 	String time;
 	
 	/**
+	 * 
 	 * Costruttore della classe.
 	 * 
 	 * @param wind_speed rappresenta la velocità del vento
+	 * @param date	Giorno a cui si riferisce la previsione
+	 * @param time	Ora a cui si riferisce la previsione
+	 * 
 	 */
 	
 	public Wind(double windSpeed, String date, String time) {

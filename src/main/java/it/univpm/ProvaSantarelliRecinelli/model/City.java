@@ -12,10 +12,12 @@ import it.univpm.ProvaSantarelliRecinelli.exception.WrongFileException;
 import it.univpm.ProvaSantarelliRecinelli.service.CityReader;
 
 /**
+ * 
  * Classe che descrive l'oggetto City.
  * 
  * @author SimoneRecinelli
  * @author DiegoSantarelli
+ * 
  */
 
 public class City {
@@ -27,10 +29,12 @@ public class City {
 	private Vector <Wind> windVec = new Vector <Wind>();
 	
 	/**
+	 * 
 	 * Costruttore della classe.
 	 * 
 	 * @param name rappresenta il nome della città
 	 * @param country rappresenta il nome del Paese
+	 * 
 	 */	
 	
 	public City(String name, String country) {
@@ -39,11 +43,14 @@ public class City {
 	}
 	
 	/**
+	 * 
 	 * Metodo che converte in JSONObject un JSONArray il quale contiene tutte le informazioni che ci interessano: temperatura 
 	 * reale, percepita, minima, massima, descrizione generale sulle previsioni e velocità del vento.
 	 * 
 	 * @return <code>JSONObject</code>
+	 * 
 	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 * 
 	 */
 	
 	public JSONObject convertToJSON() throws WrongCityException, WrongFileException {
@@ -77,7 +84,6 @@ public class City {
 		for(int i=0; i<list.size(); i++) {
 			
 			objList = (JSONObject) list.get(i);
-			//date = (String) objList.get("dt_txt");
 			
 			datetime = LocalDateTime.parse(objList.get("dt_txt").toString(), formatter);
 			date = datetime.toLocalDate().toString();
@@ -99,7 +105,6 @@ public class City {
 			windSpeed = (double) objWind.get("speed");
 			
 			appoggio = new Weather(windSpeed, temp, tempMax, tempMin, feelsLike ,date, time, descr ,main2);
-			//this.weat.add(appoggio);
 			
 			arr.add(appoggio);
 		}
@@ -129,7 +134,7 @@ public class City {
 	}
 	
 	/**
-	 * Restituisce il vettore della classe WeatherStats
+	 * Restituisce il vettore della classe WeatherStats.
 	 * @return <code>Vector<WeatherStats></code>
 	 */
 	
@@ -174,7 +179,7 @@ public class City {
 	}
 	
 	/**
-	 * Permette di settare il Paese
+	 * Permette di settare il Paese.
 	 * @param country rappresenta il Paese
 	 */
 	
@@ -183,7 +188,7 @@ public class City {
 	}
 	
 	/**
-	 * Restituisce il vettore della classe Wind
+	 * Restituisce il vettore della classe Wind.
 	 * @return <code>Vector<Wind></code>
 	 */
 	public Vector<Wind> getWindVec() {
@@ -191,13 +196,12 @@ public class City {
 	}
 	
 	/**
-	 * Permette di settare il vettore della classe Wind
+	 * Permette di settare il vettore della classe Wind.
 	 * @param windVec rappresenta un vettore della classe Wind
 	 */
 	public void setWindVec(Vector<Wind> windVec) {
 		this.windVec = windVec;
 	}
-		
-	
+
 }
 

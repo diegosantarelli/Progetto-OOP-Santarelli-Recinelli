@@ -3,6 +3,7 @@ package it.univpm.ProvaSantarelliRecinelli.model;
 import org.json.simple.JSONObject;
 
 /**
+ * 
  * Classe che costruisce l'oggetto Weather.
  * 
  * @author DiegoSantarell
@@ -19,6 +20,7 @@ public class Weather extends Wind {
 	
 	
 	/** 
+	 * 
 	 * Costruttore della classe 
 	 * 
 	 * @param temp			Temperatura reale
@@ -28,7 +30,8 @@ public class Weather extends Wind {
      * @param date			Giorno a cui si riferisce la previsione
      * @param time			Ora a cui si riferisce la previsione
      * @param descr			Descrizione della previsione
-     * @param main			Previsione generale			
+     * @param main			Previsione generale
+     * 	
      */
 	
 	public Weather(double windSpeed ,double temp ,double tempMax, double tempMin, double feelsLike , String date, String time, String descr, String main) {
@@ -42,8 +45,7 @@ public class Weather extends Wind {
 	}
 	
 	/**
-	 * Ritorna la temperatura reale.
-	 * 
+	 * Restituisce la temperatura reale.
 	 * @return <code>double</code>
 	 */
 	
@@ -53,7 +55,6 @@ public class Weather extends Wind {
 	
 	/**
 	 * Permette all'utente di settare la temperatura reale.
-	 * 
 	 * @param temp rappresenta la temperatura
 	 */
 	
@@ -62,8 +63,7 @@ public class Weather extends Wind {
 	}
 	
 	/**
-	 * Rtorna la temperatura percepita.
-	 * 
+	 * Restituisce la temperatura percepita.
 	 * @return <code>double</code>
 	 */
 	
@@ -73,7 +73,6 @@ public class Weather extends Wind {
 	
 	/**
 	 * Permette all'utente di settare la temperatura percepita.
-	 * 
 	 * @param feelsLike rappresenta la temperatura percepita
 	 */
 	
@@ -82,8 +81,7 @@ public class Weather extends Wind {
 	}
 	
 	/**
-	 * Ritorna la temperatura massima.
-	 * 
+	 * Restituisce la temperatura massima.
 	 * @return <code>double</code>
 	 */
 	
@@ -93,7 +91,6 @@ public class Weather extends Wind {
 	
 	/**
 	 * Permette all'utente di settare la temperatura massima.
-	 * 
 	 * @param tempMax rappresenta la temperatura massima
 	 */
 	
@@ -102,8 +99,7 @@ public class Weather extends Wind {
 	}
 	
 	/**
-	 * Ritorna la temperatura minima.
-	 * 
+	 * Restituisce la temperatura minima.
 	 * @return <code>double</code>
 	 */
 	
@@ -113,7 +109,6 @@ public class Weather extends Wind {
 	
 	/**
 	 * Permette all'utente di settare la temperatura minima.
-	 * 
 	 * @param tempMin rappresenta la temperatura minima
 	 */
 
@@ -122,8 +117,7 @@ public class Weather extends Wind {
 	}
 	
 	/**
-	 * Ritorna la descrizione della previsione.
-	 * 
+	 * Restituisce la descrizione della previsione.
 	 * @return <code>String</code>
 	 */
 
@@ -133,7 +127,6 @@ public class Weather extends Wind {
 	
 	/**
 	 * Permette all'utente di settare la descrizione della previsione.
-	 * 
 	 * @param descr rappresenta la descrizione della previsione
 	 */
 
@@ -142,8 +135,7 @@ public class Weather extends Wind {
 	}
 	
 	/**
-	 * Ritorna la previsione generale.
-	 * 
+	 * Restituisce la previsione generale.
 	 * @return <code>String</code>
 	 */
 
@@ -153,16 +145,18 @@ public class Weather extends Wind {
 	
 	/**
 	 * Permette all'utente di settare la previsione generale.
-	 * 
 	 * @param main rappresenta la previsione generale
 	 */
 
 	public void setMain(String main) {
 		this.main = main;
 	}
+	
 	/**
 	 * Metodo che converte un JSONObject di tipo Weather in String.
+	 * 
 	 * @return <code>String</code>
+	 * 
 	 */
 	
 	public String toString() {

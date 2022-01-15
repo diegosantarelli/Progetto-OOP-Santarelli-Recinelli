@@ -18,6 +18,7 @@ public class WeatherStats {
 	private Vector<WeatherStats> weatVec = new Vector<WeatherStats>();
 	
 	/**
+	 * 
 	 * Costruttore della classe per il calcolo delle statistiche
 	 * 
 	 * @param temp			Temperatura
@@ -26,6 +27,7 @@ public class WeatherStats {
 	 * @param feelsLike		Temperatura percepita
 	 * @param date			Giorno a cui si riferisce la previsione
 	 * @param time			Ora a cui si riferisce la previsione
+	 * 
 	 */
 	
 	public WeatherStats(double temp ,double tempMax, double tempMin, double feelsLike ,String date, String time) {
@@ -147,7 +149,6 @@ public class WeatherStats {
 	
 	/**
 	 * Restituisce il vettore della classe WeatherStats.
-	 * 
 	 * @return <code>Vector</code>
 	 */
 
@@ -157,7 +158,6 @@ public class WeatherStats {
 	
 	/**
 	 * Permette di settare il vettore della classe WeatherStats.
-	 * 
 	 * @param weatVec
 	 */
 

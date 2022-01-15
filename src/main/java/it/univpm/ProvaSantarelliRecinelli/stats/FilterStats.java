@@ -19,6 +19,7 @@ import it.univpm.ProvaSantarelliRecinelli.exception.WrongFileException;
 import it.univpm.ProvaSantarelliRecinelli.model.*;
 
 /**
+ * 
  * Classe che permette di calcolare valori minimi, massimi, media e varianza di temperature reali e percepite.
  * 
  * @author DiegoSantarelli
@@ -37,11 +38,14 @@ public class FilterStats {
 	String descr, main;
 	
 	/**
+	 * 
 	 * Costruttore della classe
 	 * 
 	 * @param cityName rappresenta il nome della città
 	 * @param country rappresenta il Paese della città
-	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati
+	 * 
+	 * @throws WrongCityException eccezione dovuta all'inserimento di una città o Paese errati.
+	 * 
 	 */
 	
 	public FilterStats(String cityName, String country) throws WrongCityException {
@@ -52,6 +56,7 @@ public class FilterStats {
 		/*
 		 * Ciclo if che permette di settare di default Ancona come città e IT come Paese
 		 * se l'utente non passa uno dei due parametri o entrambi contemporaneamente.
+		 * 
 		 */
 		
 		if (cityName == null || country == null) {
@@ -60,14 +65,17 @@ public class FilterStats {
 			City c1 = new City(cityName,country);
 			this.city = c1;
 		} else if (!cityName.equals("Ancona") || !country.equals("IT")) throw new WrongCityException(); 
-		//Viene lanciata l'eccezione se non si passano Ancona e IT nei parametri per calcolarne le statistiche
-		
+	
 	}
 	
 	/**
+	 * 
 	 * Metodo che legge il file JSON "APIForecastEveryHour.txt" e inserisce tutte le informazioni in un JSONObject, restituendolo.
+	 * 
 	 * @return <code>JSONObject</code>
+	 * 
 	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 * 
 	 */
 	
 	public JSONObject caricaOggettoStats() throws WrongFileException {
@@ -78,7 +86,7 @@ public class FilterStats {
 		 // PATH SIMONE /Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour
 		 // PATH DIEGO C:\Users\diego\OneDrive\Desktop\ProvaSantarelliRecinelli\ProvaSantarelliRecinelli\src\main\resources\APIForecastEveryHour
 
-		try (FileReader reader = new FileReader("/Users/simonerecinelli/Desktop/ProvaSantarelliRecinelli/src/main/resources/APIForecastEveryHour")){
+		try (FileReader reader = new FileReader("C:\\Users\\diego\\OneDrive\\Desktop\\ProvaSantarelliRecinelli\\ProvaSantarelliRecinelli\\src\\main\\resources\\APIForecastEveryHour")){
 			//A questo punto legge il JSON file
 			Object obj = jsonParser.parse(reader);
 			cityList = new JSONObject();
@@ -94,14 +102,18 @@ public class FilterStats {
 			e.printStackTrace();
 			throw new WrongFileException();
 		}
+		
 	}
 	
 	/**
-	 * Questo metodo parsifica il JSONObject ricevuto dal file salvato in locale "APIForecastEveryHour.txt".
+	 * 
+	 * Metodo che parsifica il JSONObject ricevuto dal file salvato in locale "APIForecastEveryHour.txt".
 	 * 
 	 * @return <code>City</code>
-	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * 
+	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata.
 	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 * 
 	 */
 	
 	public City JSONParsingStats() throws WrongCityException, WrongFileException {
@@ -130,19 +142,25 @@ public class FilterStats {
 			appoggio = new WeatherStats(temp, tempMax, tempMin, feelsLike, date, time);
 			this.weat.add(appoggio);
 		}
+		
 		this.city.setVectorStats(this.weat);	
 		return this.city;
+		
 	}
 	
 	/**
+	 * 
 	 * Metodo che permette di filtrare le statistiche salvate in locale nel file "APIForecastEveryHour.txt" relative ad un giorno scelto dall'utente.
 	 * 
 	 * @param day rappresenta il giorno scelto dall'utente
 	 * @param cityName rappresenta il nome della città
 	 * @param country rappresenta il Paese della città
+	 * 
 	 * @return <code>JSONObject</code>
-	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * 
+	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata.
 	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 * 
 	 */
 		
 	public JSONObject FilterDay (LocalDate day, String cityName, String country) throws WrongCityException, WrongFileException {
@@ -218,6 +236,7 @@ public class FilterStats {
 	}
 	
 	/**
+	 * 
 	 * Metodo che permette di filtrare le statistiche salvate in locale nel file "APIForecastEveryHour.txt" relative 
 	 * ad un'ora di un giorno scelti dall'utente.
 	 * 
@@ -225,9 +244,12 @@ public class FilterStats {
 	 * @param time rappresenta l'ora scelta dall'utente
 	 * @param cityName rappresenta il nome della città
 	 * @param country rappresenta il Paese della città
+	 * 
 	 * @return <code>WeatherStats</code>
-	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * 
+	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata.
 	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 * 
 	 */
 	
 	public WeatherStats Filter1Hour(LocalDate date ,LocalTime time, String cityName, String country) throws WrongCityException, WrongFileException {
@@ -264,97 +286,105 @@ public class FilterStats {
 					 }
 				 }
 			 }
-		 } return null;
+		 }
+		 
+		 return null;
+		 
 	}
 	
 	/**
+	 * 
 	 * Metodo che permette di filtrare le statistiche salvate in locale nel file "APIForecastEveryHour.txt" relative ad una fascia oraria 
 	 * dei giorni presenti nel file.
 	 * 
 	 * @param time rappresenta la fascia oraria scelta dall'utente
 	 * @param cityName rappresenta il nome della città
 	 * @param country rappresenta il Paese della città
+	 * 
 	 * @return <code>JSONObject</code>
-	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * 
+	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata.
 	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 * 
 	 */
 
 	public JSONObject FilterPerHours(String time, String cityName, String country) throws WrongCityException, WrongFileException {
 	 
-	 City c = new City(cityName,country);
-	 this.city = c;
-	 c = JSONParsingStats();
-	 weatStats = c.getVectorStats();
-	 
-	 JSONObject objFilter = new JSONObject();
-	 
-	 String[] rangeTime = SplitRange(time);
-	 
-	 LocalTime timeStart = null, timeEnd = null;
-	 
-	 try {
-		 timeStart = LocalTime.parse(rangeTime[0]);
-		 timeEnd = LocalTime.parse(rangeTime[1]);
-	 } catch(DateTimeParseException e) {
+		 City c = new City(cityName,country);
+		 this.city = c;
+		 c = JSONParsingStats();
+		 weatStats = c.getVectorStats();
 		 
-	 } catch (ArrayIndexOutOfBoundsException e) {
+		 JSONObject objFilter = new JSONObject();
 		 
-	 }
+		 String[] rangeTime = SplitRange(time);
+		 
+		 LocalTime timeStart = null, timeEnd = null;
 	 
-	 int n = 0;
-	 String j;
-	 LocalTime t;
+		 try {
+			 timeStart = LocalTime.parse(rangeTime[0]);
+			 timeEnd = LocalTime.parse(rangeTime[1]);
+		 } catch(DateTimeParseException e) {
+			 
+		 } catch (ArrayIndexOutOfBoundsException e) {
+			 
+		 }
+		 
+		 int n = 0;
+		 String j;
+		 LocalTime t;
 	
-	 for (n = 0; n < weatStats.size(); n++) {
-			 
-		j = weatStats.get(n).getTimeStats();
-		t = LocalTime.parse(j);
-			 
-		if (t.isAfter(timeStart) && t.isBefore(timeEnd)) {
-					 
-			if (tempMax < weatStats.get(n).getTempMax()) tempMax = weatStats.get(n).getTempMax();
-						 
-			if (tempMin < weatStats.get(n).getTempMin()) tempMin = weatStats.get(n).getTempMin();
-						 
-			if (feelsLikeStatsMin > weatStats.get(n).getFeelsLike()) feelsLikeStatsMin = weatStats.get(n).getFeelsLike();
-					 
-			if (feelsLikeStatsMax < weatStats.get(n).getFeelsLike()) feelsLikeStatsMax = weatStats.get(n).getFeelsLike();
+		 for (n = 0; n < weatStats.size(); n++) {
 				 
-			mediaTemp += weatStats.get(n).getTemp();
-			mediaFeelsLike += weatStats.get(n).getFeelsLike(); 
-		}
-	 }
+			j = weatStats.get(n).getTimeStats();
+			t = LocalTime.parse(j);
+				 
+			if (t.isAfter(timeStart) && t.isBefore(timeEnd)) {
+							 
+				if (tempMax < weatStats.get(n).getTempMax()) tempMax = weatStats.get(n).getTempMax();
+								 
+				if (tempMin < weatStats.get(n).getTempMin()) tempMin = weatStats.get(n).getTempMin();
+								 
+				if (feelsLikeStatsMin > weatStats.get(n).getFeelsLike()) feelsLikeStatsMin = weatStats.get(n).getFeelsLike();
+							 
+				if (feelsLikeStatsMax < weatStats.get(n).getFeelsLike()) feelsLikeStatsMax = weatStats.get(n).getFeelsLike();
+						 
+				mediaTemp += weatStats.get(n).getTemp();
+				mediaFeelsLike += weatStats.get(n).getFeelsLike(); 
+			}
+			
+		 }
 
-	 mediaTemp /= n;
-	 mediaFeelsLike /= n;
+		 mediaTemp /= n;
+		 mediaFeelsLike /= n;
  	
-	for (n = 0; n < weatStats.size(); n++) {
-			
-		j = weatStats.get(n).getTimeStats();
-		t = LocalTime.parse(j);
-		//System.out.println(j);
-		
-		if (t.isAfter(timeStart) && t.isBefore(timeEnd)) {
+		 for (n = 0; n < weatStats.size(); n++) {
 				
-			varianzaTemp += (weatStats.get(n).getTemp() - mediaTemp)*(weatStats.get(n).getTemp() - mediaTemp);
-			varianzaFeelsLike += (weatStats.get(n).getFeelsLike() - mediaFeelsLike)*(weatStats.get(n).getFeelsLike() - mediaFeelsLike);
+			j = weatStats.get(n).getTimeStats();
+			t = LocalTime.parse(j);
 			
-		}	
-	}
+			if (t.isAfter(timeStart) && t.isBefore(timeEnd)) {
+					
+				varianzaTemp += (weatStats.get(n).getTemp() - mediaTemp)*(weatStats.get(n).getTemp() - mediaTemp);
+				varianzaFeelsLike += (weatStats.get(n).getFeelsLike() - mediaFeelsLike)*(weatStats.get(n).getFeelsLike() - mediaFeelsLike);
+				
+			}
+			
+		 }
  
-	varianzaTemp /= n-1;
-	varianzaFeelsLike /= n-1;
+		 varianzaTemp /= n-1;
+		 varianzaFeelsLike /= n-1;
 		 
-	objFilter.put("Temperatura massima", tempMax);
-	objFilter.put("Temperatura minima", tempMin);
-	objFilter.put("Temperatura percepita massima", feelsLikeStatsMax);
-	objFilter.put("Temperatura percepita minima", feelsLikeStatsMin);
-	objFilter.put("Media delle temperature reali", mediaTemp);
-	objFilter.put("Media delle temperature percepite", mediaFeelsLike);
-	objFilter.put("Varianza delle temperature reali", varianzaTemp);
-	objFilter.put("Varianza delle temperature percepite", varianzaFeelsLike);
-		 
-	 return objFilter;
+		 objFilter.put("Temperatura massima", tempMax);
+		 objFilter.put("Temperatura minima", tempMin);
+		 objFilter.put("Temperatura percepita massima", feelsLikeStatsMax);
+		 objFilter.put("Temperatura percepita minima", feelsLikeStatsMin);
+		 objFilter.put("Media delle temperature reali", mediaTemp);
+		 objFilter.put("Media delle temperature percepite", mediaFeelsLike);
+		 objFilter.put("Varianza delle temperature reali", varianzaTemp);
+		 objFilter.put("Varianza delle temperature percepite", varianzaFeelsLike);
+			 
+		 return objFilter;
 	 
 	}
 	
@@ -366,23 +396,29 @@ public class FilterStats {
 		} catch(PatternSyntaxException e) {
 			hours = null;
 		}
+		
 		return hours;
 	}
 	
 	/**
+	 * 
 	 * Metodo che permmette di filtrare le statistiche salvate in locale nel file "APIForecastEveryHour.txt" relative ad un periodo di 5 giorni.
 	 * 
 	 * @param dateSt rappresenta la data d'inizio
 	 * @param dateEn rappresenta la data di fine
 	 * @param cityName rappresenta il nome della città
 	 * @param country rappresenta il Paese della città
+	 * 
 	 * @return <code>JSONObject</code>
-	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata
+	 * 
+	 * @throws WrongCityException eccezione riguardante l'inserimento di una città errata.
 	 * @throws WrongFileException eccezione che restituisce un messaggio di errore quando il path del file non viene trovato.
+	 * 
 	 */
 	
 	public JSONObject FilterWeek (LocalDate dateSt, LocalDate dateEn, String cityName, String country) throws WrongCityException, WrongFileException {
-		City c = new City(cityName,country);
+		 
+		 City c = new City(cityName,country);
 		 this.city = c;
 		 c = JSONParsingStats();
 		 weatStats = c.getVectorStats();
@@ -392,7 +428,6 @@ public class FilterStats {
 		 int i = 0;
 		 String j;
 		 LocalDate d;
-		 
 		 
 		 for (i = 0; i < weatStats.size(); i++) {
 			 

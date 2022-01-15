@@ -13,9 +13,12 @@ import org.json.simple.parser.ParseException;
 
 
 /**
- * Questa classe gestisce le chiamate API prendendo in input dall'utente il nome di una città e il relativo Paese.
+ * 
+ * Classe che gestisce le chiamate API prendendo in input dall'utente il nome di una città e il relativo Paese.
+ * 
  * @author SimoneRecinelli
  * @author DiegoSantarelli
+ * 
  */
 
 public class APICall{
@@ -24,10 +27,12 @@ public class APICall{
 	private String url;
 
 	/**
+	 * 
 	 * Costruttore della classe.
 	 * 
 	 * @param city rappresenta la città
 	 * @param country rappresenta il Paese
+	 * 
 	 */
 	
 	public APICall (String city, String country) {
@@ -39,9 +44,12 @@ public class APICall{
 	}
 	 
 	/**
+	 * 
 	 * Metodo che effettua la chiamata all'API Forecast tramite l'URL inserito nel costruttore, la città e il Paese inseriti dall'utente.
 	 * Esso ritorna un JSONObject contenente tutte le informazioni derivanti dall'API Forecast.
+	 * 
 	 * @return <code>JSONObject</code> 
+	 * 
 	 */
 
 	public JSONObject Call() {   
