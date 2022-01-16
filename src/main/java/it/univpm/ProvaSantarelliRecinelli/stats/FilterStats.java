@@ -400,7 +400,7 @@ public class FilterStats {
 	
 	/**
 	 * 
-	 * Metodo che permmette di filtrare le statistiche salvate in locale nel file "APIForecastEveryHour.txt" relative ad un periodo di 5 giorni.
+	 * Metodo che permmette di filtrare le statistiche salvate in locale nel file "APIForecastEveryHour.txt" relative ad una settimana.
 	 * 
 	 * @param dateSt rappresenta la data d'inizio
 	 * @param dateEn rappresenta la data di fine
