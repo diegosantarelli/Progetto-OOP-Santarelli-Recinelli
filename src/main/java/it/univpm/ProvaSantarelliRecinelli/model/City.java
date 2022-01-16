@@ -110,7 +110,7 @@ public class City {
 		}
 		
 		JSONObject finalObj = new JSONObject();
-		finalObj.put("Weather:", arr);
+		finalObj.put("Weather", arr);
 		
 		return finalObj;
 	}

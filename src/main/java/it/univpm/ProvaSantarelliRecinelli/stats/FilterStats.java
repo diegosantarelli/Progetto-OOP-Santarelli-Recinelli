@@ -123,20 +123,19 @@ public class FilterStats {
 		String date;
 		String time;
 		
-		JSONArray weatArray = (JSONArray) obj.get("Weather:");
+		JSONArray weatArray = (JSONArray) obj.get("Weather");
 		JSONObject objWeatArr = new JSONObject();
-		JSONObject objWeather = new JSONObject();
 		
 		for(int i=0; i<weatArray.size(); i++) {
 			
 			objWeatArr = (JSONObject) weatArray.get(i);
 			
 			temp=Double.parseDouble(objWeatArr.get("Temperatura reale").toString());
-			tempMin=Double.parseDouble(objWeatArr.get("Temperatura minima:").toString());
-			tempMax=Double.parseDouble(objWeatArr.get("Temperatura massima:").toString());
-			feelsLike=Double.parseDouble(objWeatArr.get("Temperatura percepita:").toString());
-			date = objWeatArr.get("Date:").toString();
-			time = objWeatArr.get("Time:").toString();
+			tempMin=Double.parseDouble(objWeatArr.get("Temperatura minima").toString());
+			tempMax=Double.parseDouble(objWeatArr.get("Temperatura massima").toString());
+			feelsLike=Double.parseDouble(objWeatArr.get("Temperatura percepita").toString());
+			date = objWeatArr.get("Date").toString();
+			time = objWeatArr.get("Time").toString();
 			
 			appoggio = new WeatherStats(temp, tempMax, tempMin, feelsLike, date, time);
 			this.weat.add(appoggio);

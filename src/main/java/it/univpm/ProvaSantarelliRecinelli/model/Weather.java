@@ -160,16 +160,17 @@ public class Weather extends Wind {
 	 */
 	
 	public String toString() {
+		
 		JSONObject objWeather = new JSONObject();
 			
-		objWeather.put("Date:", date);
-		objWeather.put("Time:", time);
+		objWeather.put("Date", date);
+		objWeather.put("Time", time);
 		objWeather.put("Temperatura reale", temp);			
-		objWeather.put("Temperatura percepita:", feelsLike);
-		objWeather.put("Temperatura minima:", tempMin);
-		objWeather.put("Temperatura massima:", tempMax);
-		objWeather.put("Descrizione:", descr);
-		objWeather.put("Condizione:", main);
+		objWeather.put("Temperatura percepita", feelsLike);
+		objWeather.put("Temperatura minima", tempMin);
+		objWeather.put("Temperatura massima", tempMax);
+		objWeather.put("Descrizione", descr);
+		objWeather.put("Condizione", main);
 			
 		return objWeather.toJSONString();
 	}
